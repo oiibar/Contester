@@ -1,0 +1,139 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f4f7fc;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Problems Page Container */
+.problems-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.problems-title {
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2d3436;
+}
+
+/* Table Container */
+.problems-table-container {
+  overflow-x: auto;
+}
+
+.problems-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.problems-table th,
+.problems-table td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.problems-table th {
+  background-color: #f9fafc;
+  color: #2d3436;
+  font-weight: bold;
+  font-size: 1rem;
+  text-transform: uppercase;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.problems-table td {
+  color: #4a4a4a;
+  font-size: 0.95rem;
+}
+
+.problems-table tr:nth-child(odd) {
+  background-color: #f8f9fb;
+}
+
+.problems-table tr:hover {
+  background-color: #f1f5f8;
+  cursor: pointer;
+}
+
+/* Difficulty Tags */
+.problem-difficulty {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-weight: bold;
+  font-size: 0.875rem;
+}
+
+.problem-difficulty.easy {
+  background-color: #00b894;
+  color: #fff;
+}
+
+.problem-difficulty.medium {
+  background-color: #e67e22;
+  color: #fff;
+}
+
+.problem-difficulty.hard {
+  background-color: #d63031;
+  color: #fff;
+}
+
+/* Status Tags */
+.problem-status {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.875rem;
+  font-weight: bold;
+}
+
+.problem-status.ongoing {
+  background-color: #f39c12;
+  color: #fff;
+}
+
+.problem-status.upcoming {
+  background-color: #3498db;
+  color: #fff;
+}
+
+.problem-status.completed {
+  background-color: #7f8c8d;
+  color: #fff;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .problems-title {
+    font-size: 2rem;
+  }
+
+  .problems-table th,
+  .problems-table td {
+    font-size: 0.9rem;
+    padding: 10px;
+  }
+}

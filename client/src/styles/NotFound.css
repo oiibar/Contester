@@ -1,0 +1,71 @@
+/* src/styles/NotFound.css */
+
+/* General Styling */
+.not-found-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Full height */
+  background-color: #f4f7fc; /* Light background */
+  color: #333; /* Text color */
+  font-family: "Roboto", sans-serif;
+}
+
+.not-found-content {
+  text-align: center;
+  background-color: #fff; /* White background for the content */
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; /* Limit the width */
+}
+
+.not-found-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #e74c3c; /* Red color for the error message */
+  margin-bottom: 20px;
+}
+
+.not-found-description {
+  font-size: 1.2rem;
+  color: #636e72;
+  margin-bottom: 30px;
+}
+
+.back-home-button {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: #3498db; /* Button color */
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 30px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.back-home-button:hover {
+  background-color: #2980b9; /* Darker blue for hover */
+  transform: translateY(-2px);
+}
+
+.back-home-button:active {
+  transform: translateY(2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .not-found-title {
+    font-size: 2.5rem;
+  }
+
+  .not-found-description {
+    font-size: 1rem;
+  }
+
+  .back-home-button {
+    padding: 10px 20px;
+  }
+}

@@ -1,0 +1,89 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: var(--secondary-light);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: var(--primary);
+}
+
+.navbar a.active {
+  color: #d58000;
+  border-bottom: 2px solid var(--primary);
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  cursor: pointer;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+.user_menu {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Adjust gap between elements */
+}
+
+.user_profile {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: #a8b1ff; /* Matches the color in your code */
+  border-radius: 50%;
+  text-decoration: none; /* Removes underline for the link */
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout_button {
+  background-color: #ff4d4d; /* Red button */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.logout-button:hover {
+  background-color: #e04343; /* Slightly darker red for hover */
+  transform: scale(1.1); /* Slight hover effect */
+}
+
+.logout-button svg {
+  font-size: 16px; /* Icon size */
+}
