@@ -9,7 +9,6 @@
 Here're some of the project's best features:
 
 - Authentication
-- Registration
 - Contests
 - Code Editor
 - Leaderboard
