@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(path = "api/v1/users")
+@RequestMapping(path = "/api/v1/users")
 public class UserController {
     private final UserService userService;
 
@@ -35,7 +35,7 @@ public class UserController {
         return userService.saveUser(userDto);
     }
 
-    @PutMapping(path = "{userId}")
+    @PatchMapping(path = "{userId}")
     public ResponseEntity<String> updateUser(@PathVariable("userId") Long id, @RequestBody UserDto userDto) {
         userService.updateUser(id, userDto);
         return ResponseEntity.ok("User with ID " + id + " has been updated successfully.");

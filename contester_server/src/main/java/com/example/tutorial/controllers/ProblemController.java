@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping(path = "api/v1/problems")
+@RequestMapping(path = "/api/v1/problems")
 public class ProblemController {
     private final ProblemService problemService;
 

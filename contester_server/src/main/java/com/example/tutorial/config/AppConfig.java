@@ -22,9 +22,10 @@ public class AppConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> repository.findByEmail(username)
+        return username -> repository.findByUsername(username) // Use username instead of email
                 .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
+
 
     @Bean
     public AuthenticationProvider authenticationProvider() {

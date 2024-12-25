@@ -1,5 +1,6 @@
 package com.example.tutorial.auth;
 
+import com.example.tutorial.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,4 +12,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class AuthResponse {
     private String token;
+    private User user;
 }
