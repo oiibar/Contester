@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Route, Routes } from "react-router";
+import AuthProvider from "./hooks/AuthProvider"; // AuthProvider is moved here
 import Layout from "./pages/Layout";
 import About from "./pages/About";
 import Leaderboard from "./pages/Leaderboard";
@@ -12,31 +13,38 @@ import Login from "./pages/Auth/Login";
 import Signup from "./pages/Auth/Signup";
 import Code from "./pages/Code";
 import NotFound from "./pages/NotFound";
-import AuthProvider from "./hooks/AuthProvider";
 import PrivateRoute from "./hooks/useAuth";
+import Profile from "./pages/Profile";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
-  <React.StrictMode>
-    <BrowserRouter>
-      <Layout>
+    <React.StrictMode>
+      <BrowserRouter>
         <AuthProvider>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route element={<PrivateRoute />}>
-              <Route path="/code" element={<Code />} />
-              <Route path="/leaderboard" element={<Leaderboard />} />
-              <Route path="/contests" element={<Contests />} />
+          <Layout>
+            <Routes>
+              {/* Public Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
-              <Route path="/problems" element={<Problems />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<About />} />
+
+              {/* Private Routes */}
+              <Route element={<PrivateRoute />}>
+                <Route path="/code" element={<Code />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/contests" element={<Contests />} />
+                <Route path="/problems" element={<Problems />} />
+                <Route path="/profile" element={<Profile />} />
+
+              </Route>
+
+              {/* Catch-All */}
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </Layout>
         </AuthProvider>
-      </Layout>
-    </BrowserRouter>
-  </React.StrictMode>
+      </BrowserRouter>
+    </React.StrictMode>
 );
