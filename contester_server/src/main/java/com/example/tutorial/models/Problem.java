@@ -1,6 +1,10 @@
 package com.example.tutorial.models;
 
 import com.example.tutorial.enums.Difficulty;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,7 +20,10 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "problems")
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Problem {
     @Id
     @SequenceGenerator(
@@ -29,12 +36,23 @@ public class Problem {
             generator = "problem_sequence"
     )
     private Long id;
-    private String contestID;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contest_id", referencedColumnName = "id")
+    @JsonBackReference
+    @JsonIgnore
+    private Contest contest;
+
     private String title;
     private String description;
+
+    @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 }
+

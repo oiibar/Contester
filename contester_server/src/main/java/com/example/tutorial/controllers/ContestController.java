@@ -1,44 +1,53 @@
 package com.example.tutorial.controllers;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.tutorial.dto.ContestDto;
+import com.example.tutorial.models.Contest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
-import com.example.tutorial.dto.ContestDto;
 import com.example.tutorial.services.ContestService;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
-@Controller
-@RequestMapping(path = "/api/v1/contests")
+@RestController
+@RequestMapping("/api/v1/contests")
 public class ContestController {
     private final ContestService contestService;
 
-    @Autowired
     public ContestController(ContestService contestService) {
         this.contestService = contestService;
     }
 
-    @GetMapping()
-    @ResponseStatus(code = HttpStatus.OK)
-    public List<ContestDto> listContests(Model model) {
-        return contestService.findAllContests();
+    @GetMapping
+    public ResponseEntity<List<ContestDto>> listContests() {
+        List<ContestDto> contests = contestService.findAllContests();
+        return ResponseEntity.ok(contests);
     }
 
-    @DeleteMapping(path = "{contestId}")
-    @ResponseStatus(code = HttpStatus.OK)
-    public ResponseEntity<String> deleteContest(@PathVariable("contestId") Long id) {
-        contestService.deleteContest(id);
-        return ResponseEntity.ok("User with ID " + id + " has been deleted successfully.");
+    @PostMapping
+    public ResponseEntity<Map<String, Object>> saveContestWithProblems(@RequestBody ContestDto contestDto) {
+        Map<String, Object> response = new LinkedHashMap<>();
+        contestService.saveContest(mapToContestEntity(contestDto));
+        response.put("status", 1);
+        response.put("message", "Contest created successfully!");
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @PostMapping()
-    @ResponseStatus(code = HttpStatus.CREATED)
-    public ContestDto addContest(@RequestBody ContestDto contestDto) {
-        return contestService.saveContest(contestDto);
+    private Contest mapToContestEntity(ContestDto contestDto) {
+        Contest contest = new Contest();
+        contest.setTitle(contestDto.getTitle());
+        contest.setDescription(contestDto.getDescription());
+        contest.setStartDate(contestDto.getStartDate());
+        contest.setEndDate(contestDto.getEndDate());
+        if (contestDto.getProblems() != null) {
+            contest.setProblems(contestDto.getProblems());
+            contest.getProblems().forEach(problem -> problem.setContest(contest));
+        }
+        return contest;
     }
-
-
 }
+
+
+
