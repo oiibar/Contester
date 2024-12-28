@@ -14,6 +14,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -43,8 +45,14 @@ public class Problem {
     @JsonIgnore
     private Contest contest;
 
+    @Column(length = 500)
     private String title;
+
+    @Column(length = 1000)
     private String description;
+
+    @Column(length = 2000)
+    private String given;
 
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
@@ -54,5 +62,9 @@ public class Problem {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-}
 
+    @ElementCollection
+    @CollectionTable(name = "problem_examples", joinColumns = @JoinColumn(name = "problem_id"))
+    @Column(name = "example")
+    private List<String> examples;
+}
