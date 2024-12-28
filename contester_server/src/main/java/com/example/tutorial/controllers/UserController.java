@@ -1,6 +1,7 @@
 package com.example.tutorial.controllers;
 
 import com.example.tutorial.models.User;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -33,12 +34,12 @@ public class UserController {
     }
 
     @PostMapping()
-    public void addUser(@RequestBody User user) {
+    public void addUser(@RequestBody @Valid User user) {
         userService.saveUser(user);
     }
 
     @PatchMapping(path = "{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable("userId") Long id, @RequestBody UserDto userDto) {
+    public ResponseEntity<String> updateUser(@PathVariable("userId") Long id, @RequestBody @Valid UserDto userDto) {
         userService.updateUser(id, userDto);
         return ResponseEntity.ok("User with ID " + id + " has been updated successfully.");
     }

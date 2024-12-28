@@ -34,19 +34,34 @@ public class AuthService {
     }
 
     public AuthResponse authenticate(AuthRequest request) {
+        // Authenticate the user with email and password
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
-                        request.getUsername(),
+                        request.getEmail(),
                         request.getPassword()
                 )
         );
 
-        var user = repository.findByUsername(request.getUsername())
-                .orElseThrow();
+        // Retrieve the user from the repository using email
+        var user = repository.findByEmail(request.getEmail())
+                .orElseThrow(() -> new IllegalArgumentException("Invalid email or password"));
+
+        // Generate the JWT token
         var jwtToken = jwtService.generateToken(user);
+
+        // Build the AuthResponse with realUsername instead of email
         return AuthResponse.builder()
                 .token(jwtToken)
-                .user(user)
+                .user(UserResponse.builder() // Custom user response to include `realUsername`
+                        .id(user.getId())
+                        .username(user.getRealUsername()) // Use realUsername here
+                        .email(user.getEmail())
+                        .role(user.getRole())
+                        .createdAt(user.getCreatedAt())
+                        .updatedAt(user.getUpdatedAt())
+                        .build())
                 .build();
     }
+
+
 }

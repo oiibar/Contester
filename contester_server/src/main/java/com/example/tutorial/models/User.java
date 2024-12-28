@@ -54,9 +54,10 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return username; // Now returns the actual username
+        return email;
     }
 
+    public String getRealUsername() {return username;}
 
     @Override
     public String getPassword() {
