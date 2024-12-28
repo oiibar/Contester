@@ -1,5 +1,6 @@
 package com.example.tutorial.controllers;
 
+import com.example.tutorial.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -11,6 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(path = "/api/v1/users")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
     private final UserService userService;
 
@@ -31,8 +33,8 @@ public class UserController {
     }
 
     @PostMapping()
-    public UserDto addUser(@RequestBody UserDto userDto) {
-        return userService.saveUser(userDto);
+    public void addUser(@RequestBody User user) {
+        userService.saveUser(user);
     }
 
     @PatchMapping(path = "{userId}")

@@ -24,10 +24,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto saveUser(UserDto userDto) {
-        User user = mapToUserEntity(userDto);
-        User savedUser = userRepository.save(user);
-        return mapToUserDto(savedUser);
+    public void saveUser(User user) {
+        userRepository.save(user);
     }
 
     @Override
@@ -47,12 +45,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto updateUser(Long id, UserDto userDto) {
-        if (!userRepository.existsById(id)) {
-            throw new IllegalArgumentException("User with ID " + id + " does not exist");
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " does not exist"));
+
+        if (userRepository.existsByUsername(userDto.getUsername()) && !existingUser.getUsername().equals(userDto.getUsername())) {
+            throw new IllegalArgumentException("Username '" + userDto.getUsername() + "' is already taken by another user");
         }
-        userRepository.save(mapToUserEntity(userDto));
-        return userDto;
+
+        existingUser.setUsername(userDto.getUsername());
+
+        userRepository.save(existingUser);
+
+        return mapToUserDto(existingUser);
     }
+
 
     private UserDto mapToUserDto(User user) {
         return UserDto.builder()

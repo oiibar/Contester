@@ -36,6 +36,7 @@ public class ContestServiceImpl implements ContestService {
                 .title(contest.getTitle())
                 .description(contest.getDescription())
                 .problems(contest.getProblems())
+                .status(contest.getStatus())
                 .startDate(contest.getStartDate())
                 .endDate(contest.getEndDate())
                 .createdAt(contest.getCreatedAt())

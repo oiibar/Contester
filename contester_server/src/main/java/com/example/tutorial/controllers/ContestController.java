@@ -13,6 +13,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/v1/contests")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ContestController {
     private final ContestService contestService;
 
@@ -21,6 +22,7 @@ public class ContestController {
     }
 
     @GetMapping
+    @CrossOrigin(origins = "http://localhost:3000")
     public ResponseEntity<List<ContestDto>> listContests() {
         List<ContestDto> contests = contestService.findAllContests();
         return ResponseEntity.ok(contests);
@@ -39,6 +41,7 @@ public class ContestController {
         Contest contest = new Contest();
         contest.setTitle(contestDto.getTitle());
         contest.setDescription(contestDto.getDescription());
+        contest.setStatus(contestDto.getStatus());
         contest.setStartDate(contestDto.getStartDate());
         contest.setEndDate(contestDto.getEndDate());
         if (contestDto.getProblems() != null) {

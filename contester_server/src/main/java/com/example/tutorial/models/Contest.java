@@ -1,5 +1,6 @@
 package com.example.tutorial.models;
 
+import com.example.tutorial.enums.Status;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
@@ -53,6 +54,7 @@ public class Contest {
         problems.remove(problem);
     }
 
+    private Status status;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
