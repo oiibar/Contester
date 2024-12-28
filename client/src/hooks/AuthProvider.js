@@ -1,6 +1,6 @@
 import { useContext, createContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { useFetching } from "../hooks/useFetching";
+import { useFetching } from "./useFetching";
 import { authenticateUser } from "../api/api";
 
 const AuthContext = createContext();

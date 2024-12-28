@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router"; // Fix import to use react-router-dom
+import { NavLink } from "react-router";
 import styles from "./Header.module.css";
 import { FaSignOutAlt } from "react-icons/fa";
 import { useAuth } from "../../hooks/AuthProvider";
@@ -25,7 +25,6 @@ const Header = () => {
                 <NavLink to="/contests">Contests</NavLink>
                 <NavLink to="/leaderboard">Leaderboard</NavLink>
                 <NavLink to="/code">Code</NavLink>
-                <NavLink to="/problems">Problems</NavLink>
                 <NavLink to="/profile" className={styles.user_profile}>
                   {auth.user.username[0].toUpperCase()}
                 </NavLink>

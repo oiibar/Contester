@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import userIcon from "../../assets/auth/user.svg";
+import emailIcon from "../../assets/auth/email.svg";
 import closed from "../../assets/auth/closed.svg";
 import open from "../../assets/auth/open.svg";
 import passwordIcon from "../../assets/auth/password.svg";
@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { loginAction, isLoading, error } = useAuth();
   const [formFields, setFormFields] = useState({
-    username: "",
+    email: "",
     password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
@@ -23,7 +23,7 @@ const Login = () => {
 
   const handleSubmitEvent = (e) => {
     e.preventDefault();
-    if (formFields.username !== "" && formFields.password !== "") {
+    if (formFields.email !== "" && formFields.password !== "") {
       loginAction(formFields);
       return;
     }
@@ -40,16 +40,16 @@ const Login = () => {
         <form className="auth-form" onSubmit={handleSubmitEvent}>
           <div className="input-container">
             <input
-                placeholder="Username"
-                type="text"
+                placeholder="Email"
+                type="email"
                 className="auth-input"
-                value={formFields.username}
+                value={formFields.email}
                 onChange={(e) =>
-                    setFormFields({...formFields, username: e.target.value})
+                    setFormFields({...formFields, email: e.target.value})
                 }
             />
             <div className="input-icon">
-              <img src={userIcon} alt="username" className="icon"/>
+              <img src={emailIcon} alt="email" className="icon"/>
             </div>
           </div>
 

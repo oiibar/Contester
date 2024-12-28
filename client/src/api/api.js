@@ -33,3 +33,14 @@ export const registerUser = (data) =>
         method: "POST",
         body: JSON.stringify(data),
     });
+
+export const fetchContests = (token) => {
+    return apiCall("/contests", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
+export const fetchUsers = () => apiCall("/users", { method: "GET" });
