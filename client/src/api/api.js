@@ -43,4 +43,23 @@ export const fetchContests = (token) => {
     });
 };
 
-export const fetchUsers = () => apiCall("/users", { method: "GET" });
+export const fetchUsers = (token) => {
+    return apiCall("/users", {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+};
+
+export const updateUsername = (userId, data, token) => {
+    return apiCall(`/users/${userId}`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+};
+

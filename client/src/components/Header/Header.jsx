@@ -24,7 +24,6 @@ const Header = () => {
               <div className={styles.user_menu}>
                 <NavLink to="/contests">Contests</NavLink>
                 <NavLink to="/leaderboard">Leaderboard</NavLink>
-                <NavLink to="/code">Code</NavLink>
                 <NavLink to="/profile" className={styles.user_profile}>
                   {auth.user.username[0].toUpperCase()}
                 </NavLink>
