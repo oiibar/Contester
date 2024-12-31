@@ -45,7 +45,17 @@ const Leaderboard = () => {
                   <div key={user.id} className="leaderboard-card">
                     <div className="rank-badge">#{index + 1}</div>
                     <div className="user-info">
-                      <img src={user.avatar || "https://placehold.co/100x100"} alt="Avatar" className="avatar" />
+                      {user.avatar ? (
+                          <img
+                              src={user.avatar}
+                              alt="Avatar"
+                              className="avatar"
+                          />
+                      ) : (
+                          <div className="user-avatar-placeholder">
+                            {user.username[0].toUpperCase()}
+                          </div>
+                      )}
                       <div>
                         <h3>{user.username}</h3>
                         <p>{user.points} points</p>
@@ -54,6 +64,7 @@ const Leaderboard = () => {
                   </div>
               ))}
             </div>
+
         ) : (
             <div className="no-leaderboard">
               <h2>No users found for the leaderboard.</h2>

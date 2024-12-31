@@ -14,7 +14,7 @@ const Problems = () => {
     };
 
     const startProblem = (problem) => {
-        navigate("/code", { state: { problem } });  // Pass the problem data to the Code page
+        navigate("/code", { state: { problem } });
     };
 
     return (

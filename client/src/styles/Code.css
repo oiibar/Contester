@@ -8,7 +8,7 @@ body {
 /* Main Layout */
 .contest-page {
   display: flex;
-  gap: 20px;
+  gap: 10px;
   margin: 20px;
   padding: 10px;
 }
@@ -61,12 +61,12 @@ body {
   flex: 1.5;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 10px;
 }
 
 .code-editor {
   background-color: #1e1e2f;
-  padding: 20px;
+  padding: 10px;
   border-radius: 10px;
   color: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -134,3 +134,43 @@ body {
   font-size: 0.95rem;
   overflow-x: auto;
 }
+
+/* Add this to Code.css */
+
+/* Minimalistic dropdown styles */
+.hint-dropdown {
+  margin-bottom: 10px;
+}
+
+.hint-button {
+  background: none;
+  color: #333;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.hint-button:hover {
+  background-color: #f7f7f7;
+}
+
+.hint-content {
+  display: none;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+}
+
+.hint-dropdown.active .hint-content {
+  display: block;
+}
+

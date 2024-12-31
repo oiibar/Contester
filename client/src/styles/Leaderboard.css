@@ -16,6 +16,21 @@ body {
   padding: 20px;
 }
 
+.user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: #a8b1ff; /* Matches the header's user profile color */
+  border-radius: 50%;
+  text-transform: uppercase; /* Ensures the text is always uppercase */
+  font-size: 1rem;
+}
+
+
 .leaderboard-header {
   text-align: center;
   margin-bottom: 40px;

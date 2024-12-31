@@ -5,11 +5,24 @@ import MyButton from "../components/UI/MyButton/MyButton";
 
 const Code = () => {
   const location = useLocation();
-  const contestData = location.state?.problem;  // Access the passed problem data
+  const contestData = location.state?.problem;
 
   if (!contestData) {
     return <p>No problem data available.</p>;
   }
+
+  const toggleHint = (index) => {
+    const hintContent = document.getElementById(`hint-content-${index}`);
+    const button = document.getElementById(`hint-button-${index}`);
+
+    if (hintContent.style.display === "block") {
+      hintContent.style.display = "none";
+      button.innerHTML = `Hint ${index + 1}`;
+    } else {
+      hintContent.style.display = "block";
+      button.innerHTML = "Close Hint";
+    }
+  };
 
   return (
       <div className="contest-page">
@@ -21,7 +34,7 @@ const Code = () => {
             <p>{contestData.given}</p>
             <h2>Examples:</h2>
             {contestData.examples?.map((example, index) => {
-              const parsedExample = JSON.parse(example);  // Parse the JSON string into an object
+              const parsedExample = JSON.parse(example);
               return (
                   <div key={index}>
                     <pre>Input: {parsedExample.input}</pre>
@@ -29,6 +42,30 @@ const Code = () => {
                   </div>
               );
             })}
+
+            {/* Render dropdowns for hints */}
+            {contestData.hint ? <><h3 style={{"margin-top": "30px"}}>Hints:</h3>
+                {contestData.hints.map((hint, index) => (
+                      <div key={index} className="hint-dropdown">
+                        <button
+                            id={`hint-button-${index}`}
+                            className="hint-button"
+                            onClick={() => toggleHint(index)}
+                        >
+                          Hint {index + 1}
+                        </button>
+                        <div
+                            id={`hint-content-${index}`}
+                            className="hint-content"
+                            style={{ display: "none" }} // Initially hidden
+                        >
+                          <p>{hint}</p>
+                        </div>
+                      </div>
+                  ))}</> :
+                <h3 style={{"margin-top": "30px"}}>No hints)</h3>
+                }
+
           </div>
         </div>
 
