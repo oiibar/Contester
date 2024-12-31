@@ -5,7 +5,7 @@ import { updateUsername } from "../api/api";
 import "../styles/Profile.css";
 
 const Profile = () => {
-    const { user, token } = useAuth();
+    const { user, setUser, token } = useAuth(); // Added setUser
     const [newUsername, setNewUsername] = useState(user.username);
     const [message, setMessage] = useState("");
 
@@ -17,6 +17,10 @@ const Profile = () => {
 
         if (token) {
             await updateUsername(user.id, { username: newUsername }, token);
+            // Update the user in state and localStorage
+            const updatedUser = { ...user, username: newUsername };
+            setUser(updatedUser);
+            localStorage.setItem("user", JSON.stringify(updatedUser));
             setMessage("Username updated successfully!");
         } else {
             setMessage("Unable to update username. Please log in again.");
