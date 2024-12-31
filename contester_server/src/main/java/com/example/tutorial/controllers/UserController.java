@@ -39,10 +39,11 @@ public class UserController {
     }
 
     @PatchMapping(path = "{userId}")
-    public ResponseEntity<String> updateUser(@PathVariable("userId") Long id, @RequestBody @Valid UserDto userDto) {
-        userService.updateUser(id, userDto);
-        return ResponseEntity.ok("User with ID " + id + " has been updated successfully.");
+    public ResponseEntity<UserDto> updateUser(@PathVariable("userId") Long id, @RequestBody @Valid UserDto userDto) {
+        UserDto updatedUserDto = userService.updateUser(id, userDto);
+        return ResponseEntity.ok(updatedUserDto);
     }
+
 
     @DeleteMapping(path = "{userId}")
     public ResponseEntity<String> deleteUser(@PathVariable("userId") Long id) {

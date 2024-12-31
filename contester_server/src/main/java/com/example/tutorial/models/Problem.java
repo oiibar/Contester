@@ -67,4 +67,9 @@ public class Problem {
     @CollectionTable(name = "problem_examples", joinColumns = @JoinColumn(name = "problem_id"))
     @Column(name = "example")
     private List<String> examples;
+
+    @ElementCollection
+    @CollectionTable(name = "problem_hints", joinColumns = @JoinColumn(name = "problem_id"))
+    @Column(name = "hints")
+    private List<String> hints;
 }

@@ -2,10 +2,8 @@ package com.example.tutorial.models;
 
 import com.example.tutorial.enums.Role;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.springframework.security.core.GrantedAuthority;
@@ -39,6 +37,8 @@ public class User implements UserDetails {
     @Column(unique = true, nullable = false)
     private String email;
     private String password;
+    @ColumnDefault("0")
+    private double points = 0;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp

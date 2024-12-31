@@ -34,21 +34,21 @@ public class JwtAuthFilter extends OncePerRequestFilter {
         final String userEmail;
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
-            filterChain.doFilter(request, response); // Skip processing if no token
+            filterChain.doFilter(request, response);
             return;
         }
 
         token = authHeader.substring(7);
         try {
-            userEmail = jwtService.extractUsername(token); // Extract email from token
+            userEmail = jwtService.extractUsername(token);
         } catch (Exception e) {
-            logger.warn("Failed to extract username from token: " + e.getMessage()); // Log invalid token errors
+            logger.warn("Failed to extract username from token: " + e.getMessage());
             filterChain.doFilter(request, response);
             return;
         }
 
         if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail); // Lookup by email
+            UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
             if (jwtService.isTokenValid(token, userDetails)) {
                 UsernamePasswordAuthenticationToken authToken =
                         new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());

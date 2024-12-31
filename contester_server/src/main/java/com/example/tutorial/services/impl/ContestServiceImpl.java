@@ -30,6 +30,7 @@ public class ContestServiceImpl implements ContestService {
         contestRepository.save(contest);
     }
 
+
     private ContestDto mapToContestDto(Contest contest) {
         return ContestDto.builder()
                 .id(contest.getId())

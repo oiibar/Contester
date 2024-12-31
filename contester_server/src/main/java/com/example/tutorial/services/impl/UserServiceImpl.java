@@ -47,24 +47,21 @@ public class UserServiceImpl implements UserService {
     public UserDto updateUser(Long id, UserDto userDto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " does not exist"));
-
-        if (userRepository.existsByUsername(userDto.getUsername()) && !existingUser.getUsername().equals(userDto.getUsername())) {
+        if (userRepository.existsByUsername(userDto.getUsername())
+                && !existingUser.getUsername().equals(userDto.getUsername())) {
             throw new IllegalArgumentException("Username '" + userDto.getUsername() + "' is already taken by another user");
         }
-
         existingUser.setUsername(userDto.getUsername());
-
         userRepository.save(existingUser);
-
         return mapToUserDto(existingUser);
     }
-
 
     private UserDto mapToUserDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getRealUsername())
                 .email(user.getEmail())
+                .points((int) user.getPoints())
                 .password(user.getPassword())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
@@ -75,6 +72,7 @@ public class UserServiceImpl implements UserService {
         return User.builder()
                 .username(userDto.getUsername())
                 .email(userDto.getEmail())
+                .points(userDto.getPoints())
                 .password(userDto.getPassword())
                 .build();
     }
