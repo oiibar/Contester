@@ -1,10 +1,7 @@
 package com.example.tutorial.models;
 
 import com.example.tutorial.enums.Difficulty;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,33 +14,15 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Entity
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
 public class Problem {
     @Id
-    @SequenceGenerator(
-            name = "problem_sequence",
-            sequenceName = "problem_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "problem_sequence"
-    )
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "contest_id", referencedColumnName = "id")
-    @JsonBackReference
-    @JsonIgnore
-    private Contest contest;
 
     @Column(length = 500)
     private String title;
@@ -57,19 +36,33 @@ public class Problem {
     @Enumerated(EnumType.STRING)
     private Difficulty difficulty;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "contest_id")
+    @JsonBackReference("contest-problems")
+    private Contest contest;
+
+    @OneToMany(mappedBy = "problem", cascade = CascadeType.ALL)
+    @JsonManagedReference("problem-discussions")
+    private List<Discussion> discussions = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "problem_examples")
+    @Column(name = "example")
+    private List<String> examples = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "problem_hints")
+    @Column(name = "hint")
+    private List<String> hints = new ArrayList<>();
+
     @CreationTimestamp
     private LocalDateTime createdAt;
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-    @ElementCollection
-    @CollectionTable(name = "problem_examples", joinColumns = @JoinColumn(name = "problem_id"))
-    @Column(name = "example")
-    private List<String> examples;
-
-    @ElementCollection
-    @CollectionTable(name = "problem_hints", joinColumns = @JoinColumn(name = "problem_id"))
-    @Column(name = "hints")
-    private List<String> hints;
+    public void addDiscussion(Discussion discussion) {
+        discussions.add(discussion);
+        discussion.setProblem(this);
+    }
 }

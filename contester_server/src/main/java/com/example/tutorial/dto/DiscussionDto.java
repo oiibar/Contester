@@ -1,6 +1,5 @@
 package com.example.tutorial.dto;
 
-import com.example.tutorial.enums.Difficulty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,16 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProblemDto {
+public class DiscussionDto {
     private Long id;
-    private String title;
-    private String description;
-    private String given;
-    private Difficulty difficulty;
-    private List<String> examples;
-    private List<String> hints;
-    private Long contestId;
-    private List<DiscussionDto> discussions;
+    private String username;
+    private String message;
+    private Long upvotes;
+    private Long parentDiscussion;
+    private List<DiscussionDto> replies;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }

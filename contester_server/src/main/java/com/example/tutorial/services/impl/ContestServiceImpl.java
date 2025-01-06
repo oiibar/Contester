@@ -1,47 +1,43 @@
 package com.example.tutorial.services.impl;
 
-import com.example.tutorial.dto.ContestDto;
-import com.example.tutorial.dto.UserDto;
 import com.example.tutorial.models.Contest;
-import com.example.tutorial.models.User;
+import com.example.tutorial.models.Problem;
 import com.example.tutorial.repo.ContestRepository;
+import com.example.tutorial.repo.ProblemRepository;
 import com.example.tutorial.services.ContestService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ContestServiceImpl implements ContestService {
     private final ContestRepository contestRepository;
+    private final ProblemRepository problemRepository;
 
-    public ContestServiceImpl(ContestRepository contestRepository) {
+    public ContestServiceImpl(ContestRepository contestRepository,
+                              ProblemRepository problemRepository) {
         this.contestRepository = contestRepository;
+        this.problemRepository = problemRepository;
     }
 
     @Override
-    public List<ContestDto> findAllContests() {
-        List<Contest> contests = contestRepository.findAll();
-        return contests.stream().map(this::mapToContestDto).collect(Collectors.toList());
+    public List<Contest> findAllContests() {
+        return contestRepository.findAll();
     }
 
     @Override
-    public void saveContest(Contest contest) {
-        contestRepository.save(contest);
-    }
+    @Transactional
+    public Contest saveContest(Contest contest) {
+        Contest savedContest = contestRepository.save(contest);
 
+        if (contest.getProblems() != null) {
+            contest.getProblems().forEach(problem -> {
+                problem.setContest(savedContest);
+            });
+            problemRepository.saveAll(contest.getProblems());
+        }
 
-    private ContestDto mapToContestDto(Contest contest) {
-        return ContestDto.builder()
-                .id(contest.getId())
-                .title(contest.getTitle())
-                .description(contest.getDescription())
-                .problems(contest.getProblems())
-                .status(contest.getStatus())
-                .startDate(contest.getStartDate())
-                .endDate(contest.getEndDate())
-                .createdAt(contest.getCreatedAt())
-                .updatedAt(contest.getUpdatedAt())
-                .build();
+        return savedContest;
     }
 }
