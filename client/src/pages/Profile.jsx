@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import { useFetching } from "../hooks/useFetching";
 import { updateUsername } from "../api/api";
-import "../styles/Profile.css";
+import "../styles/Profile.scss";
 
 const Profile = () => {
     const { user, setUser, token } = useAuth(); // Added setUser

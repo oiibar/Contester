@@ -1,3 +1,5 @@
+@import "src/styles/_variables";
+
 .footer {
   display: flex;
   flex-direction: column;
@@ -33,31 +35,32 @@
 .navbar {
   display: flex;
   gap: 15px;
-}
 
-.navbar a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+  }
+
 }
 
 .navbar a:hover {
-  color: var(--primary);
+  color: $primary;
 }
 
 .socials {
   display: flex;
   gap: 10px;
-}
 
-.socials a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
 
-.socials a:hover {
-  color: var(--primary);
+    &:hover {
+      color: $primary;
+    }
+  }
 }

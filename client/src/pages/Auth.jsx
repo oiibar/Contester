@@ -6,7 +6,7 @@ import closed from "../assets/auth/closed.svg";
 import open from "../assets/auth/open.svg";
 import passwordIcon from "../assets/auth/password.svg";
 import unlocked from "../assets/auth/unlocked.svg";
-import "../styles/Auth.css";
+import "../styles/Auth.scss";
 
 const Auth = () => {
   const [formFields, setFormFields] = useState({

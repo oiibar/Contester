@@ -1,14 +1,4 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poppins", sans-serif;
-  background-color: #181818;
-  color: #ffffff;
-}
+@import "_variables";
 
 .leaderboard {
   max-width: 1200px;
@@ -24,9 +14,9 @@ body {
   justify-content: center;
   font-weight: bold;
   color: white;
-  background-color: #a8b1ff; /* Matches the header's user profile color */
+  background-color: #a8b1ff;
   border-radius: 50%;
-  text-transform: uppercase; /* Ensures the text is always uppercase */
+  text-transform: uppercase;
   font-size: 1rem;
 }
 
@@ -60,11 +50,11 @@ body {
   text-align: center;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
 
-.leaderboard-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .rank-badge {
@@ -83,6 +73,17 @@ body {
   align-items: center;
   gap: 15px;
   justify-content: center;
+
+  h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+    color: #ffcc00;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #cccccc;
+  }
 }
 
 .avatar {
@@ -91,17 +92,6 @@ body {
   border-radius: 50%;
   border: 2px solid #ffcc00;
   object-fit: cover;
-}
-
-.user-info h3 {
-  font-size: 1.3rem;
-  margin-bottom: 5px;
-  color: #ffcc00;
-}
-
-.user-info p {
-  font-size: 1rem;
-  color: #cccccc;
 }
 
 @media (max-width: 768px) {

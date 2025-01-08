@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import AuthProvider from "./hooks/AuthProvider";
 import Layout from "./pages/Layout";
-import About from "./pages/About";
 import Leaderboard from "./pages/Leaderboard";
 import Contests from "./pages/Contests";
 import Home from "./pages/Home";
@@ -24,7 +23,6 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
 
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>

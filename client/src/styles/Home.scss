@@ -1,41 +1,36 @@
-/* General Styling */
-.home-container {
-  font-family: "Roboto", sans-serif;
-  line-height: 1.6;
-}
+@import "_variables";
 
-/* Hero Section */
 .hero {
   text-align: center;
-  background: linear-gradient(135deg, #6c5ce7, #81ecec);
   padding: 60px 20px;
-}
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
 
-.hero p {
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  p {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+  }
 }
 
 .features {
   padding: 40px 20px;
   text-align: center;
   color: white;
-}
 
-.features h2 {
-  margin-bottom: 30px;
-  font-size: 2rem;
+  h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
 }
 
 .feature-cards {
   display: flex;
   justify-content: center;
   gap: 20px;
+  color: #4a4a4a;
   flex-wrap: wrap;
 }
 
@@ -46,22 +41,22 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   flex: 1;
   max-width: 300px;
-}
 
-.feature-card h3 {
-  color: #6c5ce7;
-  margin-bottom: 10px;
+  h3 {
+    color: #6c5ce7;
+    margin-bottom: 10px;
+  }
 }
 
 .current-contests {
   padding: 40px 20px;
   text-align: center;
   color: white;
-}
 
-.current-contests h2 {
-  margin-bottom: 30px;
-  font-size: 2rem;
+  h2 {
+    margin-bottom: 30px;
+    font-size: 2rem;
+  }
 }
 
 .contest-card {
@@ -72,17 +67,17 @@
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   text-align: left;
-}
 
-.contest-card h3 {
-  color: #6c5ce7;
+  h3 {
+    color: #6c5ce7;
+  }
 }
 
 .contest-link {
   color: #00cec9;
   text-decoration: none;
-}
 
-.contest-link:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }

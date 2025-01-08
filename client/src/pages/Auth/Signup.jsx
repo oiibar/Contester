@@ -5,7 +5,7 @@ import open from "../../assets/auth/open.svg";
 import passwordIcon from "../../assets/auth/password.svg";
 import unlocked from "../../assets/auth/unlocked.svg";
 import user from "../../assets/auth/user.svg";
-import "../../styles/Auth.css";
+import "../../styles/Auth.scss";
 import { useNavigate } from "react-router";
 import { registerUser } from "../../api/api";
 import { useFetching } from "../../hooks/useFetching";

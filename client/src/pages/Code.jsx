@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router";
-import "../styles/Code.css";
+import "../styles/Code.scss";
 import MyButton from "../components/UI/MyButton/MyButton";
 import { useFetching } from "../hooks/useFetching";
 import { fetchDiscussions, addDiscussion, replyToDiscussion } from "../api/api";
 import { useAuth } from "../hooks/AuthProvider";
+import { Editor } from "@monaco-editor/react";
 
 const Code = () => {
   const location = useLocation();
-  const {token, user} = useAuth();
+  const { token, user } = useAuth();
   const username = user.username;
   const contestData = location.state?.problem;
 
@@ -28,7 +29,7 @@ const Code = () => {
     if (contestData?.id && newDiscussion.trim()) {
       await addDiscussion(contestData.id, { username, message: newDiscussion }, token);
       setNewDiscussion("");
-      fetchDiscussionsData();  // Refresh the discussions after posting
+      fetchDiscussionsData(); // Refresh the discussions after posting
     }
   });
 
@@ -36,7 +37,7 @@ const Code = () => {
     if (selectedDiscussionId && replyMessage.trim()) {
       await replyToDiscussion(selectedDiscussionId, { username, message: replyMessage }, token);
       setReplyMessage("");
-      fetchDiscussionsData();  // Refresh discussions with the new reply
+      fetchDiscussionsData(); // Refresh discussions with the new reply
     }
   });
 
@@ -71,57 +72,82 @@ const Code = () => {
 
   return (
       <div className="contest-page">
-        <div className="problem-section">
-          <div className="problem-header">
-            <h1>1. {contestData.title}</h1>
-          </div>
-          <div className="problem-description">
-            <p>{contestData.given}</p>
-            <h2>Examples:</h2>
-            {contestData.examples?.map((example, index) => {
-              const parsedExample = JSON.parse(example);
-              return (
-                  <div key={index}>
-                    <pre>Input: {parsedExample.input}</pre>
-                    <pre>Output: {parsedExample.output}</pre>
-                  </div>
-              );
-            })}
-
-            {/* Render dropdowns for hints */}
-            {contestData.hint ? (
-                <>
-                  <h3 style={{ marginTop: "30px" }}>Hints:</h3>
-                  {contestData.hints.map((hint, index) => (
-                      <div key={index} className="hint-dropdown">
-                        <button
-                            id={`hint-button-${index}`}
-                            className="hint-button"
-                            onClick={() => toggleHint(index)}
-                        >
-                          Hint {index + 1}
-                        </button>
-                        <div
-                            id={`hint-content-${index}`}
-                            className="hint-content"
-                            style={{ display: "none" }} // Initially hidden
-                        >
-                          <p>{hint}</p>
+        {/* Top Section: Problem and Editor Side by Side */}
+        <div className="top-section">
+          {/* Problem Section */}
+          <div className="problem-section">
+            <div className="problem-header">
+              <h1>1. {contestData.title}</h1>
+            </div>
+            <div className="problem-description">
+              <p>{contestData.given}</p>
+              <h2>Examples:</h2>
+              {contestData.examples?.map((example, index) => {
+                const parsedExample = JSON.parse(example);
+                return (
+                    <div key={index}>
+                      <pre>Input: {parsedExample.input}</pre>
+                      <pre>Output: {parsedExample.output}</pre>
+                    </div>
+                );
+              })}
+              {contestData.hint ? (
+                  <>
+                    <h3 style={{ marginTop: "30px" }}>Hints:</h3>
+                    {contestData.hints.map((hint, index) => (
+                        <div key={index} className="hint-dropdown">
+                          <button
+                              id={`hint-button-${index}`}
+                              className="hint-button"
+                              onClick={() => toggleHint(index)}
+                          >
+                            Hint {index + 1}
+                          </button>
+                          <div
+                              id={`hint-content-${index}`}
+                              className="hint-content"
+                              style={{ display: "none" }}
+                          >
+                            <p>{hint}</p>
+                          </div>
                         </div>
-                      </div>
-                  ))}
-                </>
-            ) : (
-                <h3 style={{ marginTop: "30px" }}>No hints)</h3>
-            )}
+                    ))}
+                  </>
+              ) : (
+                  <h3 style={{ marginTop: "30px" }}>No hints</h3>
+              )}
+            </div>
+          </div>
+
+          {/* Code Editor Section */}
+          <div className="editor-section">
+            <Editor
+                height="100%"
+                defaultLanguage="javascript"
+                defaultValue="// Write your code here"
+                theme="vs-dark"
+                options={{
+                  fontSize: 16,
+                  fontFamily: "Fira Code, Consolas, monospace",
+                  automaticLayout: true,
+                  wordWrap: "on",
+                  minimap: { enabled: true },
+                  lineNumbers: "on",
+                  scrollBeyondLastLine: true,
+                  padding: { top: 10, bottom: 10 },
+                  tabSize: 2,
+                  formatOnType: true,
+                  formatOnPaste: true,
+                  cursorStyle: "line",
+                  renderWhitespace: "boundary",
+                }}
+            />
           </div>
         </div>
 
-        {/* Discussion Section */}
+        {/* Bottom Section: Discussions */}
         <div className="discussions-section">
           <h2>Discussions</h2>
-
-          {/* Discussion Form */}
           <div className="discussion-form">
           <textarea
               value={newDiscussion}
@@ -131,8 +157,6 @@ const Code = () => {
             <MyButton onClick={postDiscussion}>Post Discussion</MyButton>
             {discussionError && <p className="error">{discussionError}</p>}
           </div>
-
-          {/* Display Discussions */}
           {isLoading ? (
               <p>Loading discussions...</p>
           ) : error ? (
@@ -149,8 +173,6 @@ const Code = () => {
                       <div className="discussion-actions">
                         <MyButton onClick={() => handleReplyClick(discussion.id)}>Reply</MyButton>
                       </div>
-
-                      {/* Replies */}
                       {discussion.replies.length > 0 && (
                           <div className="replies-section">
                             {discussion.replies.map((reply) => (
@@ -164,8 +186,6 @@ const Code = () => {
                             ))}
                           </div>
                       )}
-
-                      {/* Reply Form */}
                       {selectedDiscussionId === discussion.id && (
                           <div className="reply-form">
                     <textarea
@@ -181,24 +201,6 @@ const Code = () => {
                 ))}
               </div>
           )}
-        </div>
-
-        {/* Code Editor Section */}
-        <div className="editor-section">
-          <div className="code-editor">
-            <div className="header">
-              <h2>Code Editor</h2>
-              <MyButton>Run Code</MyButton>
-            </div>
-            <textarea
-                placeholder="// Write your code here"
-                className="code-area"
-            ></textarea>
-          </div>
-          <div className="execution-section">
-            <h3>Output:</h3>
-            <pre className="output-box">Your output will appear here</pre>
-          </div>
         </div>
       </div>
   );

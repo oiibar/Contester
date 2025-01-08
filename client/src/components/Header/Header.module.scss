@@ -1,9 +1,11 @@
+@import "src/styles/_variables";
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background-color: var(--secondary-light);
+  background-color: $secondary-light;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
@@ -14,23 +16,23 @@
   display: flex;
   align-items: center;
   gap: 20px;
-}
 
-.navbar a {
-  text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
-  transition: color 0.3s ease;
-}
+  a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
 
-.navbar a:hover {
-  color: var(--primary);
-}
+    &:hover {
+      color: $primary;
+    }
 
-.navbar a.active {
-  color: #d58000;
-  border-bottom: 2px solid var(--primary);
+    &.active {
+      color: #d58000;
+      border-bottom: 2px solid $primary;
+    }
+  }
 }
 
 .logo {
@@ -40,15 +42,16 @@
   cursor: pointer;
   object-fit: cover;
   transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }
 
-.logo:hover {
-  transform: scale(1.1);
-}
 .user_menu {
   display: flex;
   align-items: center;
-  gap: 10px; /* Adjust gap between elements */
+  gap: 10px;
 }
 
 .user_profile {
@@ -59,15 +62,15 @@
   justify-content: center;
   font-weight: bold;
   color: white;
-  background-color: #a8b1ff; /* Matches the color in your code */
+  background-color: #a8b1ff;
   border-radius: 50%;
-  text-decoration: none; /* Removes underline for the link */
+  text-decoration: none;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
 }
 
 .logout_button {
-  background-color: #ff4d4d; /* Red button */
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 5px;
@@ -77,13 +80,13 @@
   padding: 8px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.3s;
-}
 
-.logout-button:hover {
-  background-color: #e04343; /* Slightly darker red for hover */
-  transform: scale(1.1); /* Slight hover effect */
-}
+  &:hover {
+    background-color: #e04343;
+    transform: scale(1.1);
+  }
 
-.logout-button svg {
-  font-size: 16px; /* Icon size */
+  svg {
+    font-size: 16px;
+  }
 }

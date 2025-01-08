@@ -1,7 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router";
-import styles from "./Header.module.css";
+import styles from "./Header.module.scss";
 import { FaSignOutAlt } from "react-icons/fa";
+import { SiLeetcode } from "react-icons/si";
 import { useAuth } from "../../hooks/AuthProvider";
 
 const Header = () => {
@@ -10,11 +11,7 @@ const Header = () => {
   return (
       <header className={styles.header}>
           <NavLink to="/">
-              <img
-                  src="https://placehold.co/50x50"
-                  className={styles.logo}
-                  alt="Contester"
-              />
+              <SiLeetcode />
           </NavLink>
           <nav className={styles.navbar}>
               <NavLink
@@ -25,14 +22,7 @@ const Header = () => {
               >
                   Home
               </NavLink>
-              <NavLink
-                  to="/about"
-                  className={({isActive}) =>
-                      isActive ? `${styles.active}` : undefined
-                  }
-              >
-                  About
-              </NavLink>
+
               {auth.user ? (
                   <div className={styles.user_menu}>
                       <NavLink

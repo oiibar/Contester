@@ -1,5 +1,5 @@
   import React, { useEffect, useState } from "react";
-  import "../styles/Contests.css";
+  import "../styles/Contests.scss";
   import MyButton from "../components/UI/MyButton/MyButton";
   import { useNavigate } from "react-router";
   import { useFetching } from "../hooks/useFetching";

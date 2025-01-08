@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../styles/Leaderboard.css";
+import "../styles/Leaderboard.scss";
 import { useFetching } from "../hooks/useFetching";
 import { fetchUsers } from "../api/api";
 import { useAuth } from "../hooks/AuthProvider";

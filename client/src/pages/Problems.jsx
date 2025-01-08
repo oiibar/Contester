@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router";
-import "../styles/Problems.css";
+import "../styles/Problems.scss";
 import MyButton from "../components/UI/MyButton/MyButton";
 import { IoArrowBack } from "react-icons/io5";
 

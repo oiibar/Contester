@@ -1,7 +1,7 @@
 // src/pages/NotFound.js
 import React from "react";
 import { NavLink } from "react-router";
-import "../styles/NotFound.css"; // Import the CSS for styling
+import "../styles/NotFound.scss"; // Import the CSS for styling
 
 const NotFound = () => {
   return (

@@ -1,12 +1,11 @@
 import React from "react";
-import "../styles/Home.css";
+import "../styles/Home.scss";
 import { NavLink } from "react-router";
 import MyButton from "./../components/UI/MyButton/MyButton";
 
 const Home = () => {
   return (
     <div className="home-container">
-      {/* Hero Section */}
       <section className="hero">
         <h1>Welcome to Contester</h1>
         <p>
@@ -18,7 +17,6 @@ const Home = () => {
         </NavLink>
       </section>
 
-      {/* Features Section */}
       <section className="features">
         <h2>Why Choose Contester?</h2>
         <div className="feature-cards">
@@ -38,27 +36,6 @@ const Home = () => {
               Solve problems, discuss solutions, and sharpen your coding skills.
             </p>
           </div>
-        </div>
-      </section>
-
-      {/* Current Contests Section */}
-      <section className="current-contests">
-        <h2>Current Contests</h2>
-        <div className="contest-card">
-          <h3>Beginner Challenge</h3>
-          <p>Start Date: Nov 30, 2024</p>
-          <p>Difficulty: Easy</p>
-          <NavLink to="/contest/1">
-            <MyButton>View Contest</MyButton>
-          </NavLink>
-        </div>
-        <div className="contest-card">
-          <h3>Advanced Algorithms</h3>
-          <p>Start Date: Dec 5, 2024</p>
-          <p>Difficulty: Hard</p>
-          <NavLink to="/contest/2">
-            <MyButton>View Contest</MyButton>
-          </NavLink>
         </div>
       </section>
     </div>

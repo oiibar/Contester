@@ -94,3 +94,15 @@ export const replyToDiscussion = (discussionId, data, token) => {
         body: JSON.stringify(data),
     });
 };
+
+export const executeCode = async (data, token) => {
+    const response = await fetch("https://secure.judge0.com/submissions", {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+    });
+    return await response.json();
+};

@@ -1,9 +1,11 @@
-/* Auth Container */
+@import "_variables";
+
 .auth-container {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 50px auto;
+  color: #828282;
 }
 
 .auth-card {
@@ -24,6 +26,7 @@
   font-size: 2rem;
   font-weight: bold;
   text-align: center;
+  color: #1e1e2f;
 }
 
 .mismatch {
@@ -32,7 +35,6 @@
 }
 
 .auth-subheading {
-  color: #828282;
   font-size: 0.875rem;
   text-align: center;
 }
@@ -50,11 +52,10 @@
 }
 
 .auth-input {
-  padding: 10px 20px;
   width: 100%;
   border: 1px solid #bdbdbd;
   border-radius: 8px;
-  padding-left: 40px;
+  padding: 10px 20px 10px 40px;
 }
 
 .input-icon img {
@@ -62,8 +63,8 @@
   top: 50%;
   left: 10px;
   transform: translateY(-50%);
-  width: 20px; /* Adjusted size */
-  height: 20px; /* Adjusted size */
+  width: 20px;
+  height: 20px;
 }
 
 .toggle-password img {
@@ -72,8 +73,8 @@
   right: 10px;
   transform: translateY(-50%);
   cursor: pointer;
-  width: 20px; /* Adjusted size */
-  height: 20px; /* Adjusted size */
+  width: 20px;
+  height: 20px;
 }
 
 .auth-button {
@@ -84,10 +85,10 @@
   font-weight: bold;
   width: 100%;
   cursor: pointer;
-}
 
-.auth-button:disabled {
-  background-color: #a0a0a0;
+  &:disabled {
+    background-color: #a0a0a0;
+  }
 }
 
 .social-login-text {
@@ -106,13 +107,13 @@
   border: 1px solid #bdbdbd;
   border-radius: 50%;
   padding: 8px;
-  width: 30px; /* Adjusted size */
-  height: 30px; /* Adjusted size */
+  width: 30px;
+  height: 30px;
   transition: transform 0.3s ease-in-out;
-}
 
-.social-icon:hover {
-  transform: scale(1.5);
+  &:hover {
+    transform: scale(1.5);
+  }
 }
 
 .signup-text {
@@ -125,8 +126,8 @@
   color: #2f80ed;
   font-weight: bold;
   cursor: pointer;
-}
 
-.signup-link:hover {
-  text-decoration: underline;
+  &:hover {
+    text-decoration: underline;
+  }
 }
