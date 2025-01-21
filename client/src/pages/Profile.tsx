@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, FormEvent } from "react";
 import { useAuth } from "../hooks/AuthProvider";
 import { useFetching } from "../hooks/useFetching";
 import { updateUsername } from "../api/api";
 import "../styles/Profile.scss";
 
-const Profile = () => {
-    const { user, setUser, token } = useAuth(); // Added setUser
-    const [newUsername, setNewUsername] = useState(user.username);
-    const [message, setMessage] = useState("");
+interface User {
+    id: string;
+    username: string;
+    email: string;
+    createdAt: string;
+}
 
-    const { fetching: updateUsernameFetching, isLoading, error } = useFetching(async () => {
+interface FetchingResult {
+    fetching: () => Promise<void>;
+    isLoading: boolean;
+    error: string | null;
+}
+
+interface AuthContextType {
+    user: User;
+    setUser: (user: User) => void;
+    token: string | null;
+}
+
+const Profile: React.FC = () => {
+    // @ts-ignore
+    const { user, setUser, token } = useAuth() as AuthContextType;
+    const [newUsername, setNewUsername] = useState<string>(user.username);
+    const [message, setMessage] = useState<string>("");
+
+    const { fetching: updateUsernameFetching, isLoading, error }: FetchingResult = useFetching(async () => {
         if (newUsername.trim() === user.username) {
             setMessage("The new username must be different from the current username.");
             return;
@@ -17,7 +37,6 @@ const Profile = () => {
 
         if (token) {
             await updateUsername(user.id, { username: newUsername }, token);
-            // Update the user in state and localStorage
             const updatedUser = { ...user, username: newUsername };
             setUser(updatedUser);
             localStorage.setItem("user", JSON.stringify(updatedUser));
@@ -27,7 +46,7 @@ const Profile = () => {
         }
     });
 
-    const handleUsernameChange = async (e) => {
+    const handleUsernameChange = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
         e.preventDefault();
         setMessage("");
         await updateUsernameFetching();

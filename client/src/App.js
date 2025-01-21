@@ -19,12 +19,10 @@ function App() {
         <AuthProvider>
           <Layout>
             <Routes>
-              {/* Public Routes */}
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
               <Route path="/" element={<Home />} />
 
-              {/* Private Routes */}
               <Route element={<PrivateRoute />}>
                 <Route path="/code" element={<Code />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
@@ -33,7 +31,6 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
               </Route>
 
-              {/* Catch-All */}
               <Route path="*" element={<NotFound />} />
             </Routes>
           </Layout>

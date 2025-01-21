@@ -72,9 +72,7 @@ const Code = () => {
 
   return (
       <div className="contest-page">
-        {/* Top Section: Problem and Editor Side by Side */}
         <div className="top-section">
-          {/* Problem Section */}
           <div className="problem-section">
             <div className="problem-header">
               <h1>1. {contestData.title}</h1>
@@ -119,7 +117,6 @@ const Code = () => {
             </div>
           </div>
 
-          {/* Code Editor Section */}
           <div className="editor-section">
             <Editor
                 height="100%"
@@ -145,7 +142,6 @@ const Code = () => {
           </div>
         </div>
 
-        {/* Bottom Section: Discussions */}
         <div className="discussions-section">
           <h2>Discussions</h2>
           <div className="discussion-form">

@@ -5,14 +5,26 @@ import { fetchUsers } from "../api/api";
 import { useAuth } from "../hooks/AuthProvider";
 import MyButton from "../components/UI/MyButton/MyButton";
 
-const Leaderboard = () => {
-  const { token, user } = useAuth();
-  const [users, setUsers] = useState([]);
+interface User {
+  id: string;
+  username: string;
+  email: string;
+  role: string;
+  password: string;
+  avatar: string;
+  points: number;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+const Leaderboard: React.FC = () => {
+  const { token } = useAuth();
+  const [users, setUsers] = useState<User[]>([]);
 
   const { fetching, isLoading, error } = useFetching(async () => {
     if (token) {
-      const data = await fetchUsers(token);
-      setUsers(data);
+      const response = await fetchUsers(token);
+      setUsers(response.data || []);
     } else {
       setUsers([]);
     }
@@ -45,7 +57,7 @@ const Leaderboard = () => {
                   <div key={user.id} className="leaderboard-card">
                     <div className="rank-badge">#{index + 1}</div>
                     <div className="user-info">
-                      {user.avatar ? (
+                      {user?.avatar ? (
                           <img
                               src={user.avatar}
                               alt="Avatar"
@@ -64,7 +76,6 @@ const Leaderboard = () => {
                   </div>
               ))}
             </div>
-
         ) : (
             <div className="no-leaderboard">
               <h2>No users found for the leaderboard.</h2>

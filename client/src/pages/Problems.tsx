@@ -4,16 +4,27 @@ import "../styles/Problems.scss";
 import MyButton from "../components/UI/MyButton/MyButton";
 import { IoArrowBack } from "react-icons/io5";
 
-const Problems = () => {
+interface Problem {
+    id: string;
+    title: string;
+    description: string;
+    difficulty?: string;
+}
+
+interface LocationState {
+    tasks: Problem[];
+}
+
+const Problems: React.FC = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const problemsData = location.state?.tasks || [];
+    const problemsData: Problem[] = (location.state as LocationState)?.tasks || [];
 
-    const goBack = () => {
+    const goBack = (): void => {
         navigate(-1);
     };
 
-    const startProblem = (problem) => {
+    const startProblem = (problem: Problem): void => {
         navigate("/code", { state: { problem } });
     };
 
@@ -44,15 +55,16 @@ const Problems = () => {
                                 <td>{problem.title}</td>
                                 <td>{problem.description}</td>
                                 <td>
-                                    <span
-                                        className={`problem-difficulty ${problem.difficulty?.toLowerCase()}`}
-                                    >
-                                      {problem.difficulty || "N/A"}
-                                    </span>
+                    <span
+                        className={`problem-difficulty ${problem.difficulty?.toLowerCase()}`}
+                    >
+                      {problem.difficulty || "N/A"}
+                    </span>
                                 </td>
-
                                 <td>
-                                    <MyButton onClick={() => startProblem(problem)}>Start</MyButton>
+                                    <MyButton onClick={() => startProblem(problem)}>
+                                        Start
+                                    </MyButton>
                                 </td>
                             </tr>
                         ))}
