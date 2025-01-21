@@ -1,13 +1,9 @@
-import React, {ReactNode} from "react";
+import React from "react";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 import "../styles/Layout.scss";
 
-interface LayoutProps {
-    children: ReactNode;
-}
-
-const Layout = ({ children }: LayoutProps) => {
+const Layout = ({ children }) => {
   return (
     <div className="layout">
       <Header />
