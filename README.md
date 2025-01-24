@@ -1,4 +1,4 @@
-<h1 align="center" id="title">Contester</h1>
+<h1 align="center" id="title">Contester IN PROGRESS...</h1>
 
 <p align="center"><img src="https://socialify.git.ci/oiibar/Contester/image?language=1&name=1&owner=1&theme=Light" alt="project-image"></p>
 
