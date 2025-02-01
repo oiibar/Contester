@@ -64,9 +64,9 @@ Technologies used in the project:
 Here are some screenshots of the project:
 
 <p align="center">
-  <img src="./editor.png" alt="Screenshot">
-  <img src="./leaderboard.png" alt="Screenshot">
-  <img src="./contests.png" alt="Screenshot">
+  <img src="./Profile.png" alt="Screenshot">
+  <img src="./Leaderboard.png" alt="Screenshot">
+  <img src="./Contests.png" alt="Screenshot">
 </p>
 
 <h2>💖Like my work?</h2>
