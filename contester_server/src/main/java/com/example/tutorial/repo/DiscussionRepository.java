@@ -9,6 +9,8 @@ import java.util.List;
 @Repository
 public interface DiscussionRepository extends JpaRepository<Discussion, Long> {
     List<Discussion> findByProblemId(Long problemId);
+    List<Discussion> findByProblemIdAndParentDiscussionIsNull(Long problemId);
+
 }
 
 

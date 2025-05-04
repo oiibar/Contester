@@ -22,8 +22,18 @@ public class ContestServiceImpl implements ContestService {
     }
 
     @Override
+    public Contest updateContest(Contest contest) {
+        return contestRepository.save(contest);
+    }
+
+    @Override
     public List<Contest> findAllContests() {
         return contestRepository.findAll();
+    }
+
+    @Override
+    public void deleteContestById(Long id) {
+        contestRepository.deleteById(id);
     }
 
     @Override

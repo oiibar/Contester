@@ -14,9 +14,14 @@ public class UserDto {
     @NotEmpty
     @Size(min = 2, max = 50, message = "2 <= username <= 50 chars")
     private String username;
+    private String firstName;
+    private String lastName;
+    private Integer problemsSolved;
     @Email
     private String email;
-    private Integer points;
+    private int rating;
+    private String country;
+    private String bio;
     @Size(min = 8, message = "password should have at least 8 characters")
     private String password;
     private LocalDateTime createdAt;

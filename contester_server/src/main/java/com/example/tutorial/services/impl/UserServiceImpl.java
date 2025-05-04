@@ -47,21 +47,34 @@ public class UserServiceImpl implements UserService {
     public UserDto updateUser(Long id, UserDto userDto) {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " does not exist"));
-        if (userRepository.existsByUsername(userDto.getUsername())
-                && !existingUser.getUsername().equals(userDto.getUsername())) {
-            throw new IllegalArgumentException("Username '" + userDto.getUsername() + "' is already taken by another user");
-        }
+
         existingUser.setUsername(userDto.getUsername());
+        existingUser.setFirstName(userDto.getFirstName());
+        existingUser.setLastName(userDto.getLastName());
+        existingUser.setBio(userDto.getBio());
+        existingUser.setCountry(userDto.getCountry());
+        existingUser.setRating(userDto.getRating());
+        existingUser.setProblemsSolved(userDto.getProblemsSolved());
+
+        if (!existingUser.getEmail().equals(userDto.getEmail())) {
+            existingUser.setEmail(userDto.getEmail());
+        }
         userRepository.save(existingUser);
         return mapToUserDto(existingUser);
     }
+
 
     private UserDto mapToUserDto(User user) {
         return UserDto.builder()
                 .id(user.getId())
                 .username(user.getRealUsername())
+                .firstName(user.getFirstName())
+                .lastName(user.getLastName())
+                .rating(user.getRating())
+                .country(user.getCountry())
+                .problemsSolved(user.getProblemsSolved())
                 .email(user.getEmail())
-                .points((int) user.getPoints())
+                .bio(user.getBio())
                 .password(user.getPassword())
                 .createdAt(user.getCreatedAt())
                 .updatedAt(user.getUpdatedAt())
@@ -71,8 +84,13 @@ public class UserServiceImpl implements UserService {
     private User mapToUserEntity(UserDto userDto) {
         return User.builder()
                 .username(userDto.getUsername())
+                .problemsSolved(userDto.getProblemsSolved())
+                .firstName(userDto.getFirstName())
+                .lastName(userDto.getLastName())
+                .rating(userDto.getRating())
+                .bio(userDto.getBio())
+                .country(userDto.getCountry())
                 .email(userDto.getEmail())
-                .points(userDto.getPoints())
                 .password(userDto.getPassword())
                 .build();
     }

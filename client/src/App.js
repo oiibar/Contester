@@ -1,17 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
-import AuthProvider from "./hooks/AuthProvider";
-import Layout from "./pages/Layout";
-import Leaderboard from "./pages/Leaderboard";
-import Contests from "./pages/Contests";
-import Home from "./pages/Home";
-import Problems from "./pages/Problems";
-import Login from "./pages/Auth/Login";
-import Signup from "./pages/Auth/Signup";
-import Code from "./pages/Code";
-import NotFound from "./pages/NotFound";
-import PrivateRoute from "./hooks/useAuth";
-import Profile from "./pages/Profile";
+import AuthProvider from "hooks/auth/AuthProvider";
+import Layout from "pages/Layout/Layout";
+import Leaderboard from "pages/Leaderboard/Leaderboard";
+import Contests from "pages/Contests/Contests";
+import Home from "pages/Home/Home";
+import Problems from "pages/Problems/Problems";
+import Login from "pages/Auth/Login";
+import Signup from "pages/Auth/Signup";
+import Code from "pages/Code/Code";
+import NotFound from "pages/NotFound/NotFound";
+import PrivateRoute from "hooks/auth/useAuth";
+import Profile from "pages/Profile/Profile";
 
 function App() {
   return (
@@ -26,11 +26,12 @@ function App() {
 
               {/* Private Routes */}
               <Route element={<PrivateRoute />}>
-                <Route path="/code" element={<Code />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/contests" element={<Contests />} />
-                <Route path="/problems" element={<Problems />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/profile/:userId" element={<Profile />} />
+                <Route path="/code" element={<Code />} />
+                <Route path="/problems" element={<Problems />} />
               </Route>
 
               {/* Catch-All */}

@@ -1,0 +1,32 @@
+@import "src/styles/_variables";
+
+/* Contest Info */
+.contest-info {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.info-box {
+  flex: 1;
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+}
+
+.info-box h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info-box p,
+.info-box ul {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.info-box ul {
+  padding-left: 20px;
+}

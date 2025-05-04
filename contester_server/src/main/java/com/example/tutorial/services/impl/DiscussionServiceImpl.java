@@ -40,7 +40,8 @@ public class DiscussionServiceImpl implements DiscussionService {
         if (!problemRepository.existsById(problemId)) {
             throw new ResourceNotFoundException("Problem not found with id: " + problemId);
         }
-        return discussionRepository.findByProblemId(problemId);
+        return discussionRepository.findByProblemIdAndParentDiscussionIsNull(problemId);
+
     }
 
     @Override

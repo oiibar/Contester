@@ -18,6 +18,8 @@ public class ProblemDto {
     private String title;
     private String description;
     private String given;
+    private Double successRate;
+    private Integer points;
     private Difficulty difficulty;
     private List<String> examples;
     private List<String> hints;

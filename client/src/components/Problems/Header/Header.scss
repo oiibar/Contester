@@ -1,0 +1,26 @@
+@import "src/styles/_variables";
+
+/* Header */
+.contest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contest-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.contest-time {
+  font-size: 1rem;
+  color: #666;
+}
+
+.register-button {
+  background-color: #1abc9c;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: bold;
+}

@@ -1,7 +1,8 @@
+@import "src/styles/_variables";
+
 body {
   font-family: $font-family;
   margin: 0;
   padding: 0;
-  background-color: #262626;
-  color: #fff;
+  background-color: $bgc;
 }

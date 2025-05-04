@@ -1,5 +1,4 @@
 const API_URL = "http://localhost:8080/api/v1";
-
 export const apiCall = async (endpoint, options = {}) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}`, {
@@ -22,6 +21,8 @@ export const apiCall = async (endpoint, options = {}) => {
     }
 };
 
+
+// AUTH
 export const authenticateUser = (data) =>
     apiCall("/auth/authenticate", {
         method: "POST",
@@ -34,6 +35,8 @@ export const registerUser = (data) =>
         body: JSON.stringify(data),
     });
 
+
+// CONTESTS
 export const fetchContests = (token) => {
     return apiCall("/contests", {
         method: "GET",
@@ -42,7 +45,17 @@ export const fetchContests = (token) => {
         },
     });
 };
+export const updateContest = (contestId, contestData, token) => {
+    return apiCall(`/contests/${contestId}`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    })
+}
 
+
+// USERS
 export const fetchUsers = (token) => {
     return apiCall("/users", {
         method: "GET",
@@ -51,8 +64,16 @@ export const fetchUsers = (token) => {
         },
     });
 };
-
-export const updateUsername = (userId, data, token) => {
+export const fetchUser = (userId, token) => {
+    return apiCall(`/users/${userId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json",
+        },
+    });
+};
+export const updateUser = (userId, data, token) => {
     return apiCall(`/users/${userId}`, {
         method: "PATCH",
         headers: {
@@ -63,6 +84,8 @@ export const updateUsername = (userId, data, token) => {
     });
 };
 
+
+// DISCUSSION
 export const fetchDiscussions = (problemId, token) => {
     return apiCall(`/discussions/problem/${problemId}`, {
         method: "GET",
@@ -72,7 +95,6 @@ export const fetchDiscussions = (problemId, token) => {
         },
     });
 };
-
 export const addDiscussion = (problemId, data, token) => {
     return apiCall(`/discussions/problem/${problemId}`, {
         method: "POST",
@@ -83,7 +105,6 @@ export const addDiscussion = (problemId, data, token) => {
         body: JSON.stringify(data),
     });
 };
-
 export const replyToDiscussion = (discussionId, data, token) => {
     return apiCall(`/discussions/${discussionId}/reply`, {
         method: "POST",
@@ -95,6 +116,8 @@ export const replyToDiscussion = (discussionId, data, token) => {
     });
 };
 
+
+// CODE
 export const executeCode = async (data, token) => {
     const response = await fetch("https://secure.judge0.com/submissions", {
         method: "POST",

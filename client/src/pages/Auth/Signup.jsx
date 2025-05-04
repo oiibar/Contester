@@ -5,19 +5,23 @@ import open from "../../assets/auth/open.svg";
 import passwordIcon from "../../assets/auth/password.svg";
 import unlocked from "../../assets/auth/unlocked.svg";
 import user from "../../assets/auth/user.svg";
-import "../../styles/Auth.scss";
+import "./Auth.scss";
 import { useNavigate } from "react-router";
 import { registerUser } from "../../api/api";
 import { useFetching } from "../../hooks/useFetching";
+import {countryOptions} from "../../constants/countryOptions";
 
 const Signup = () => {
     const navigate = useNavigate();
     const [formFields, setFormFields] = useState({
         email: "",
         username: "",
+        firstName: "",
+        lastName: "",
         password: "",
+        bio: "About me...",
+        country: "---",
         confirmPassword: "",
-        points: 0,
     });
     const [passwordVisibility, setPasswordVisibility] = useState({
         showPassword: false,
@@ -28,9 +32,18 @@ const Signup = () => {
 
     const { fetching: handleRegister, isLoading, error } = useFetching(
         async () => {
-            const { email, username, password } = formFields;
-            await registerUser({ email, username, password });
-            navigate("/login"); // Redirect to login page on successful registration
+            const { email, username, firstName, lastName, password, bio, country } = formFields;
+            const userPayload = {
+                email,
+                username,
+                firstName,
+                country,
+                lastName,
+                password,
+                bio,
+            };
+            await registerUser(userPayload);
+            navigate("/login");
         }
     );
 
@@ -57,11 +70,11 @@ const Signup = () => {
                             className="auth-input"
                             value={formFields.email}
                             onChange={(e) =>
-                                setFormFields({ ...formFields, email: e.target.value })
+                                setFormFields({...formFields, email: e.target.value})
                             }
                         />
                         <div className="input-icon">
-                            <img src={emailIcon} alt="email" className="icon" />
+                            <img src={emailIcon} alt="email" className="icon"/>
                         </div>
                     </div>
 
@@ -72,11 +85,41 @@ const Signup = () => {
                             className="auth-input"
                             value={formFields.username}
                             onChange={(e) =>
-                                setFormFields({ ...formFields, username: e.target.value })
+                                setFormFields({...formFields, username: e.target.value})
                             }
                         />
                         <div className="input-icon">
-                            <img src={user} alt="username" className="icon" />
+                            <img src={user} alt="username" className="icon"/>
+                        </div>
+                    </div>
+
+                    <div className="input-container">
+                        <input
+                            placeholder="First Name"
+                            type="text"
+                            className="auth-input"
+                            value={formFields.firstName}
+                            onChange={(e) =>
+                                setFormFields({...formFields, firstName: e.target.value})
+                            }
+                        />
+                        <div className="input-icon">
+                            <img src={user} alt="first name" className="icon"/>
+                        </div>
+                    </div>
+
+                    <div className="input-container">
+                        <input
+                            placeholder="Last Name"
+                            type="text"
+                            className="auth-input"
+                            value={formFields.lastName}
+                            onChange={(e) =>
+                                setFormFields({...formFields, lastName: e.target.value})
+                            }
+                        />
+                        <div className="input-icon">
+                            <img src={user} alt="last name" className="icon"/>
                         </div>
                     </div>
 
@@ -87,7 +130,7 @@ const Signup = () => {
                             className="auth-input"
                             value={formFields.password}
                             onChange={(e) =>
-                                setFormFields({ ...formFields, password: e.target.value })
+                                setFormFields({...formFields, password: e.target.value})
                             }
                         />
                         <div className="input-icon">
@@ -155,6 +198,25 @@ const Signup = () => {
                         </div>
                     </div>
 
+                    <div className="input-container">
+                        <select
+                            className="auth-input"
+                            value={formFields.country}
+                            onChange={(e) =>
+                                setFormFields({...formFields, country: e.target.value})
+                            }
+                        >
+                            <option disabled value="---">
+                                Select Country
+                            </option>
+                            {countryOptions.map((country) => (
+                                <option key={country} value={country}>
+                                    {country}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
+
                     {passwordMismatch && (
                         <p className="mismatch">Passwords do not match</p>
                     )}
@@ -168,8 +230,8 @@ const Signup = () => {
                 <p className="signup-text">
                     Already have an account?{" "}
                     <span onClick={() => navigate("/login")} className="signup-link">
-            Log in
-          </span>
+                        Log in
+                    </span>
                 </p>
             </div>
         </div>

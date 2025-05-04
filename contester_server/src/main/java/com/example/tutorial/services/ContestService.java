@@ -6,4 +6,6 @@ import java.util.List;
 public interface ContestService {
     List<Contest> findAllContests();
     Contest saveContest(Contest contest);
+    void deleteContestById(Long id);
+    Contest updateContest(Contest contest);
 }

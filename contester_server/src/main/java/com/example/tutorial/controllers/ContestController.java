@@ -22,8 +22,19 @@ public class ContestController {
         return ResponseEntity.ok(contestService.findAllContests());
     }
 
+    @PutMapping
+    public ResponseEntity<Contest> updateContest(@RequestBody Contest contest) {
+        return ResponseEntity.ok(contestService.updateContest(contest));
+    }
+
     @PostMapping
     public ResponseEntity<Contest> saveContest(@RequestBody Contest contest) {
         return ResponseEntity.ok(contestService.saveContest(contest));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteContest(@PathVariable Long id) {
+        contestService.deleteContestById(id);
+        return ResponseEntity.noContent().build();
     }
 }

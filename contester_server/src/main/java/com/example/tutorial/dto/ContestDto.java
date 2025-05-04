@@ -13,6 +13,7 @@ public class ContestDto {
     private Long id;
     private String title;
     private String description;
+    private Integer participants;
     private List<Problem> problems;
     private Status status;
     private LocalDateTime startDate;

@@ -1,0 +1,139 @@
+@import "src/styles/_variables";
+
+.user-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: $prm;
+  background-color: #a8b1ff;
+  border-radius: 50%;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+
+.leaderboard-header {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.leaderboard-header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 5px;
+  color: #222;
+}
+
+.leaderboard-header p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $prm;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+
+.leaderboard-header {
+  display: flex;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  background-color: $prm;
+  padding: 20px;
+}
+
+
+.leaderboard-table th {
+  font-size: 0.9rem;
+  font-weight: bold;
+  background-color: lightgray;
+  color: #888;
+  text-transform: uppercase;
+}
+
+.leaderboard-table tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.rank-badge {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+
+  .country {
+    color: rgba(0, 0, 0, .5);
+    font-size: .8rem;
+  }
+
+  h3 {
+    font-size: 1rem;
+    color: #333;
+    margin: 0;
+  }
+
+  p {
+    font-size: 0.9rem;
+    color: #666;
+  }
+}
+
+.current-user {
+  color: #00bfa5;
+  margin-left: 5px;
+}
+
+.user-prof {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: #a8b1ff;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: none;
+}
+
+
+.contest-rank {
+  display: inline-block;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+  background-color: $easy;
+  color: $easy-txt;
+  border-radius: 15px;
+  font-weight: bold;
+}

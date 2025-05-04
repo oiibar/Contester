@@ -34,11 +34,21 @@ public class User implements UserDetails {
     private Long id;
     @Column(unique = true, nullable = false)
     private String username;
+    @Column(nullable = false)
+    private String firstName;
+    @Column(nullable = false)
+    private String lastName;
+    @ColumnDefault("0")
+    private int problemsSolved;
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT 'About me...'")
+    private String bio;
+    @ColumnDefault("0")
+    private int rating;
+    @Column(columnDefinition = "VARCHAR(255) DEFAULT '---'")
+    private String country;
     @Column(unique = true, nullable = false)
     private String email;
     private String password;
-    @ColumnDefault("0")
-    private double points = 0;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
