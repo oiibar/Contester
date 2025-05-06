@@ -17,19 +17,23 @@ const Profile = () => {
     if (error) {
         return <div>Error loading users!</div>;
     }
+    if (!profileUser) {
+        return <div>User not found.</div>;
+    }
 
     return (
         <>
-            <Header user={profileUser || users[0]} users={users} />
+            <Header user={profileUser} users={users} />
             <div className="profile-content">
-                <ProfileInfo user={profileUser || users[0]} />
+                <ProfileInfo user={profileUser} />
                 <div className="profile-info2">
-                    <Stats user={profileUser || users[0]} users={users} />
+                    <Stats user={profileUser} users={users} />
                     <Activities />
                 </div>
             </div>
         </>
     );
+
 };
 
 export default Profile;

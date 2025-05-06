@@ -8,4 +8,6 @@ public interface ContestService {
     Contest saveContest(Contest contest);
     void deleteContestById(Long id);
     Contest updateContest(Contest contest);
+    Contest getContestById(Long id);
+    Contest getContestWithParticipants(Long contestId);
 }

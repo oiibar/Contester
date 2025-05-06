@@ -28,7 +28,7 @@ export const useUserProfile = (userId) => {
         };
         fetchUserProfile();
         fetching();
-    }, [userId, token, currentUser, fetching]);
+    }, [userId, token, currentUser]);
 
     return {
         profileUser,

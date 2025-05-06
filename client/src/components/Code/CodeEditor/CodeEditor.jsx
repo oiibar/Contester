@@ -1,24 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './CodeEditor.scss';
 import { Editor } from '@monaco-editor/react';
 import ThemeDropdown from './ThemeDropdown/ThemeDropdown';
-import { defineTheme } from 'utils/defineTheme';
 import LanguageOptionDropdown from './LanguagesDropdown/LanguageOptionDropdown';
+import { useCodeEditor } from 'hooks/code/useCodeEditor';
 
 const CodeEditor = () => {
-    const [theme, setTheme] = useState('vs-dark');
-    const [language, setLanguage] = useState('js');
-
-    const handleThemeChange = (selectedOption) => {
-        const selectedTheme = selectedOption.value;
-        defineTheme(selectedTheme).then(() => {
-            setTheme(selectedTheme);
-        });
-    };
-
-    const handleLanguageChange = (selectedOption) => {
-        setLanguage(selectedOption.value);
-    };
+    const {
+        theme,
+        language,
+        handleThemeChange,
+        handleLanguageChange,
+    } = useCodeEditor();
 
     return (
         <div className="editor-section">

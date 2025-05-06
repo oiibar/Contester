@@ -53,6 +53,15 @@ export const updateContest = (contestId, contestData, token) => {
         }
     })
 }
+export const registerToContest = async (contestId, token) => {
+    return apiCall(`/contests/${contestId}/register`, {
+        method: "POST",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    })
+};
+
 
 
 // USERS
@@ -69,7 +78,6 @@ export const fetchUser = (userId, token) => {
         method: "GET",
         headers: {
             Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
         },
     });
 };

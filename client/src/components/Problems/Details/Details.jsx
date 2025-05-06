@@ -27,7 +27,7 @@ const Details = ({ contestData }) => {
             </div>
             <div className="info-box">
                 <h3>Participants</h3>
-                <p>Registered: {contestData.participants || 0}</p>
+                <p>Registered: {contestData.participants.length || 0}</p>
                 <p>Max Rating: ---</p>
                 <p>Min Rating: ---</p>
             </div>

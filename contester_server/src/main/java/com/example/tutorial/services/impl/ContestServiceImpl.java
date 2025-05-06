@@ -5,6 +5,7 @@ import com.example.tutorial.models.Problem;
 import com.example.tutorial.repo.ContestRepository;
 import com.example.tutorial.repo.ProblemRepository;
 import com.example.tutorial.services.ContestService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -34,6 +35,18 @@ public class ContestServiceImpl implements ContestService {
     @Override
     public void deleteContestById(Long id) {
         contestRepository.deleteById(id);
+    }
+
+    @Override
+    public Contest getContestById(Long id) {
+        return contestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Contest not found with id: " + id));
+    }
+
+    @Override
+    public Contest getContestWithParticipants(Long contestId) {
+        return contestRepository.findByIdWithParticipants(contestId)
+                .orElseThrow(() -> new EntityNotFoundException("Contest not found"));
     }
 
     @Override

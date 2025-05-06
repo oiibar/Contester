@@ -52,6 +52,7 @@ public class UserServiceImpl implements UserService {
         existingUser.setFirstName(userDto.getFirstName());
         existingUser.setLastName(userDto.getLastName());
         existingUser.setBio(userDto.getBio());
+        existingUser.setContests(userDto.getContests());
         existingUser.setCountry(userDto.getCountry());
         existingUser.setRating(userDto.getRating());
         existingUser.setProblemsSolved(userDto.getProblemsSolved());
@@ -71,6 +72,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .rating(user.getRating())
+                .contests(user.getContests())
                 .country(user.getCountry())
                 .problemsSolved(user.getProblemsSolved())
                 .email(user.getEmail())
@@ -87,6 +89,7 @@ public class UserServiceImpl implements UserService {
                 .problemsSolved(userDto.getProblemsSolved())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
+                .contests(userDto.getContests())
                 .rating(userDto.getRating())
                 .bio(userDto.getBio())
                 .country(userDto.getCountry())

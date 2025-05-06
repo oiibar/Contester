@@ -10,6 +10,8 @@ import com.example.tutorial.models.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.HashSet;
+
 
 @Service
 @RequiredArgsConstructor
@@ -26,6 +28,7 @@ public class AuthService {
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
                 .rating(request.getRating())
+                .contests(request.getContests())
                 .bio(request.getBio())
                 .country(request.getCountry())
                 .problemsSolved(request.getProblemsSolved())
@@ -62,6 +65,7 @@ public class AuthService {
                         .rating(user.getRating())
                         .bio(user.getBio())
                         .country(user.getCountry())
+                        .contests(user.getContests())
                         .problemsSolved(user.getProblemsSolved())
                         .email(user.getEmail())
                         .role(user.getRole())

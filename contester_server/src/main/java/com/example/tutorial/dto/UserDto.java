@@ -1,11 +1,14 @@
 package com.example.tutorial.dto;
 
+import com.example.tutorial.models.Contest;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Builder
@@ -21,6 +24,7 @@ public class UserDto {
     private String email;
     private int rating;
     private String country;
+    private List<Contest> contests;
     private String bio;
     @Size(min = 8, message = "password should have at least 8 characters")
     private String password;

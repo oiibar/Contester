@@ -8,7 +8,7 @@ const difficultyLetterMap = {
     HARD: 'C',
 };
 
-const ProblemCard = ({ problem, onStartClick }) => {
+const ProblemCard = ({ problem, onStartClick, isRegistered }) => {
     const difficultyClass = problem.difficulty.toLowerCase();
 
     return (
@@ -28,7 +28,9 @@ const ProblemCard = ({ problem, onStartClick }) => {
             </div>
             <div className="problem-details">
                 <span className={`problem-status ${difficultyClass}`}>Unsolved</span>
-                <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>
+                {isRegistered && (
+                    <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>
+                )}
             </div>
         </div>
     );

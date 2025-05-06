@@ -9,6 +9,10 @@ const ProfileInfo = ({user}) => {
     const isCurrentUser = loggedInUser && loggedInUser.id === user.id;
     const [bio, setBio] = useState(user.bio || "");
 
+    if (!user) {
+        return <p>Loading user info...</p>;
+    }
+
     const handleBioChange = (event) => {
         setBio(event.target.value);
     };

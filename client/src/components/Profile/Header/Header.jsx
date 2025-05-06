@@ -4,12 +4,14 @@ import {formatDate} from "utils/dateUtils";
 
 const Header = ({user, users}) => {
     const [userRank, setUserRank] = useState(null);
-
     useEffect(() => {
         const sortedUsers = [...users].sort((a, b) => b.rating - a.rating);
         const rank = sortedUsers.findIndex(u => u.id === user.id) + 1;
         setUserRank(rank);
     }, [users, user.id]);
+    if (!user) {
+        return <div>Loading header...</div>;
+    }
     return (
         <div className="profile-header">
             <div className="profile-photo">

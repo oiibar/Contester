@@ -3,7 +3,7 @@ import './ProblemsList.scss';
 import { useNavigate } from "react-router";
 import ProblemCard from 'components/Problems/ProblemsList/ProblemCard/ProblemCard';
 
-const ProblemsList = ({ contestData }) => {
+const ProblemsList = ({ contestData, isRegistered }) => {
     const navigate = useNavigate();
 
     const handleStartClick = (problem) => {
@@ -20,7 +20,12 @@ const ProblemsList = ({ contestData }) => {
             <h2 className="section-title">Problems</h2>
             <div className="problems-list">
                 {sortedProblems.map((problem) => (
-                    <ProblemCard key={problem.id} problem={problem} onStartClick={handleStartClick} />
+                    <ProblemCard
+                        key={problem.id}
+                        problem={problem}
+                        onStartClick={handleStartClick}
+                        isRegistered={isRegistered}
+                    />
                 ))}
             </div>
         </div>
