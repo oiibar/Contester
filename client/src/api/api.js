@@ -45,6 +45,14 @@ export const fetchContests = (token) => {
         },
     });
 };
+export const fetchContest = async (contestId, token) => {
+    return apiCall(`/contests/${contestId}`, {
+        method: "GET",
+        headers: {
+            Authorization: `Bearer ${token}`,
+        }
+    });
+};
 export const updateContest = (contestId, contestData, token) => {
     return apiCall(`/contests/${contestId}`, {
         method: "PATCH",

@@ -5,7 +5,7 @@ import {useAuth} from "hooks/auth/AuthProvider";
 import {updateUser} from "api/api";
 
 const ProfileInfo = ({user}) => {
-    const { user: loggedInUser, token,  } = useAuth();
+    const { user: loggedInUser, token } = useAuth();
     const isCurrentUser = loggedInUser && loggedInUser.id === user.id;
     const [bio, setBio] = useState(user.bio || "");
 
@@ -21,9 +21,11 @@ const ProfileInfo = ({user}) => {
         if (!token) return;
 
         try {
+            console.log(loggedInUser.id, { ...user, bio }, token)
             await updateUser(loggedInUser.id, { ...user, bio }, token);
 
             const updatedUser = { ...loggedInUser, bio };
+            console.log(updatedUser)
             localStorage.setItem("user", JSON.stringify(updatedUser));
 
             alert("Bio updated successfully!");

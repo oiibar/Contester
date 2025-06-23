@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useFetching } from "../useFetching";
-import { fetchContests } from "../../api/api";
+import { fetchContests, fetchContest } from "api/api";
 
 export const useContests = (token) => {
     const [contests, setContests] = useState([]);
@@ -15,7 +15,6 @@ export const useContests = (token) => {
 
             const currentDate = new Date();
 
-            // Categorizing contests based on dates
             setUpcoming(data.filter(c => new Date(c.startDate) > currentDate));
             setOngoing(data.filter(c => new Date(c.startDate) <= currentDate && new Date(c.endDate) >= currentDate));
             setPast(data.filter(c => new Date(c.endDate) < currentDate));
@@ -26,6 +25,12 @@ export const useContests = (token) => {
             setPast([]);
         }
     });
+
+    const { fetchingContest } = useFetching(async () => {
+        if (token) {
+            const data = await fetchContest(token);
+        }
+    })
 
     useEffect(() => {
         fetching();

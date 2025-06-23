@@ -3,11 +3,11 @@ import MyButton from "../../UI/MyButton/MyButton";
 import './Upcoming.scss'
 import { formatDate } from "utils/dateUtils";
 import useContestDurations from "hooks/contests/useContestDurations";
-import { useAuth } from "hooks/auth/AuthProvider"; // 👈 ADD THIS
+import { useAuth } from "hooks/auth/AuthProvider";
 
 const Upcoming = ({ contests, navigateToProblems, isLoading, error }) => {
     const durations = useContestDurations(contests);
-    const { user } = useAuth(); // 👈 ADD THIS
+    const { user } = useAuth();
 
     if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error loading contests</p>;
@@ -17,7 +17,7 @@ const Upcoming = ({ contests, navigateToProblems, isLoading, error }) => {
         <div className="section">
             <h2 className="section-title">Upcoming Contests</h2>
             {contests.map((contest) => {
-                const isRegistered = contest.participants?.some(p => p.id === user?.id); // 👈 CHECK REGISTRATION
+                const isRegistered = contest.participants?.some(p => p.id === user?.id);
                 return (
                     <div key={contest.id} className="contest-row">
                         <div className="contest-col">

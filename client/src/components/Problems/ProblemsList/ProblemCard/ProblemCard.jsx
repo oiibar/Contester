@@ -28,9 +28,10 @@ const ProblemCard = ({ problem, onStartClick, isRegistered }) => {
             </div>
             <div className="problem-details">
                 <span className={`problem-status ${difficultyClass}`}>Unsolved</span>
-                {isRegistered && (
-                    <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>
-                )}
+                {/*{isRegistered && (*/}
+                {/*    <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>*/}
+                {/*)}*/}
+                <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>
             </div>
         </div>
     );

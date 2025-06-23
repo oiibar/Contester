@@ -7,6 +7,10 @@ import { FaSignOutAlt } from "react-icons/fa";
 const Header = () => {
     const auth = useAuth();
 
+    const handleLogOut = async () => {
+        auth.logOut();
+    }
+
     return (
         <header className={styles.header}>
             <NavLink to="/" className={({ isActive }) => isActive ? `${styles.logo} ${styles.active}` : styles.logo}>
@@ -29,7 +33,7 @@ const Header = () => {
                     <NavLink to="/profile" className={styles.user_profile}>
                         {auth.user.username[0].toUpperCase()}
                     </NavLink>
-                    <button className={styles.logout_button} onClick={() => auth.logOut()}>
+                    <button className={styles.logout_button} onClick={handleLogOut}>
                         <FaSignOutAlt />
                     </button>
                 </div>

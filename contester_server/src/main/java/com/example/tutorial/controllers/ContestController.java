@@ -27,6 +27,11 @@ public class ContestController {
         return ResponseEntity.ok(contestService.findAllContests());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Contest> getContestById(@PathVariable Long id) {
+        return ResponseEntity.ok(contestService.getContestById(id));
+    }
+
     @PutMapping
     public ResponseEntity<Contest> updateContest(@RequestBody Contest contest) {
         return ResponseEntity.ok(contestService.updateContest(contest));
@@ -55,9 +60,6 @@ public class ContestController {
 
         return ResponseEntity.ok().body(Map.of("message", "Successfully registered."));
     }
-
-
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteContest(@PathVariable Long id) {

@@ -1,14 +1,41 @@
-import React, { useState } from "react";
-import { useLocation } from "react-router";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import "./Problems.scss";
 import Header from "components/Problems/Header/Header";
 import ProblemsList from "components/Problems/ProblemsList/ProblemsList";
 import Details from "components/Problems/Details/Details";
-import { updateContest } from "api/api";
+import { fetchContest, updateContest } from "api/api";
+import { useAuth } from "hooks/auth/AuthProvider";
 
 const Problems = () => {
-    const location = useLocation();
-    const [contestData, setContestData] = useState(location.state?.contest || {});
+    const { contestId } = useParams();
+    const { token } = useAuth();
+
+    const [contestData, setContestData] = useState(null);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        const loadContest = async () => {
+            if (!contestData && contestId && token) {
+                try {
+                    setIsLoading(true);
+                    const data = await fetchContest(contestId, token);
+                    setContestData(data);
+                } catch (err) {
+                    setError("Failed to fetch contest.");
+                } finally {
+                    setIsLoading(false);
+                }
+            }
+        };
+        loadContest();
+        console.log(contestData)
+    }, [contestData, contestId, token]);
+
+    if (isLoading) return <p>Loading contest...</p>;
+    if (error) return <p className="error-text">{error}</p>;
+    if (!contestData) return <p>No contest found.</p>;
 
     return (
         <>

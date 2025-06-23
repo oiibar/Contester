@@ -31,7 +31,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/code" element={<Code />} />
-                <Route path="/problems" element={<Problems />} />
+                <Route path="/problems/:contestId" element={<Problems />} />
               </Route>
 
               {/* Catch-All */}
