@@ -131,7 +131,7 @@ export const replyToDiscussion = (discussionId, data, token) => {
 
 // CODE
 export const executeCode = async (data, token) => {
-    const response = await fetch("https://secure.judge0.com/submissions", {
+    const response = await fetch("https://api.jdoodle.com/v1/execute", {
         method: "POST",
         headers: {
             Authorization: `Bearer ${token}`,
