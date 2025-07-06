@@ -1,4 +1,6 @@
 const API_URL = "http://localhost:8080/api/v1";
+const CLIENT_ID = "1d286c424ad067c1f3ad915968f1e092";
+const SECRET_KEY = "9ada5de0ecc0a5b669fdf1e972ba3af2e6c047445ea3d428fc1c21467f9cd281"
 export const apiCall = async (endpoint, options = {}) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}`, {
@@ -21,7 +23,6 @@ export const apiCall = async (endpoint, options = {}) => {
     }
 };
 
-
 // AUTH
 export const authenticateUser = (data) =>
     apiCall("/auth/authenticate", {
@@ -34,7 +35,6 @@ export const registerUser = (data) =>
         method: "POST",
         body: JSON.stringify(data),
     });
-
 
 // CONTESTS
 export const fetchContests = (token) => {
@@ -70,8 +70,6 @@ export const registerToContest = async (contestId, token) => {
     })
 };
 
-
-
 // USERS
 export const fetchUsers = (token) => {
     return apiCall("/users", {
@@ -99,7 +97,6 @@ export const updateUser = (userId, data, token) => {
         body: JSON.stringify(data),
     });
 };
-
 
 // DISCUSSION
 export const fetchDiscussions = (problemId, token) => {
@@ -131,7 +128,6 @@ export const replyToDiscussion = (discussionId, data, token) => {
         body: JSON.stringify(data),
     });
 };
-
 
 // CODE
 export const executeCode = async (data, token) => {

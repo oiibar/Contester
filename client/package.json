@@ -11,6 +11,7 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.10.0",
     "css-loader": "^7.1.2",
     "monaco-editor": "^0.52.2",
     "monaco-themes": "^0.4.4",
@@ -49,6 +50,7 @@
     ]
   },
   "devDependencies": {
+    "@shikijs/monaco": "^3.7.0",
     "@types/react": "^19.0.3",
     "@types/react-dom": "^19.0.2",
     "sass": "^1.83.1",

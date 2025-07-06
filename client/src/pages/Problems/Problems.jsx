@@ -30,7 +30,6 @@ const Problems = () => {
             }
         };
         loadContest();
-        console.log(contestData)
     }, [contestData, contestId, token]);
 
     if (isLoading) return <p>Loading contest...</p>;
