@@ -32,6 +32,7 @@ export const useUserProfile = (userId) => {
 
     return {
         profileUser,
+        setProfileUser,
         users,
         isLoading,
         error,

@@ -1,0 +1,18 @@
+@import "styles/_variables";
+
+.output-section {
+  flex: 1;
+  margin-top: 15px;
+  background-color: #fff;
+  padding: 20px;
+  color: #1e1e2f;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #2d3436;
+  }
+}

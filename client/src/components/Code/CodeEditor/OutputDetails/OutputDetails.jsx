@@ -1,25 +1,22 @@
 import React from "react";
 
 const OutputDetails = ({ outputDetails }) => {
+    const getValue = (value, transform = (v) => v) =>
+        value ? transform(value) : "--";
+
     return (
-        <div className="metrics-container mt-4 flex flex-col space-y-3">
-            <p className="text-sm">
-                Status:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-          {outputDetails?.status?.description}
-        </span>
+        <div className="output-box">
+            <p>
+                Status Code: <span>{getValue(outputDetails.statusCode)}</span>
             </p>
-            <p className="text-sm">
-                Memory:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-          {outputDetails?.memory}
-        </span>
+            <p>
+                Memory: <span>{getValue(outputDetails.memory, (v) => `${Math.round(v / 1024)}MB`)}</span>
             </p>
-            <p className="text-sm">
-                Time:{" "}
-                <span className="font-semibold px-2 py-1 rounded-md bg-gray-100">
-          {outputDetails?.time}
-        </span>
+            <p>
+                Time: <span>{getValue(outputDetails.cpuTime, (v) => `${v}s`)}</span>
+            </p>
+            <p>
+                Console Output: <span>{getValue(outputDetails.output)}</span>
             </p>
         </div>
     );

@@ -1,6 +1,4 @@
 const API_URL = "http://localhost:8080/api/v1";
-const CLIENT_ID = "1d286c424ad067c1f3ad915968f1e092";
-const SECRET_KEY = "9ada5de0ecc0a5b669fdf1e972ba3af2e6c047445ea3d428fc1c21467f9cd281"
 export const apiCall = async (endpoint, options = {}) => {
     try {
         const response = await fetch(`${API_URL}${endpoint}`, {
@@ -127,17 +125,4 @@ export const replyToDiscussion = (discussionId, data, token) => {
         },
         body: JSON.stringify(data),
     });
-};
-
-// CODE
-export const executeCode = async (data, token) => {
-    const response = await fetch("https://api.jdoodle.com/v1/execute", {
-        method: "POST",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-    });
-    return await response.json();
 };

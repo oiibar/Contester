@@ -27,7 +27,7 @@ const Header = () => {
                     Leaderboard
                 </NavLink>
             </nav>
-            {auth.user ? (
+            {auth.token ? (
                 <div className={styles.user_menu}>
                     <span className={styles.notifications}></span>
                     <NavLink to="/profile" className={styles.user_profile}>

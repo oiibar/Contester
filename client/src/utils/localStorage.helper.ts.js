@@ -1,5 +1,5 @@
-export function getToken() {
-    const data = localStorage.getItem("token");
+export function getToken(key) {
+    const data = localStorage.getItem(key);
     return data ? JSON.parse(data) : "";
 }
 

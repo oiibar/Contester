@@ -14,7 +14,6 @@ import java.util.Set;
 @Builder
 public class UserDto {
     private Long id;
-    @NotEmpty
     @Size(min = 2, max = 50, message = "2 <= username <= 50 chars")
     private String username;
     private String firstName;

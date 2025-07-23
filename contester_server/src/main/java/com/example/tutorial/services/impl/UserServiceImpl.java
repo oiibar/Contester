@@ -48,21 +48,38 @@ public class UserServiceImpl implements UserService {
         User existingUser = userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User with ID " + id + " does not exist"));
 
-        existingUser.setUsername(userDto.getUsername());
-        existingUser.setFirstName(userDto.getFirstName());
-        existingUser.setLastName(userDto.getLastName());
-        existingUser.setBio(userDto.getBio());
-        existingUser.setContests(userDto.getContests());
-        existingUser.setCountry(userDto.getCountry());
-        existingUser.setRating(userDto.getRating());
-        existingUser.setProblemsSolved(userDto.getProblemsSolved());
-
-        if (!existingUser.getEmail().equals(userDto.getEmail())) {
+        if (userDto.getUsername() != null) {
+            existingUser.setUsername(userDto.getUsername());
+        }
+        if (userDto.getFirstName() != null) {
+            existingUser.setFirstName(userDto.getFirstName());
+        }
+        if (userDto.getLastName() != null) {
+            existingUser.setLastName(userDto.getLastName());
+        }
+        if (userDto.getBio() != null) {
+            existingUser.setBio(userDto.getBio());
+        }
+        if (userDto.getContests() != null) {
+            existingUser.setContests(userDto.getContests());
+        }
+        if (userDto.getCountry() != null) {
+            existingUser.setCountry(userDto.getCountry());
+        }
+        if (userDto.getRating() != 0) {
+            existingUser.setRating(userDto.getRating());
+        }
+        if (userDto.getProblemsSolved() != null) {
+            existingUser.setProblemsSolved(userDto.getProblemsSolved());
+        }
+        if (userDto.getEmail() != null && !existingUser.getEmail().equals(userDto.getEmail())) {
             existingUser.setEmail(userDto.getEmail());
         }
+
         userRepository.save(existingUser);
         return mapToUserDto(existingUser);
     }
+
 
 
     private UserDto mapToUserDto(User user) {

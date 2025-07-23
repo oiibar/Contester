@@ -11,7 +11,8 @@ import Ongoing from "../../components/Contests/Ongoing/Ongoing";
 const Contests = () => {
   const navigate = useNavigate();
   const { token } = useAuth();
-  const { upcoming, ongoing, past, isLoading, error } = useContests(token);const navigateToProblems = (contest) => {
+  const { upcoming, ongoing, past, isLoading, error } = useContests(token);
+  const navigateToProblems = (contest) => {
       navigate(`/problems/${contest.id}`, { state: { contest } });
   };
 

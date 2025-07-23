@@ -9,7 +9,7 @@ import {useUserProfile} from "../../hooks/profile/useUserProfile";
 
 const Profile = () => {
     const { userId } = useParams();
-    const { profileUser, users, isLoading, error } = useUserProfile(userId);
+    const { profileUser, setProfileUser, users, isLoading, error } = useUserProfile(userId);
 
     if (isLoading) {
         return <div>Loading...</div>;
@@ -25,7 +25,7 @@ const Profile = () => {
         <>
             <Header user={profileUser} users={users} />
             <div className="profile-content">
-                <ProfileInfo user={profileUser} />
+                <ProfileInfo user={profileUser} setProfileUser={setProfileUser} />
                 <div className="profile-info2">
                     <Stats user={profileUser} users={users} />
                     <Activities />
