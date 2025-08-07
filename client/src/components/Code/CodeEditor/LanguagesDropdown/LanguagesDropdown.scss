@@ -1,0 +1,12 @@
+.editor-dropdowns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.editor-dropdowns > * {
+  flex-shrink: 0;
+  min-width: 150px;
+  max-width: 200px;
+}

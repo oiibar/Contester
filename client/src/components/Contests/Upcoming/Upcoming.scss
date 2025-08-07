@@ -1,0 +1,129 @@
+@import "styles/_variables";
+
+.section-title {
+  background-color: #EFF6FF;
+  color: #1E3A8A;
+  padding: 20px;
+}
+
+.contest-col {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.contest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #2d3436;
+  }
+}
+
+.contest-status {
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.contest-status.upcoming {
+  background-color: #00b894;
+  color: #fff;
+}
+
+.contest-status.ongoing {
+  background-color: #e67e22;
+  color: #fff;
+}
+
+.contest-description {
+  margin: 20px 0;
+  color: #636e72;
+  font-size: 1rem;
+  font-weight: 300;
+}
+
+.contest-dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #636e72;
+}
+
+.contest-join-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #6c5ce7;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    background-color: #5e4dca;
+    transform: translateY(-2px);
+  }
+}
+
+.no-contests {
+  text-align: center;
+  padding: 20px;
+
+  .my-button {
+    padding: 10px 20px;
+    background-color: #6c5ce7;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background-color: #5e4dca;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.no-contests-image {
+  max-width: 300px;
+  width: 100%;
+  margin: 20px auto;
+  display: block;
+}
+
+.section {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.no-contests-message {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin: 20px 0 10px;
+  color: #2d3436;
+}
+
+.no-contests-description {
+  font-size: 1rem;
+  color: #636e72;
+  margin-bottom: 20px;
+}
+
+.contest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $prm;
+  padding: 20px;
+}

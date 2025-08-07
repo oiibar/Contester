@@ -1,0 +1,50 @@
+@import "src/styles/_variables";
+
+.problem-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f9fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.problem-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.problem-details {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-1 {
+  background-color: $easy;
+  color: $easy-txt;
+}
+
+.tag-2 {
+  background-color: $medium;
+  color: $medium-txt;
+}
+
+.tag-3 {
+  background-color: $hard;
+  color: $hard-txt;
+}
+
+.problem-details h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.problem-details p {
+  font-size: 0.9rem;
+  color: #666;
+}

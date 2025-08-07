@@ -1,0 +1,12 @@
+@import 'src/styles/_variables';
+
+.profile-stats {
+  background: #fff;
+  width: 100%;
+  text-align: center;
+
+  p {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+  }
+}

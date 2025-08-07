@@ -1,0 +1,59 @@
+@import 'src/styles/_variables';
+
+.profile-activity {
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  border-radius: 8px;
+
+  h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+    color: #333;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: flex;
+      align-items: flex-start; // Ensure items align at the top
+      margin-bottom: 15px;
+    }
+
+    .activity-line {
+      width: 4px;
+      height: 35px; // Ensure it covers full text height
+      border-radius: 4px;
+      margin-right: 10px;
+      flex-shrink: 0; // Prevents shrinking
+    }
+
+    .green {
+      background-color: #4CAF50; // Fix: Ensure solid color
+    }
+
+    .blue {
+      background-color: #007bff; // Fix: Ensure solid color
+    }
+
+    .activity-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .activity-title {
+      font-size: 1.1rem;
+      color: #222;
+      margin: 0;
+    }
+
+    .activity-time {
+      font-size: 0.9rem;
+      color: #777;
+      margin: 2px 0 0;
+    }
+  }
+}

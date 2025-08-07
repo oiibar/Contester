@@ -1,0 +1,19 @@
+.editor-section {
+  height: 600px;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.editor-dropdowns {
+  display: flex;
+  gap: 10px;
+}
+
+.loading {
+  display: flex;
+  font-size: 40px;
+  justify-content: center;
+  margin: auto 0 ;
+}

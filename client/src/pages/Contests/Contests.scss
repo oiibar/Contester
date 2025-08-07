@@ -1,0 +1,11 @@
+@import "styles/_variables";
+
+.contests-container {
+  max-width: 1200px;
+  margin: 50px auto;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: 40px;
+}
+

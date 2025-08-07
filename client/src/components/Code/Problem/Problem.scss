@@ -1,0 +1,79 @@
+@import "styles/_variables";
+
+.problem-section {
+  flex: 1;
+  background-color: #fff;
+  padding: 20px;
+  color: #1e1e2f;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+
+  h1 {
+    font-size: 1.8rem;
+    margin: 0;
+    color: #2d3436;
+  }
+}
+
+.examples {
+  margin-bottom: 30px;
+}
+
+.problem-header {
+  border-bottom: 2px solid #6c5ce7;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+}
+
+.problem-description {
+  p {
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+
+  h2 {
+    margin-top: 20px;
+    color: #6c5ce7;
+  }
+
+  pre {
+    background-color: #f4f4f9;
+    padding: 10px;
+    border-radius: 5px;
+  }
+}
+
+
+
+.hint-dropdown {
+  margin-bottom: 10px;
+}
+
+.hint-button {
+  background: none;
+  color: #333;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: left;
+  width: 100%;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #f7f7f7;
+  }
+}
+
+.hint-content {
+  display: block;
+  background-color: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  margin-top: 5px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #555;
+}

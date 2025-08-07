@@ -1,0 +1,19 @@
+.leaderboard-filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+
+select {
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+}
+
+option {
+  padding: 5px;
+}

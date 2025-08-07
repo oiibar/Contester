@@ -1,0 +1,53 @@
+@import "src/styles/_variables";
+
+.profile-header {
+  display: flex;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  align-items: center;
+  background-color: $prm;
+  padding: 20px;
+  gap: 20px;
+
+  .profile-pic {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 20px;
+  }
+
+  .profile-details {
+    h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #555;
+    }
+    .profile-meta {
+      font-size: 1rem;
+      color: #777;
+      margin-top: 5px;
+
+      span {
+        margin-right: 15px;
+      }
+    }
+  }
+}
+
+.profile-photo {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 3rem;
+  color: white;
+  background-color: #a8b1ff;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}

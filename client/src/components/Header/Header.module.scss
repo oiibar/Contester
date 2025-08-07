@@ -1,0 +1,103 @@
+@import "src/styles/_variables";
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: $prm;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  a {
+    text-decoration: none;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: $scnd;
+    }
+
+    &.active {
+      color: $scnd;
+      border-bottom: 2px solid $scnd;
+    }
+  }
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: $scnd;
+  text-decoration: none;
+}
+
+.user_menu {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.notifications {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.user_profile {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: white;
+  background-color: #a8b1ff;
+  border-radius: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.login {
+  background-color: $scnd;
+  color: white;
+  padding: 5px 9px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: darken($scnd, 10%);
+  }
+}
+
+.logout_button {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.3s;
+
+  &:hover {
+    background-color: darken(#ff4d4d, 10%);
+  }
+
+  svg {
+    font-size: 16px;
+  }
+}

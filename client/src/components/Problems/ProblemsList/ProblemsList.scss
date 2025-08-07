@@ -1,0 +1,106 @@
+@import "src/styles/_variables";
+
+.section-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.problems-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.problem-detailed {
+  display: flex;
+  gap: 20px;
+}
+
+.problem-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  background-color: #f9fafc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.problem-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.problem-tag {
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-block;
+
+  &.easy {
+    background-color: #d4edda;
+    color: #155724;
+  }
+
+  &.medium {
+    background-color: #fff3cd;
+    color: #856404;
+  }
+
+  &.hard {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+}
+
+.problem-details {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tag-1 {
+  background-color: $easy;
+  color: $easy-txt;
+}
+
+.tag-2 {
+  background-color: $medium;
+  color: $medium-txt;
+}
+
+.tag-3 {
+  background-color: $hard;
+  color: $hard-txt;
+}
+
+.problem-details h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.problem-details p {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.problem-status {
+  padding: 5px 12px;
+  border-radius: 15px;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+.solved {
+  background-color: $easy;
+  color: $easy-txt;
+}
+
+.unsolved {
+  background-color: #B4B5B6;
+  color: #414A56;
+}
