@@ -13,6 +13,7 @@ const Ongoing = ({ contests, navigateToProblems, isLoading, error }) => {
     if (error) return <p>Error loading contests</p>;
     if (contests.length === 0) return null;
 
+
     return (
         <div className="section">
             <h2 className="section-title">Ongoing Contests</h2>

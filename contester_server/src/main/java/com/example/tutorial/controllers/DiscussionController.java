@@ -1,11 +1,10 @@
 package com.example.tutorial.controllers;
-
 import com.example.tutorial.exceptions.ResourceNotFoundException;
 import com.example.tutorial.models.Discussion;
 import com.example.tutorial.services.DiscussionService;
+import com.example.tutorial.services.impl.RateLimiterService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 @RestController
@@ -13,21 +12,30 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class DiscussionController {
     private final DiscussionService discussionService;
+    private final RateLimiterService rateLimiterService;
 
-    public DiscussionController(DiscussionService discussionService) {
+    public DiscussionController(DiscussionService discussionService, RateLimiterService rateLimiterService) {
         this.discussionService = discussionService;
+        this.rateLimiterService = rateLimiterService;
     }
 
     @PostMapping("/problem/{problemId}")
-    public ResponseEntity<Discussion> addDiscussionToProblem(
+    public ResponseEntity<?> addDiscussionToProblem(
             @PathVariable Long problemId,
-            @RequestBody Discussion discussion) {
+            @RequestBody Discussion discussion,
+            @RequestHeader("X-User-Id") String userId) {
+
+        if (!rateLimiterService.tryConsume(userId)) {
+            return ResponseEntity.status(429).body("Rate limit exceeded. Try again later.");
+        }
+
         try {
             return ResponseEntity.ok(discussionService.addDiscussionToProblem(problemId, discussion));
         } catch (ResourceNotFoundException e) {
             return ResponseEntity.notFound().build();
         }
     }
+
 
     @GetMapping("/problem/{problemId}")
     public ResponseEntity<List<Discussion>> getDiscussionsForProblem(@PathVariable Long problemId) {

@@ -58,7 +58,6 @@ public class User implements UserDetails {
     @UpdateTimestamp
     private LocalDateTime updatedAt;
 
-
     // CONTESTS
     @ManyToMany
     @JsonIgnore
@@ -68,8 +67,6 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "contest_id")
     )
     private List<Contest> contests = new ArrayList<>();
-
-
 
     @Enumerated(EnumType.STRING)
     private Role role;

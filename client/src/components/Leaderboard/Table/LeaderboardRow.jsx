@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router";
 import { useAuth } from "hooks/auth/AuthProvider";
 
-const LeaderboardRow = ({ user }) => {
+const LeaderboardRow = React.memo(({ user }) => {
     const navigate = useNavigate();
     const { user: loggedInUser } = useAuth();
 
@@ -40,6 +40,6 @@ const LeaderboardRow = ({ user }) => {
             </td>
         </tr>
     );
-};
+});
 
 export default LeaderboardRow;

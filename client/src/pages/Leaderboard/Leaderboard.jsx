@@ -9,13 +9,14 @@ const Leaderboard = () => {
   const { token } = useAuth();
   const { users, isLoading, error } = useLeaderboard(token);
 
+    if(isLoading) return <p>Loading...</p>
+    if(error) return <p>Error loading users.</p>
+
   return (
       <>
         <PageHeader>Global Leaderboard</PageHeader>
         <div className="leaderboard">
-          {isLoading && <p>Loading...</p>}
-          {error && <p>Error loading users.</p>}
-          {!isLoading && !error && <Table users={users} />}
+            <Table users={users} />
         </div>
       </>
   );

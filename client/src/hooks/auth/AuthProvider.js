@@ -1,35 +1,39 @@
-import { useContext, createContext, useState, useEffect } from "react";
-import { useNavigate } from "react-router";
-import { useFetching } from "../useFetching";
-import { authenticateUser } from "../../api/api";
+import { useContext, createContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import { useFetching } from '../fetching/useFetching';
+import { authenticateUser } from '../../api/api';
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState(() => {
-    const storedUser = localStorage.getItem("user");
+    const storedUser = localStorage.getItem('user');
     return storedUser ? JSON.parse(storedUser) : null;
   });
-  const [token, setToken] = useState(localStorage.getItem("site") || "");
+  const [token, setToken] = useState(localStorage.getItem('site') || '');
 
-  const { fetching: loginAction, isLoading, error } = useFetching(async (data) => {
+  const {
+    fetching: loginAction,
+    isLoading,
+    error,
+  } = useFetching(async (data) => {
     const res = await authenticateUser(data);
     setUser(res.user);
     setToken(res.token);
 
-    localStorage.setItem("site", res.token);
-    localStorage.setItem("user", JSON.stringify(res.user));
+    localStorage.setItem('site', res.token);
+    localStorage.setItem('user', JSON.stringify(res.user));
 
-    navigate("/");
+    navigate('/');
   });
 
   const logOut = () => {
     setUser(null);
-    setToken("");
-    localStorage.removeItem("site");
-    localStorage.removeItem("user");
-    navigate("/login");
+    setToken('');
+    localStorage.removeItem('site');
+    localStorage.removeItem('user');
+    navigate('/login');
   };
 
   useEffect(() => {
@@ -39,9 +43,11 @@ const AuthProvider = ({ children }) => {
   }, [token]);
 
   return (
-      <AuthContext.Provider value={{ token, user, setUser, loginAction, logOut, isLoading, error }}>
+    <AuthContext.Provider
+      value={{ token, user, setUser, loginAction, logOut, isLoading, error }}
+    >
       {children}
-      </AuthContext.Provider>
+    </AuthContext.Provider>
   );
 };
 

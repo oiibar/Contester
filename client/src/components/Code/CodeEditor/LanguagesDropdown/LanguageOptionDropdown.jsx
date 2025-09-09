@@ -1,19 +1,31 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Select from 'react-select';
 import { languageOptions } from 'constants/languageOptions';
 import {customStyles} from "constants/customStyles";
 
 const LanguageOptionDropdown = ({ handleLanguageChange, language }) => {
-    const selectedOption = languageOptions.find(option => option.value === language.value);
+    const [options, setOptions] = useState([]);
+    const [selectedOption, setSelectedOption] = useState(null);
+
+    useEffect(() => {
+        import('constants/languageOptions').then((mod) => {
+            setOptions(mod.languageOptions);
+
+            const defaultOption = mod.languageOptions.find(opt => opt.value === language.value) || mod.languageOptions[0];
+            setSelectedOption(defaultOption);
+        });
+    }, [language]);
 
     return (
         <Select
             placeholder="Select a language"
-            options={languageOptions}
+            options={options}
             styles={customStyles}
-            defaultValue={languageOptions[0]}
             value={selectedOption}
-            onChange={handleLanguageChange}
+            onChange={(val) => {
+                setSelectedOption(val);
+                handleLanguageChange(val);
+            }}
         />
     );
 };

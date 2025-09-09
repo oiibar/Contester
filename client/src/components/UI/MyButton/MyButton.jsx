@@ -1,12 +1,12 @@
-import React from "react";
-import classes from "./MyButton.module.scss";
+import React from 'react';
+import classes from './MyButton.module.scss';
 
 const MyButton = ({ children, className, ...props }) => {
   return (
-    <button className={`${classes.myBtn} ${className || ""}`} {...props}>
+    <button className={`${classes.myBtn} ${className || ''}`} {...props}>
       {children}
     </button>
   );
 };
 
-export default MyButton;
+export default React.memo(MyButton);

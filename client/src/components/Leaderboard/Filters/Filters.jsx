@@ -1,8 +1,15 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './Filter.scss';
-import { countryOptions } from 'constants/countryOptions';
 
 const Filters = ({ onFilterChange }) => {
+    const [countries, setCountries] = useState([]);
+
+    useEffect(() => {
+        import('constants/countryOptions').then((mod) => {
+            setCountries(mod.countryOptions);
+        });
+    }, []);
+
     return (
         <div className="leaderboard-filters">
             <select name="sortBy" onChange={onFilterChange}>
@@ -16,7 +23,7 @@ const Filters = ({ onFilterChange }) => {
 
             <select name="filterCountry" onChange={onFilterChange}>
                 <option value="">All Countries</option>
-                {countryOptions.map((country, index) => (
+                {countries.map((country, index) => (
                     <option key={index} value={country}>{country}</option>
                 ))}
             </select>

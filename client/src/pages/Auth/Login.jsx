@@ -80,8 +80,7 @@ const Login = () => {
           </div>
 
           <button className="auth-button" type="submit" disabled={isLoading}>{isLoading ? "Logging in..." : "Start your journey"}</button>
-          {error && <p style={{color: "red"}}>{error}</p>}
-
+            {error && <p className="auth-error">{error.message || error}</p>}
         </form>
 
         <p className="social-login-text">

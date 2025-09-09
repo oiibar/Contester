@@ -1,22 +1,26 @@
-import { useState, useEffect } from "react";
-import { useFetching } from "../useFetching";
-import { fetchUsers } from "../../api/api";
+import { useState, useEffect } from 'react';
+import { useFetching } from '../fetching/useFetching';
+import { fetchUsers } from '../../api/api';
 
 export const useLeaderboard = (token) => {
-    const [users, setUsers] = useState([]);
+  const [users, setUsers] = useState([]);
 
-    const { fetching, isLoading, error } = useFetching(async () => {
-        if (token) {
-            const data = await fetchUsers(token);
-            setUsers(data);
-        } else {
-            setUsers([]);
-        }
-    });
+  const { fetching, isLoading, error } = useFetching(async () => {
+    if (token) {
+      const data = await fetchUsers(token);
+      setUsers(data);
+    } else {
+      setUsers([]);
+    }
+  });
 
-    useEffect(() => {
-        fetching();
-    }, [token]);
+  useEffect(() => {
+    let isMounted = true;
+    fetching().catch(() => {});
+    return () => {
+      isMounted = false;
+    };
+  }, [token]);
 
-    return { users, isLoading, error };
+  return { users, isLoading, error };
 };

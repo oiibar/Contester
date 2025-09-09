@@ -7,10 +7,15 @@ export const useFetching = (callback) => {
     const fetching = async (...args) => {
         try {
             setIsLoading(true);
-            setError("");
-            await callback(...args);
+            setError(null);
+            return await callback(...args);
         } catch (e) {
-            setError(e.message || "Something went wrong");
+            setError({
+                message: e.message || "Request failed. Please try again.",
+                status: e.status || null,
+                details: e.details || null,
+            });
+            return null;
         } finally {
             setIsLoading(false);
         }
@@ -18,4 +23,3 @@ export const useFetching = (callback) => {
 
     return { fetching, isLoading, error };
 };
-

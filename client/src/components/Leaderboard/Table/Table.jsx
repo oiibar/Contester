@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useMemo  } from "react";
 import "./Table.scss";
 import LeaderboardRow from "./LeaderboardRow";
 import Filters from "../Filters/Filters";
@@ -17,7 +17,7 @@ const Table = ({ users }) => {
         }));
     };
 
-    const getFilteredAndSortedUsers = () => {
+    const rankedUsers = useMemo(() => {
         let filteredUsers = [...users];
 
         if (filter.filterCountry) {
@@ -49,13 +49,11 @@ const Table = ({ users }) => {
                 break;
         }
 
-        return filteredUsers;
-    };
-
-    const rankedUsers = getFilteredAndSortedUsers().map((user, index) => ({
-        ...user,
-        rank: index + 1,
-    }));
+        return filteredUsers.map((user, index) => ({
+            ...user,
+            rank: index + 1,
+        }));
+    }, [users, filter]);
 
     return (
         <div>

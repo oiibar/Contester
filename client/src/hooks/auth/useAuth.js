@@ -9,7 +9,6 @@
 // };
 //
 // export default PrivateRoute;
-
 import React, { useEffect, useState } from "react";
 import { Navigate, Outlet } from "react-router";
 import { jwtDecode } from "jwt-decode";
@@ -24,7 +23,7 @@ const getTokenExpiry = (token) => {
 };
 
 const PrivateRoute = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("site");
@@ -43,7 +42,6 @@ const PrivateRoute = () => {
     }
 
     const now = Date.now();
-
     if (expiry < now) {
       localStorage.removeItem("site");
       localStorage.removeItem("user");
@@ -51,8 +49,9 @@ const PrivateRoute = () => {
       return;
     }
 
-    const timeout = expiry - now;
+    setIsAuthenticated(true);
 
+    const timeout = expiry - now;
     const timer = setTimeout(() => {
       localStorage.removeItem("site");
       localStorage.removeItem("user");
@@ -62,7 +61,8 @@ const PrivateRoute = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
+    if (isAuthenticated === null) return <p>Loading...</p>;
+    return isAuthenticated ? <Outlet /> : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

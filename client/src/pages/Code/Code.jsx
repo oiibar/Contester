@@ -1,10 +1,10 @@
-import React, {useState} from "react";
+import React, {useState, lazy, Suspense} from "react";
 import { useLocation } from "react-router";
 import "./Code.scss";
 import Problem from "components/Code/Problem/Problem";
 import Discussion from "components/Code/Discussion/Discussion";
-import CodeEditor from "components/Code/CodeEditor/CodeEditor";
 import OutputDetails from "../../components/Code/OutputDetails/OutputDetails";
+const CodeEditor = lazy(() => import("components/Code/CodeEditor/CodeEditor"));
 
 const Code = () => {
   const location = useLocation();
@@ -22,12 +22,14 @@ const Code = () => {
             <Problem contestData={contestData} />
         </div>
           <div className="code-section">
-              <CodeEditor
-                  contestData={contestData}
-                  setResponse={setResponse}
-                  processing={processing}
-                  setProcessing={setProcessing}
-              />
+              <Suspense fallback={<div>Loading Editor...</div>}>
+                  <CodeEditor
+                      contestData={contestData}
+                      setResponse={setResponse}
+                      processing={processing}
+                      setProcessing={setProcessing}
+                  />
+              </Suspense>
               <OutputDetails
                   contestData={contestData}
                   outputDetails={response}

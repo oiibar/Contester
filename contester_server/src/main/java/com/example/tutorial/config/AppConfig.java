@@ -1,5 +1,4 @@
 package com.example.tutorial.config;
-
 import com.example.tutorial.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -16,13 +15,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @RequiredArgsConstructor
 public class AppConfig {
-
     private final UserRepository repository;
 
     @Bean
     public UserDetailsService userDetailsService() {
         return email -> repository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 
     @Bean
@@ -42,5 +40,4 @@ public class AppConfig {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
 }
