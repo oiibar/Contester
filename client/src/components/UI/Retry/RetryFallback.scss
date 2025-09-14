@@ -1,0 +1,51 @@
+.retry-fallback {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  margin: 2rem auto;
+  max-width: 500px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-in-out;
+
+  h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #e63946; // red accent for error
+    margin-bottom: 0.5rem;
+  }
+
+  p {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 1.5rem;
+  }
+
+  button {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  button:hover {
+    opacity: 0.9;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import MyButton from '../../UI/MyButton/MyButton';
+import MyButton from 'components/UI/MyButton/MyButton';
 import './ProfileInfo.scss';
-import { useAuth } from 'hooks/auth/AuthProvider';
+import { useAuth } from 'auth/AuthContext';
 import { updateUser } from 'api/api';
 
 const ProfileInfo = ({ user, setProfileUser }) => {
@@ -9,9 +9,7 @@ const ProfileInfo = ({ user, setProfileUser }) => {
   const isCurrentUser = loggedInUser && loggedInUser.id === user.id;
   const [bio, setBio] = useState(user.bio || '');
 
-  if (!user) {
-    return <p>Loading user info...</p>;
-  }
+  if (!user) return <p>Loading user info...</p>;
 
   const handleBioChange = (event) => {
     setBio(event.target.value);

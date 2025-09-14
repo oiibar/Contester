@@ -32,9 +32,7 @@ export const useCodeEditor = () => {
 
   useEffect(() => {
     let active = true;
-    defineTheme(theme).then(() => {
-      if (active) console.log('Theme applied');
-    });
+    defineTheme(theme).then(() => {});
     return () => {
       active = false;
     };

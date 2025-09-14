@@ -1,40 +1,49 @@
 import { useState, useEffect } from 'react';
 import { fetchUser, fetchUsers } from 'api/api';
-import { useAuth } from 'hooks/auth/AuthProvider';
-import { useFetching } from 'hooks/fetching/useFetching';
+import { useAuth } from 'auth/AuthContext';
 
 export const useUserProfile = (userId) => {
   const { user: currentUser, token } = useAuth();
   const [users, setUsers] = useState([]);
   const [profileUser, setProfileUser] = useState(null);
-
-  const { fetching, isLoading, error } = useFetching(async () => {
-    if (token) {
-      const data = await fetchUsers(token);
-      setUsers(data);
-    } else {
-      setUsers([]);
-    }
-  });
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchUserProfile = async () => {
-      if (userId && token) {
-        const fetchedUser = await fetchUser(userId, token);
-        setProfileUser(fetchedUser);
-      } else {
-        setProfileUser(currentUser);
+    if (!token) {
+      setUsers([]);
+      setProfileUser(currentUser);
+      return;
+    }
+
+    const controller = new AbortController();
+
+    const load = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const [allUsers, profile] = await Promise.all([
+          fetchUsers(token, { signal: controller.signal }),
+          userId
+            ? fetchUser(userId, token, { signal: controller.signal })
+            : Promise.resolve(currentUser),
+        ]);
+
+        setUsers(allUsers);
+        setProfileUser(profile);
+      } catch (err) {
+        if (err.name !== 'AbortError') {
+          setError(err);
+        }
+      } finally {
+        setIsLoading(false);
       }
     };
-    fetchUserProfile();
-    fetching();
+
+    load();
+
+    return () => controller.abort();
   }, [userId, token, currentUser]);
 
-  return {
-    profileUser,
-    setProfileUser,
-    users,
-    isLoading,
-    error,
-  };
+  return { profileUser, setProfileUser, users, isLoading, error };
 };

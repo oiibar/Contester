@@ -1,15 +1,16 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router';
 import styles from './Header.module.scss';
-import { useAuth } from 'hooks/auth/AuthProvider';
+import { useAuth } from 'auth/AuthContext';
 import { FaSignOutAlt } from 'react-icons/fa';
-import { getToken } from '../../utils/localStorage.helper';
+import { useNavigate } from 'react-router';
 
 const Header = () => {
-  const auth = useAuth();
-
+  const { token, user, logout } = useAuth();
+  const navigate = useNavigate();
   const handleLogOut = async () => {
-    auth.logOut();
+    logout();
+    navigate('/login');
   };
 
   return (
@@ -48,12 +49,15 @@ const Header = () => {
           Leaderboard
         </NavLink>
       </nav>
-      {auth.token ? (
+      {token ? (
         <div className={styles.user_menu}>
           <span className={styles.notifications}></span>
           <NavLink to="/profile" className={styles.user_profile}>
-            {auth.user.username[0].toUpperCase()}
+            {user.username[0].toUpperCase()}
           </NavLink>
+          <p>
+            {user.firstName} {user.lastName}
+          </p>
           <button className={styles.logout_button} onClick={handleLogOut}>
             <FaSignOutAlt />
           </button>

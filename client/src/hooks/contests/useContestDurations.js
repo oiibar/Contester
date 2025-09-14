@@ -1,27 +1,29 @@
-import {useEffect, useState} from "react";
-import {calculateDuration} from "utils/dateUtils";
+import { useEffect, useState } from 'react';
+import { calculateDuration } from 'utils/dateUtils';
 
-const useContestDurations = (contests) => {
-    const [durations, setDurations] = useState({});
+const useContestDurations = (contests, intervalMs = 60000) => {
+  const [durations, setDurations] = useState({});
 
-    useEffect(() => {
-        const updateDurations = () => {
-            const newDurations = {};
-            contests.forEach((contest) => {
-                newDurations[contest.id] = calculateDuration(
-                    new Date(contest.startDate),
-                    new Date(contest.endDate)
-                );
-            });
-            setDurations(newDurations);
-        };
+  useEffect(() => {
+    const computeDurations = () => {
+      setDurations(
+        contests.reduce((acc, contest) => {
+          acc[contest.id] = calculateDuration(
+            new Date(contest.startDate),
+            new Date(contest.endDate)
+          );
+          return acc;
+        }, {})
+      );
+    };
 
-        updateDurations();
-        const intervalId = setInterval(updateDurations, 60000);
-        return () => clearInterval(intervalId);
-    }, [contests]);
+    computeDurations(); // initial run
+    const id = setInterval(computeDurations, intervalMs);
 
-    return durations;
+    return () => clearInterval(id);
+  }, [contests, intervalMs]);
+
+  return durations;
 };
 
 export default useContestDurations;

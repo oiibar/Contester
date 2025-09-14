@@ -64,11 +64,11 @@ Technologies used in the project:
 Here are some screenshots of the project:
 
 <p align="center">
-  <img src="./contests.png" alt="Screenshot">
-  <img src="./editor.png" alt="Screenshot">
-  <img src="./testcases.png" alt="Screenshot">
-  <img src="./leaderboard.png" alt="Screenshot">
-  <img src="./profile.png" alt="Screenshot">
+  <img src="./previews/contests.png" alt="Screenshot">
+  <img src="./previews/editor.png" alt="Screenshot">
+  <img src="./previews/testcases.png" alt="Screenshot">
+  <img src="./previews/leaderboard.png" alt="Screenshot">
+  <img src="./previews/profile.png" alt="Screenshot">
 </p>
 
 <h2>💖Like my work?</h2>

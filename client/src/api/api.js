@@ -13,7 +13,7 @@ export const apiCall = async (endpoint, options = {}) => {
     if (!response.ok) {
       let errorBody;
       try {
-        errorBody = await response.json(); // try parsing JSON error
+        errorBody = await response.json();
       } catch {
         errorBody = { message: 'Unknown server error' };
       }
@@ -30,18 +30,30 @@ export const apiCall = async (endpoint, options = {}) => {
   }
 };
 
-// AUTH
-export const authenticateUser = (data) =>
-  apiCall('/auth/authenticate', {
+// AUTHENTICATION
+export const authenticateUser = (data) => {
+  return apiCall('/auth/authenticate', {
     method: 'POST',
     body: JSON.stringify(data),
   });
+};
+export const registerUser = (data) => {
+  return apiCall('/auth/register', {
+    method: 'POST',
+    body: JSON.stringify(data),
+  });
+};
 
-export const registerUser = (data) =>
-  apiCall('/auth/register', {
+// SUBMISSIONS
+export const submitProblem = (data, token) => {
+  return apiCall('/submission', {
     method: 'POST',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
     body: JSON.stringify(data),
   });
+};
 
 // CONTESTS
 export const fetchContests = (token) => {
@@ -105,7 +117,7 @@ export const updateUser = (userId, data, token) => {
   });
 };
 
-// DISCUSSION
+// DISCUSSIONS
 export const fetchDiscussions = (problemId, token) => {
   return apiCall(`/discussions/problem/${problemId}`, {
     method: 'GET',
@@ -115,12 +127,13 @@ export const fetchDiscussions = (problemId, token) => {
     },
   });
 };
-export const addDiscussion = (problemId, data, token) => {
+export const addDiscussion = (problemId, data, token, userId) => {
   return apiCall(`/discussions/problem/${problemId}`, {
     method: 'POST',
     headers: {
       Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
+      'X-User-Id': userId,
     },
     body: JSON.stringify(data),
   });

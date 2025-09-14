@@ -27,6 +27,7 @@ const ProblemsList = ({ isRegistered, contestData }) => {
             key={problem.id}
             problem={problem}
             onStartClick={handleStartClick}
+            contestData={contestData}
           />
         ))}
       </div>

@@ -1,41 +1,19 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
 import './Problems.scss';
 import Header from 'components/Problems/Header/Header';
 import ProblemsList from 'components/Problems/ProblemsList/ProblemsList';
 import Details from 'components/Problems/Details/Details';
-import { fetchContest, updateContest } from 'api/api';
-import { useAuth } from 'hooks/auth/AuthProvider';
+import { updateContest } from 'api/api';
+import { useAuth } from 'auth/AuthContext';
+import { useProblems } from 'hooks/problems/useProblems';
 
 const Problems = () => {
   const { contestId } = useParams();
   const { user, token } = useAuth();
 
-  const [contestData, setContestData] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  const isRegistered = useMemo(() => {
-    if (!user || !Array.isArray(contestData?.participants)) return false;
-    return contestData.participants.some((p) => p.id === user.id);
-  }, [user, contestData]);
-
-  useEffect(() => {
-    const loadContest = async () => {
-      if (!contestData && contestId && token) {
-        try {
-          setIsLoading(true);
-          const data = await fetchContest(contestId, token);
-          setContestData(data);
-        } catch (err) {
-          setError('Failed to fetch contest.');
-        } finally {
-          setIsLoading(false);
-        }
-      }
-    };
-    loadContest();
-  }, [contestData, contestId, token]);
+  const { contestData, setContestData, isRegistered, isLoading, error } =
+    useProblems(contestId, token, user);
 
   if (isLoading) return <p>Loading contest...</p>;
   if (error) return <p className="error-text">{error}</p>;
