@@ -5,7 +5,7 @@ const Filters = ({ onFilterChange }) => {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-    import('constants/countryOptions').then((mod) => {
+    import('shared/constants/countryOptions').then((mod) => {
       setCountries(mod.countryOptions);
     });
   }, []);

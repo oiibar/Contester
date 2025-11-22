@@ -1,6 +1,6 @@
 import React from 'react';
 import './ProblemCard.scss';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 
 const difficultyLetterMap = {
   EASY: 'A',

@@ -1,5 +1,8 @@
 package com.example.tutorial.controllers;
+import com.example.tutorial.models.Contest;
+import com.example.tutorial.models.Submission;
 import com.example.tutorial.services.ApiService;
+import com.example.tutorial.services.interfaces.SubmissionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,19 +15,20 @@ import java.util.Map;
 @RequestMapping("/api/v1/execute")
 public class SubmissionController {
     private final ApiService apiService;
+    private final SubmissionService submissionService;
 
     @Autowired
-    public SubmissionController(ApiService apiService) {
+    public SubmissionController(ApiService apiService, SubmissionService submissionService) {
         this.apiService = apiService;
+        this.submissionService = submissionService;
     }
-
-    private String clientId = "1d286c424ad067c1f3ad915968f1e092";
-    private String clientSecret = "eb50e3393380c971c5da388e2531886855e4960f3c0c6fc13674a6f169bac200";
 
     @PostMapping()
     public Mono<String> executeCode(@RequestBody Map<String, Object> request) {
         Map<String, Object> payload = new HashMap<>();
+        String clientId = "1d286c424ad067c1f3ad915968f1e092";
         payload.put("clientId", clientId);
+        String clientSecret = "eb50e3393380c971c5da388e2531886855e4960f3c0c6fc13674a6f169bac200";
         payload.put("clientSecret", clientSecret);
         payload.put("script", request.get("script"));
         payload.put("stdin", request.getOrDefault("stdin", ""));
@@ -35,8 +39,8 @@ public class SubmissionController {
         return apiService.executeCode(payload);
     }
 
-//    @PostMapping()
-//    public ResponseEntity<?> submitProblem() {
-//        return ResponseEntity.ok().body(Map.of("message", "Successfully submitted a problem."));
-//    }
+    @PostMapping("/submit")
+    public ResponseEntity<Submission> submitProblem(@RequestBody Submission submission) {
+        return ResponseEntity.ok(submissionService.submitProblem(submission));
+    }
 }

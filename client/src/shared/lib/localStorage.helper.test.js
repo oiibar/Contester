@@ -1,6 +1,6 @@
 import { getToken, setToken, removeToken } from './localStorage.helper';
 
-describe('localStorage utils', () => {
+describe('localStorage lib', () => {
   beforeEach(() => {
     Storage.prototype.getItem = jest.fn();
     Storage.prototype.setItem = jest.fn();

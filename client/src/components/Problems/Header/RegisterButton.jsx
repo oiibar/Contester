@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 import { fetchContest, registerToContest } from 'api/api';
 import { useFetching } from 'hooks/fetching/useFetching';
 import { useAuth } from 'auth/AuthContext';

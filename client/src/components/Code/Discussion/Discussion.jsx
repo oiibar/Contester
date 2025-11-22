@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router';
-import MyButton from 'components/UI/MyButton/MyButton';
-import { formatDate } from 'utils/dateUtils';
+import MyButton from 'shared/ui/MyButton/MyButton';
+import { formatDate } from 'shared/lib/dateUtils';
 import { useDiscussions } from 'hooks/discussion/useDiscussions';
 import './Discussion.scss';
 

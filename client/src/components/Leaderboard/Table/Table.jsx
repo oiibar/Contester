@@ -5,7 +5,7 @@ import Filters from '../Filters/Filters';
 
 const Table = ({ users }) => {
   const [filter, setFilter] = useState({
-    sortBy: 'rating-asc',
+    sortBy: 'rating-desc',
     filterCountry: '',
   });
 

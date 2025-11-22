@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import Select from 'react-select';
-import { customStyles } from 'constants/customStyles';
+import { customStyles } from 'shared/constants/customStyles';
 
 const LanguageOptionDropdown = ({ handleLanguageChange, language }) => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
 
   useEffect(() => {
-    import('constants/languageOptions').then((mod) => {
+    import('shared/constants/languageOptions').then((mod) => {
       setOptions(mod.languageOptions);
 
       const defaultOption =

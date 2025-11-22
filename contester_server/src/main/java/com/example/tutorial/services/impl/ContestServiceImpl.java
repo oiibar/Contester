@@ -1,10 +1,9 @@
 package com.example.tutorial.services.impl;
 
 import com.example.tutorial.models.Contest;
-import com.example.tutorial.models.Problem;
 import com.example.tutorial.repo.ContestRepository;
 import com.example.tutorial.repo.ProblemRepository;
-import com.example.tutorial.services.ContestService;
+import com.example.tutorial.services.interfaces.ContestService;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

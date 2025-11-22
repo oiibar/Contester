@@ -1,5 +1,6 @@
 package com.example.tutorial.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -22,9 +25,13 @@ public class Submission {
 
     private Long userId;
     private Long problemId;
+    @Column(columnDefinition="TEXT", length = 1000)
     private String code;
     private String language;
-    private String result;
+
+    @OneToMany(mappedBy = "submission", cascade = CascadeType.ALL)
+    @JsonManagedReference("submission-results")
+    private List<Result> results = new ArrayList<>();
 
     @CreationTimestamp
     private LocalDateTime createdAt;

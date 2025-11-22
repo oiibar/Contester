@@ -1,4 +1,4 @@
-package com.example.tutorial.services;
+package com.example.tutorial.services.interfaces;
 
 import com.example.tutorial.dto.UserDto;
 import com.example.tutorial.models.User;

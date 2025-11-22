@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Header.scss';
-import { formatDate } from 'utils/dateUtils';
+import { formatDate } from 'shared/lib/dateUtils';
 
 const Header = ({ user, users }) => {
   const [userRank, setUserRank] = useState(null);

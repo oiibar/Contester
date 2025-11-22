@@ -1,8 +1,8 @@
 package com.example.tutorial.controllers;
 import com.example.tutorial.exceptions.ResourceNotFoundException;
 import com.example.tutorial.models.Discussion;
-import com.example.tutorial.services.DiscussionService;
-import com.example.tutorial.services.impl.RateLimiterService;
+import com.example.tutorial.services.interfaces.DiscussionService;
+import com.example.tutorial.services.impl.RateLimiterServiceImpl;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class DiscussionController {
     private final DiscussionService discussionService;
-    private final RateLimiterService rateLimiterService;
+    private final RateLimiterServiceImpl rateLimiterService;
 
-    public DiscussionController(DiscussionService discussionService, RateLimiterService rateLimiterService) {
+    public DiscussionController(DiscussionService discussionService, RateLimiterServiceImpl rateLimiterService) {
         this.discussionService = discussionService;
         this.rateLimiterService = rateLimiterService;
     }

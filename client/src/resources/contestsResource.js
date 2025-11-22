@@ -1,5 +1,5 @@
 import { fetchContests } from 'api/api';
-import { wrapPromise } from 'utils/wrapPromise';
+import { wrapPromise } from 'shared/lib/wrapPromise';
 
 let contestsResource;
 

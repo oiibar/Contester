@@ -1,5 +1,5 @@
 import React from 'react';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 
 const ReplyForm = ({
   discussionId,

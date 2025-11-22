@@ -1,4 +1,4 @@
-import { formatDate, calculateDuration } from './dateUtils'; // adjust path if needed
+import { formatDate, calculateDuration } from './dateUtils';
 
 describe('formatDate', () => {
   it('formats a valid date string correctly', () => {

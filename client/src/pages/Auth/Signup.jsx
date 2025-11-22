@@ -9,7 +9,7 @@ import './Auth.scss';
 import { useNavigate } from 'react-router';
 import { registerUser } from 'api/api';
 import { useFetching } from 'hooks/fetching/useFetching';
-import { countryOptions } from 'constants/countryOptions';
+import { countryOptions } from 'shared/constants/countryOptions';
 
 const Signup = () => {
   const navigate = useNavigate();

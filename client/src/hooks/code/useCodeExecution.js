@@ -1,10 +1,13 @@
 import { useRef, useState } from 'react';
-import { getToken, setToken } from 'utils/localStorage.helper.js';
+import { getToken, setToken } from 'shared/lib/localStorage.helper.js';
 import { useAuth } from 'auth/AuthContext';
+import { submitProblem } from 'api/api.js';
+import { useFetching } from '../fetching/useFetching';
 
 export const useCodeExecution = (contestData, setResponse, setProcessing) => {
   const editorRef = useRef(null);
   const { user } = useAuth();
+  const { token } = useAuth();
   const [results, setResults] = useState([]);
 
   const handleEditorDidMount = (editor) => {
@@ -70,15 +73,25 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
     setProcessing(false);
   };
 
-  const handleSubmit = (language) => {
-    console.log({
-      userId: user.id,
-      problemId: contestData.id,
-      code: getToken('code'),
-      language: language.value,
-      result: results,
-    });
-  };
+  const {
+    fetching: handleSubmit,
+    isLoading,
+    error,
+  } = useFetching(async (language) => {
+    try {
+      const submissionData = {
+        userId: user.id,
+        problemId: contestData.id,
+        code: getToken('code'),
+        language: language.value,
+        results: results,
+      };
+      console.log(submissionData);
+      await submitProblem(submissionData, token);
+    } catch (e) {
+      throw new Error('You are already submitted this problem.');
+    }
+  });
 
   return {
     editorRef,
@@ -86,5 +99,7 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
     handleEditorDidMount,
     handleCompile,
     handleSubmit,
+    isLoading,
+    error,
   };
 };

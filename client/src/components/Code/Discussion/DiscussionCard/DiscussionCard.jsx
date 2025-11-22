@@ -1,5 +1,5 @@
 import React from 'react';
-import { formatDate } from 'utils/dateUtils';
+import { formatDate } from 'shared/lib/dateUtils';
 import ReplyForm from '../ReplyForm/ReplyForm';
 
 const DiscussionCard = ({

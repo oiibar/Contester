@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './Details.scss';
-import { calculateDuration, formatDate } from 'utils/dateUtils';
+import { calculateDuration, formatDate } from 'shared/lib/dateUtils';
 
 const Details = ({ contestData }) => {
   const [isError, setIsError] = useState(false);

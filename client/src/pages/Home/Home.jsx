@@ -1,7 +1,7 @@
 import React from 'react';
 import './Home.scss';
 import { NavLink } from 'react-router';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 
 const Home = () => {
   return (

@@ -4,6 +4,7 @@ import './Code.scss';
 import Problem from 'components/Code/Problem/Problem';
 import Discussion from 'components/Code/Discussion/Discussion';
 import OutputDetails from 'components/Code/OutputDetails/OutputDetails';
+import CodeEditorSkeleton from 'components/Code/CodeEditorSkeleton';
 const CodeEditor = lazy(() => import('components/Code/CodeEditor/CodeEditor'));
 
 const Code = () => {
@@ -20,7 +21,7 @@ const Code = () => {
         <Problem contestData={contestData} />
       </div>
       <div className="code-section">
-        <Suspense fallback={<div>Loading Editor...</div>}>
+        <Suspense fallback={<CodeEditorSkeleton />}>
           <CodeEditor
             contestData={contestData}
             setResponse={setResponse}

@@ -1,4 +1,4 @@
-import { wrapPromise } from 'utils/wrapPromise';
+import { wrapPromise } from 'shared/lib/wrapPromise';
 import { fetchUsers } from 'api/api';
 
 let leaderboardResource;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './Header.scss';
-import { formatDate } from 'utils/dateUtils';
+import { formatDate } from 'shared/lib/dateUtils';
 import RegisterButton from './RegisterButton';
 
 const Header = ({ isRegistered, contestData, setContestData }) => {

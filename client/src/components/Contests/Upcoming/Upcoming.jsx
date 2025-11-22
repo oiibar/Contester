@@ -1,7 +1,7 @@
 import React from 'react';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 import './Upcoming.scss';
-import { formatDate } from 'utils/dateUtils';
+import { formatDate } from 'shared/lib/dateUtils';
 import useContestDurations from 'hooks/contests/useContestDurations';
 import { useAuth } from 'auth/AuthContext';
 

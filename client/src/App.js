@@ -1,9 +1,9 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router';
 import { AuthProvider } from 'auth/AuthContext';
-import Layout from 'components/UI/Layout/Layout';
+import Layout from 'shared/ui/Layout/Layout';
 import PrivateRoute from 'auth/PrivateRoute';
-import GlobalSkeleton from 'components/UI/GlobalSkeleton/GlobalSkeleton';
+import GlobalSkeleton from 'shared/ui/GlobalSkeleton/GlobalSkeleton';
 
 const Leaderboard = lazy(() => import('pages/Leaderboard/Leaderboard'));
 const Contests = lazy(() => import('pages/Contests/Contests'));
@@ -12,7 +12,7 @@ const Problems = lazy(() => import('pages/Problems/Problems'));
 const Login = lazy(() => import('pages/Auth/Login'));
 const Signup = lazy(() => import('pages/Auth/Signup'));
 const Code = lazy(() => import('pages/Code/Code'));
-const NotFound = lazy(() => import('components/UI/NotFound/NotFound'));
+const NotFound = lazy(() => import('shared/ui/NotFound/NotFound'));
 const Profile = lazy(() => import('pages/Profile/Profile'));
 
 function App() {

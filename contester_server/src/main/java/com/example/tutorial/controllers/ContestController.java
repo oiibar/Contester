@@ -2,8 +2,7 @@ package com.example.tutorial.controllers;
 
 import com.example.tutorial.models.Contest;
 import com.example.tutorial.models.User;
-import com.example.tutorial.services.ContestService;
-import org.springframework.http.HttpStatus;
+import com.example.tutorial.services.interfaces.ContestService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.transaction.annotation.Transactional;

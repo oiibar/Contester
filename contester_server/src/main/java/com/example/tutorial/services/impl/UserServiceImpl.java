@@ -1,9 +1,8 @@
 package com.example.tutorial.services.impl;
-
 import com.example.tutorial.dto.UserDto;
 import com.example.tutorial.models.User;
 import com.example.tutorial.repo.UserRepository;
-import com.example.tutorial.services.UserService;
+import com.example.tutorial.services.interfaces.UserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -4,9 +4,8 @@ import com.example.tutorial.models.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import com.example.tutorial.dto.UserDto;
-import com.example.tutorial.services.UserService;
+import com.example.tutorial.services.interfaces.UserService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

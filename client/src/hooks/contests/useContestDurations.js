@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { calculateDuration } from 'utils/dateUtils';
+import { calculateDuration } from 'shared/lib/dateUtils';
 
 const useContestDurations = (contests, intervalMs = 60000) => {
   const [durations, setDurations] = useState({});

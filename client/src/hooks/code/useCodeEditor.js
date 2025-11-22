@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { defineTheme } from 'utils/defineTheme';
+import { defineTheme } from 'shared/lib/defineTheme';
 
 const getInitialTheme = () => {
   const saved = localStorage.getItem('editor-theme');

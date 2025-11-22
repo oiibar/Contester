@@ -5,7 +5,7 @@ import ThemeDropdown from './ThemeDropdown/ThemeDropdown';
 import LanguageOptionDropdown from './LanguagesDropdown/LanguageOptionDropdown';
 import { useCodeEditor } from 'hooks/code/useCodeEditor';
 import { useCodeExecution } from 'hooks/code/useCodeExecution';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 
 const CodeEditor = ({
   contestData,
@@ -16,8 +16,14 @@ const CodeEditor = ({
   const { theme, language, handleThemeChange, handleLanguageChange } =
     useCodeEditor();
 
-  const { editorRef, handleEditorDidMount, handleCompile, handleSubmit } =
-    useCodeExecution(contestData, setResponse, setProcessing);
+  const {
+    editorRef,
+    handleEditorDidMount,
+    handleCompile,
+    handleSubmit,
+    isLoading,
+    error,
+  } = useCodeExecution(contestData, setResponse, setProcessing);
 
   return (
     <div className="editor-section">

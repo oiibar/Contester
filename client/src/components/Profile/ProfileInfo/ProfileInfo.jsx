@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 import './ProfileInfo.scss';
 import { useAuth } from 'auth/AuthContext';
 import { updateUser } from 'api/api';

@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { useNavigate } from 'react-router';
-import PageHeader from 'components/UI/PageHeader/PageHeader';
+import PageHeader from 'shared/ui/PageHeader/PageHeader';
 import Upcoming from 'components/Contests/Upcoming/Upcoming';
 import Past from 'components/Contests/Past/Past';
 import Ongoing from 'components/Contests/Ongoing/Ongoing';
@@ -8,8 +8,8 @@ import { preloadContests, resetContests } from 'resources/contestsResource';
 import './Contests.scss';
 import { useAuth } from 'auth/AuthContext';
 import ContestsSkeleton from 'components/Contests/Skeleton/ContestsSkeleton';
-import ErrorBoundary from 'components/UI/ErrorBoundary/ErrorBoundary';
-import RetryFallback from 'components/UI/Retry/RetryFallback';
+import ErrorBoundary from 'shared/ui/ErrorBoundary/ErrorBoundary';
+import RetryFallback from 'shared/ui/Retry/RetryFallback';
 import { resetLeaderboard } from '../../resources/leaderboardResource';
 import LeaderboardSkeleton from '../../components/Leaderboard/Skeleton/LeaderboardSkeleton';
 

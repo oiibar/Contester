@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MyButton from 'components/UI/MyButton/MyButton';
+import MyButton from 'shared/ui/MyButton/MyButton';
 
 const DiscussionForm = ({ postDiscussion, discussionError }) => {
   const [newDiscussion, setNewDiscussion] = useState('');

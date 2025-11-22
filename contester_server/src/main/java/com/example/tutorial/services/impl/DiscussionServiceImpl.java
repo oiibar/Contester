@@ -5,7 +5,7 @@ import com.example.tutorial.models.Discussion;
 import com.example.tutorial.models.Problem;
 import com.example.tutorial.repo.DiscussionRepository;
 import com.example.tutorial.repo.ProblemRepository;
-import com.example.tutorial.services.DiscussionService;
+import com.example.tutorial.services.interfaces.DiscussionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
