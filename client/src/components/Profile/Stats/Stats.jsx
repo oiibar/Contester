@@ -14,7 +14,7 @@ const Stats = ({ user, users }) => {
     <div className="profile-stats">
       <h2>Statistics</h2>
       <p>
-        <strong>Problems Solved:</strong> {user.problemsSolved}
+        <strong>Problems Solved:</strong> {user.problems.length}
       </p>
       <p>
         <strong>Contest Rating:</strong> {user.rating}

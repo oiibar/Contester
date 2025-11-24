@@ -22,7 +22,10 @@ const Header = ({ user, users }) => {
         <p>@{user.username}</p>
         <div className="profile-meta">
           <span>📅 Here since: {formatDate(user.createdAt)}</span>
-          <span>💻 {user.problemsSolved} Problems Solved</span>
+          <span>
+            💻 {user.problems.length} Problem{user.problems.length !== 1 && 's'}{' '}
+            Solved
+          </span>
           <span>🏆 Rank: {userRank ? `#${userRank}` : '---'}</span>
         </div>
       </div>

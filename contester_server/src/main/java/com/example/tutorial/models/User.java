@@ -1,8 +1,6 @@
 package com.example.tutorial.models;
 
-import com.example.tutorial.dto.ContestDto;
 import com.example.tutorial.enums.Role;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
@@ -67,6 +65,16 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "contest_id")
     )
     private List<Contest> contests = new ArrayList<>();
+
+    // PROBLEMS
+    @ManyToMany
+    @JsonIgnore
+    @JoinTable(
+            name = "problems_users",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "problem_id")
+    )
+    private List<Problem> problems = new ArrayList<>();
 
     @Enumerated(EnumType.STRING)
     private Role role;

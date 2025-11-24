@@ -2,6 +2,7 @@ package com.example.tutorial.auth;
 
 import com.example.tutorial.enums.Role;
 import com.example.tutorial.models.Contest;
+import com.example.tutorial.models.Problem;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -33,6 +34,7 @@ public class RegisterRequest {
     private Integer rating = 0;
     private String country = "---";
     private List<Contest> contests = new ArrayList<>();
+    private List<Problem> problems = new ArrayList<>();
 
     @NotBlank(message = "Password is required")
     @Size(min = 6, message = "Password must be at least 6 characters long")

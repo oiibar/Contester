@@ -2,6 +2,7 @@ package com.example.tutorial.auth;
 
 import com.example.tutorial.enums.Role;
 import com.example.tutorial.models.Contest;
+import com.example.tutorial.models.Problem;
 import lombok.Builder;
 import lombok.Data;
 
@@ -20,6 +21,7 @@ public class UserResponse {
     private String email;
     private String bio;
     private List<Contest> contests;
+    private List<Problem> problems;
     private String country;
     private Integer rating;
     private Role role;

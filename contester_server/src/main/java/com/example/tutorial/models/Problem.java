@@ -53,6 +53,11 @@ public class Problem {
     @JsonManagedReference("problem-examples")
     private List<Example> examples = new ArrayList<>();
 
+    // USERS
+    @ManyToMany(mappedBy = "problems")
+    @JsonIgnore
+    private List<User> users = new ArrayList<>();
+
     @ElementCollection
     @CollectionTable(name = "problem_hints")
     @Column(name = "hint")

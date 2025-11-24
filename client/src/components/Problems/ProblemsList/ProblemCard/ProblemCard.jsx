@@ -1,6 +1,7 @@
 import React from 'react';
 import './ProblemCard.scss';
 import MyButton from 'shared/ui/MyButton/MyButton';
+import { useAuth } from 'auth/AuthContext';
 
 const difficultyLetterMap = {
   EASY: 'A',
@@ -11,6 +12,8 @@ const difficultyLetterMap = {
 const ProblemCard = React.memo(
   ({ isRegistered, problem, onStartClick, contestData }) => {
     const difficultyClass = problem.difficulty.toLowerCase();
+    const { user } = useAuth();
+    const solved = user.problems?.some((p) => p.id === problem.id);
 
     return (
       <div className="problem-card">
@@ -30,7 +33,7 @@ const ProblemCard = React.memo(
         {isRegistered && (
           <div className="problem-details">
             <span className={`problem-status ${difficultyClass}`}>
-              Unsolved
+              {solved ? 'Solved' : 'Unsolved'}
             </span>
             {/*{isRegistered && (*/}
             {/*    <MyButton onClick={() => onStartClick(problem)}>Attempt</MyButton>*/}

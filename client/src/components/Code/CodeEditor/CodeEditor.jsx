@@ -16,6 +16,10 @@ const CodeEditor = ({
   const { theme, language, handleThemeChange, handleLanguageChange } =
     useCodeEditor();
 
+  const [run, setRun] = React.useState(false);
+  const [submitted, setSubmitted] = React.useState(false);
+  const [completed, setCompleted] = React.useState(false);
+
   const {
     editorRef,
     handleEditorDidMount,
@@ -23,7 +27,14 @@ const CodeEditor = ({
     handleSubmit,
     isLoading,
     error,
-  } = useCodeExecution(contestData, setResponse, setProcessing);
+  } = useCodeExecution(
+    contestData,
+    setResponse,
+    setProcessing,
+    setRun,
+    setSubmitted,
+    setCompleted
+  );
 
   return (
     <div className="editor-section">
@@ -36,7 +47,10 @@ const CodeEditor = ({
         <MyButton disabled={processing} onClick={() => handleCompile(language)}>
           Run
         </MyButton>
-        <MyButton disabled={processing} onClick={() => handleSubmit(language)}>
+        <MyButton
+          disabled={processing || !run || submitted || completed}
+          onClick={() => handleSubmit(language)}
+        >
           Submit
         </MyButton>
       </div>

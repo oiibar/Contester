@@ -1,14 +1,29 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { getToken, setToken } from 'shared/lib/localStorage.helper.js';
 import { useAuth } from 'auth/AuthContext';
 import { submitProblem } from 'api/api.js';
 import { useFetching } from '../fetching/useFetching';
+import problem from '../../components/Code/Problem/Problem';
 
-export const useCodeExecution = (contestData, setResponse, setProcessing) => {
+export const useCodeExecution = (
+  contestData,
+  setResponse,
+  setProcessing,
+  setRun,
+  setSubmitted,
+  setCompleted
+) => {
   const editorRef = useRef(null);
   const { user } = useAuth();
   const { token } = useAuth();
   const [results, setResults] = useState([]);
+
+  useEffect(() => {
+    const alreadySolved = user?.problems?.some((p) => p.id === contestData.id);
+    if (alreadySolved) {
+      setCompleted(true);
+    }
+  }, [user, contestData.id, setCompleted]);
 
   const handleEditorDidMount = (editor) => {
     editorRef.current = editor;
@@ -18,6 +33,7 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
 
   const handleCompile = async (language) => {
     setProcessing(true);
+    setRun(false);
     const userCode = editorRef.current.getValue();
     setToken('code', userCode);
 
@@ -71,6 +87,7 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
     setResults(newResults);
     setResponse(newResults);
     setProcessing(false);
+    setRun(true);
   };
 
   const {
@@ -78,6 +95,7 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
     isLoading,
     error,
   } = useFetching(async (language) => {
+    setSubmitted(false);
     try {
       const submissionData = {
         userId: user.id,
@@ -86,11 +104,12 @@ export const useCodeExecution = (contestData, setResponse, setProcessing) => {
         language: language.value,
         results: results,
       };
-      console.log(submissionData);
       await submitProblem(submissionData, token);
     } catch (e) {
       throw new Error('You are already submitted this problem.');
     }
+    setSubmitted(true);
+    alert('Submitted successfully!');
   });
 
   return {

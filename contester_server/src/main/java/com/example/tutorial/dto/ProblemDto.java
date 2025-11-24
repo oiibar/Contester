@@ -1,6 +1,7 @@
 package com.example.tutorial.dto;
 
 import com.example.tutorial.enums.Difficulty;
+import com.example.tutorial.models.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class ProblemDto {
     private Difficulty difficulty;
     private List<ExampleDto> examples;
     private List<String> hints;
+    private List<User> users;
     private Long contestId;
     private List<DiscussionDto> discussions;
     private LocalDateTime createdAt;

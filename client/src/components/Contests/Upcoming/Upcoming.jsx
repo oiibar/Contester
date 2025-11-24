@@ -34,7 +34,7 @@ const Upcoming = ({ contests, navigateToProblems, isLoading, error }) => {
               className={buttonStyle}
               onClick={() => navigateToProblems(contest)}
             >
-              {isRegistered ? 'Continue' : 'Register'}
+              {isRegistered ? 'Details' : 'Register'}
             </MyButton>
           </div>
         );

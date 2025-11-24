@@ -23,7 +23,7 @@ const Profile = () => {
         <ProfileInfo user={profileUser} setProfileUser={setProfileUser} />
         <div className="profile-info2">
           <Stats user={profileUser} users={users} />
-          <Activities />
+          <Activities user={profileUser} />
         </div>
       </div>
     </>
