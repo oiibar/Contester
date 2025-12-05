@@ -4,7 +4,7 @@ import './Problems.scss';
 import Header from 'components/Problems/Header/Header';
 import ProblemsList from 'components/Problems/ProblemsList/ProblemsList';
 import Details from 'components/Problems/Details/Details';
-import { updateContest } from 'api/api';
+import { updateContest } from 'shared/api/contestApi';
 import { useAuth } from 'auth/AuthContext';
 import { useProblems } from 'hooks/problems/useProblems';
 

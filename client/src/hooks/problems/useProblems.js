@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
-import { fetchContest } from 'api/api';
+import { fetchContest } from 'shared/api/contestApi';
 
 export const useProblems = (contestId, token, user) => {
   const [contestData, setContestData] = useState(null);
@@ -35,7 +35,7 @@ export const useProblems = (contestId, token, user) => {
     loadContest();
 
     return () => controller.abort();
-  }, [contestId, token]);
+  }, [contestId, token, user?.id, user?.problems?.length]);
 
   return { contestData, setContestData, isRegistered, isLoading, error };
 };

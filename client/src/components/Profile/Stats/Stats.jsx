@@ -17,10 +17,10 @@ const Stats = ({ user, users }) => {
         <strong>Problems Solved:</strong> {user.problems.length}
       </p>
       <p>
-        <strong>Contest Rating:</strong> {user.rating}
+        <strong>Contest Rating:</strong> --{user.rating}--
       </p>
       <p>
-        <strong>Global Rank:</strong> {userRank ? `#${userRank}` : '---'}
+        <strong>Global Rank:</strong> {userRank ? `#--${userRank}--` : '---'}
       </p>
     </div>
   );

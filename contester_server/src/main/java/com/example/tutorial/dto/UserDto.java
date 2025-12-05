@@ -19,7 +19,7 @@ public class UserDto {
     private String username;
     private String firstName;
     private String lastName;
-    private Integer problemsSolved;
+//    private Integer problemsSolved;
     @Email
     private String email;
     private int rating;

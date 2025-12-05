@@ -37,8 +37,8 @@ const LeaderboardRow = React.memo(({ user }) => {
           <span className="country">{user.country || '---'}</span>
         </div>
       </td>
-      <td>{user.rating}</td>
-      <td>{user.problemsSolved}</td>
+      <td>--{user.rating}--</td>
+      <td>{user.problems.length}</td>
       <td>
         <div className="contest-rank">---</div>
       </td>

@@ -2,9 +2,11 @@ import React, { useMemo } from 'react';
 import './ProblemsList.scss';
 import { useNavigate } from 'react-router';
 import ProblemCard from 'components/Problems/ProblemsList/ProblemCard/ProblemCard';
+import { useAuth } from 'auth/AuthContext';
 
 const ProblemsList = ({ isRegistered, contestData }) => {
   const navigate = useNavigate();
+  const { user } = useAuth();
 
   const handleStartClick = (problem) => {
     navigate('/code', { state: { problem } });
@@ -28,6 +30,7 @@ const ProblemsList = ({ isRegistered, contestData }) => {
             problem={problem}
             onStartClick={handleStartClick}
             contestData={contestData}
+            user={user} // <- важно
           />
         ))}
       </div>

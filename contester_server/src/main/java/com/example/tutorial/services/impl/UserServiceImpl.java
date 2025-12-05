@@ -71,9 +71,6 @@ public class UserServiceImpl implements UserService {
         if (userDto.getRating() != 0) {
             existingUser.setRating(userDto.getRating());
         }
-        if (userDto.getProblemsSolved() != null) {
-            existingUser.setProblemsSolved(userDto.getProblemsSolved());
-        }
         if (userDto.getEmail() != null && !existingUser.getEmail().equals(userDto.getEmail())) {
             existingUser.setEmail(userDto.getEmail());
         }
@@ -94,7 +91,6 @@ public class UserServiceImpl implements UserService {
                 .contests(user.getContests())
                 .problems(user.getProblems())
                 .country(user.getCountry())
-                .problemsSolved(user.getProblemsSolved())
                 .email(user.getEmail())
                 .bio(user.getBio())
                 .password(user.getPassword())
@@ -106,7 +102,6 @@ public class UserServiceImpl implements UserService {
     private User mapToUserEntity(UserDto userDto) {
         return User.builder()
                 .username(userDto.getUsername())
-                .problemsSolved(userDto.getProblemsSolved())
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .contests(userDto.getContests())

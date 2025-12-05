@@ -12,6 +12,7 @@ const CodeEditor = ({
   setResponse,
   processing,
   setProcessing,
+  onSolved,
 }) => {
   const { theme, language, handleThemeChange, handleLanguageChange } =
     useCodeEditor();
@@ -20,21 +21,35 @@ const CodeEditor = ({
   const [submitted, setSubmitted] = React.useState(false);
   const [completed, setCompleted] = React.useState(false);
 
-  const {
-    editorRef,
-    handleEditorDidMount,
-    handleCompile,
-    handleSubmit,
-    isLoading,
-    error,
-  } = useCodeExecution(
-    contestData,
-    setResponse,
-    setProcessing,
-    setRun,
-    setSubmitted,
-    setCompleted
-  );
+  const { handleEditorDidMount, handleCompile, handleSubmit } =
+    useCodeExecution(
+      contestData,
+      setResponse,
+      setProcessing,
+      setRun,
+      setSubmitted,
+      setCompleted
+    );
+
+  const handleSubmitClick = async (language) => {
+    const result = window.confirm(
+      'Are you sure you want to submit? Once submitted, you cannot resubmit.'
+    );
+
+    if (!result) {
+      alert('Submission cancelled.');
+      return;
+    }
+
+    try {
+      await handleSubmit(language);
+      if (onSolved && contestData?.id) {
+        onSolved(contestData.id);
+      }
+    } catch (e) {
+      console.error('Submit failed', e);
+    }
+  };
 
   return (
     <div className="editor-section">
@@ -49,7 +64,7 @@ const CodeEditor = ({
         </MyButton>
         <MyButton
           disabled={processing || !run || submitted || completed}
-          onClick={() => handleSubmit(language)}
+          onClick={() => handleSubmitClick(language)}
         >
           Submit
         </MyButton>

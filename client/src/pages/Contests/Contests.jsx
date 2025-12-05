@@ -12,6 +12,7 @@ import ErrorBoundary from 'shared/ui/ErrorBoundary/ErrorBoundary';
 import RetryFallback from 'shared/ui/Retry/RetryFallback';
 import { resetLeaderboard } from '../../resources/leaderboardResource';
 import LeaderboardSkeleton from '../../components/Leaderboard/Skeleton/LeaderboardSkeleton';
+import { fetchUser } from '../../shared/api/userApi';
 
 function ContestsContent({ token }) {
   const contests = preloadContests(token).read();
@@ -20,6 +21,10 @@ function ContestsContent({ token }) {
   const upcoming = [];
   const ongoing = [];
   const past = [];
+
+  if (!contests || contests.length === 0) {
+    return <p>No contests available.</p>;
+  }
 
   for (const c of contests) {
     const start = new Date(c.startDate).getTime();

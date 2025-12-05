@@ -4,8 +4,10 @@ import React, {
   useState,
   useEffect,
   useRef,
+  useCallback,
 } from 'react';
-import { authenticateUser } from 'api/api';
+import { authenticateUser } from 'shared/api/authApi';
+import { fetchUser } from 'shared/api/userApi';
 import { useFetching } from 'hooks/fetching/useFetching';
 import { jwtDecode } from 'jwt-decode';
 
@@ -21,81 +23,150 @@ const getTokenExpiry = (token) => {
 };
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-  const [token, setToken] = useState(null);
+  const [user, setUserState] = useState(() => {
+    try {
+      const raw = localStorage.getItem('user');
+      return raw ? JSON.parse(raw) : null;
+    } catch {
+      return null;
+    }
+  });
+  const [token, setTokenState] = useState(() => {
+    try {
+      return localStorage.getItem('token') || null;
+    } catch {
+      return null;
+    }
+  });
   const [isInitializing, setIsInitializing] = useState(true);
   const logoutTimerRef = useRef(null);
 
-  const clearLogoutTimer = () => {
+  const clearLogoutTimer = useCallback(() => {
     if (logoutTimerRef.current) {
       clearTimeout(logoutTimerRef.current);
       logoutTimerRef.current = null;
     }
-  };
-
-  const scheduleAutoLogout = (expiry) => {
-    const now = Date.now();
-    if (!expiry || expiry <= now) {
-      logout();
-      return;
-    }
-    clearLogoutTimer();
-    logoutTimerRef.current = setTimeout(() => {
-      logout();
-    }, expiry - now);
-  };
-
-  useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const storedToken = localStorage.getItem('token');
-
-    if (storedUser && storedToken) {
-      const expiry = getTokenExpiry(storedToken);
-
-      if (!expiry || expiry <= Date.now()) {
-        localStorage.removeItem('user');
-        localStorage.removeItem('token');
-        setUser(null);
-        setToken(null);
-      } else {
-        setUser(JSON.parse(storedUser));
-        setToken(storedToken);
-        scheduleAutoLogout(expiry);
-      }
-    }
-    setIsInitializing(false);
-
-    return () => clearLogoutTimer();
   }, []);
 
+  const logout = useCallback(() => {
+    clearLogoutTimer();
+    // используем низкоуровневые сеттеры, а также удаляем из localStorage
+    setUserState(null);
+    setTokenState(null);
+    try {
+      localStorage.removeItem('user');
+      localStorage.removeItem('token');
+      localStorage.removeItem('userId');
+    } catch {}
+  }, [clearLogoutTimer]);
+
+  const scheduleAutoLogout = useCallback(
+    (expiry) => {
+      const now = Date.now();
+      if (!expiry || expiry <= now) {
+        logout();
+        return;
+      }
+      clearLogoutTimer();
+      logoutTimerRef.current = setTimeout(() => {
+        logout();
+      }, expiry - now);
+    },
+    [clearLogoutTimer, logout]
+  );
+
+  // Обёртки, которые сохраняют в localStorage
+  const setUser = useCallback((next) => {
+    setUserState((prev) => {
+      const value = typeof next === 'function' ? next(prev) : next;
+      try {
+        if (value) {
+          localStorage.setItem('user', JSON.stringify(value));
+          if (value.id) localStorage.setItem('userId', value.id);
+        } else {
+          localStorage.removeItem('user');
+          localStorage.removeItem('userId');
+        }
+      } catch {}
+      return value;
+    });
+  }, []);
+
+  const setToken = useCallback((t) => {
+    setTokenState(t);
+    try {
+      if (t) localStorage.setItem('token', t);
+      else localStorage.removeItem('token');
+    } catch {}
+    // расписание авто-логаута и рефетч пользователя обрабатываются в эффекте ниже
+  }, []);
+
+  // При изменении токена: расписать авто-логаут и попытаться получить свежего пользователя
+  useEffect(() => {
+    if (!token) {
+      // если токена нет — очистить
+      clearLogoutTimer();
+      setUserState((prev) => {
+        try {
+          localStorage.removeItem('user');
+          localStorage.removeItem('userId');
+        } catch {}
+        return null;
+      });
+      setIsInitializing(false);
+      return;
+    }
+
+    const expiry = getTokenExpiry(token);
+    scheduleAutoLogout(expiry);
+
+    const storedUserId = localStorage.getItem('userId');
+    let mounted = true;
+    (async () => {
+      try {
+        if (!storedUserId) {
+          setIsInitializing(false);
+          return;
+        }
+        const fresh = await fetchUser(storedUserId, token);
+        if (mounted && fresh) {
+          setUserState(fresh);
+          try {
+            localStorage.setItem('user', JSON.stringify(fresh));
+            if (fresh.id) localStorage.setItem('userId', fresh.id);
+          } catch {}
+        }
+      } catch (err) {
+        console.error('AuthProvider: failed to fetch user', err);
+      } finally {
+        setIsInitializing(false);
+      }
+    })();
+
+    return () => {
+      mounted = false;
+    };
+  }, [token, scheduleAutoLogout, clearLogoutTimer]);
+
+  // Логин через useFetching — использует setUser / setToken обёртки
   const {
     fetching: login,
     isLoading,
     error,
   } = useFetching(async (credentials) => {
     const res = await authenticateUser(credentials);
-
+    // сохраняем через обёртки
     setUser(res.user);
     setToken(res.token);
-
-    localStorage.setItem('user', JSON.stringify(res.user));
-    localStorage.setItem('token', res.token);
-
     const expiry = getTokenExpiry(res.token);
     scheduleAutoLogout(expiry);
   });
 
-  const logout = () => {
-    clearLogoutTimer();
-    setUser(null);
-    setToken(null);
-    localStorage.removeItem('user');
-    localStorage.removeItem('token');
-  };
-
   const authValue = {
     user,
     token,
+    setUser,
+    setToken,
     login,
     logout,
     isAuthenticated: !!user,

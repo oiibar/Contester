@@ -1,9 +1,8 @@
 import { useRef, useState, useEffect } from 'react';
 import { getToken, setToken } from 'shared/lib/localStorage.helper.js';
 import { useAuth } from 'auth/AuthContext';
-import { submitProblem } from 'api/api.js';
+import { submitProblem } from 'shared/api/submissionApi';
 import { useFetching } from '../fetching/useFetching';
-import problem from '../../components/Code/Problem/Problem';
 
 export const useCodeExecution = (
   contestData,
@@ -95,6 +94,7 @@ export const useCodeExecution = (
     isLoading,
     error,
   } = useFetching(async (language) => {
+    setProcessing(true);
     setSubmitted(false);
     try {
       const submissionData = {
@@ -109,16 +109,14 @@ export const useCodeExecution = (
       throw new Error('You are already submitted this problem.');
     }
     setSubmitted(true);
+    setProcessing(false);
     alert('Submitted successfully!');
   });
 
   return {
-    editorRef,
     results,
     handleEditorDidMount,
     handleCompile,
     handleSubmit,
-    isLoading,
-    error,
   };
 };

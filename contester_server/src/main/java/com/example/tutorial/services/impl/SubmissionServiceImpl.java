@@ -1,8 +1,10 @@
 package com.example.tutorial.services.impl;
 
+import com.example.tutorial.models.Contest;
 import com.example.tutorial.models.Problem;
 import com.example.tutorial.models.Submission;
 import com.example.tutorial.models.User;
+import com.example.tutorial.repo.ContestRepository;
 import com.example.tutorial.repo.ProblemRepository;
 import com.example.tutorial.repo.SubmissionRepository;
 import com.example.tutorial.repo.UserRepository;
@@ -15,11 +17,13 @@ public class SubmissionServiceImpl implements SubmissionService {
     private final SubmissionRepository submissionRepository;
     private final UserRepository userRepository;
     private final ProblemRepository problemRepository;
+    private final ContestRepository contestRepository;
 
-    public SubmissionServiceImpl(SubmissionRepository submissionRepository, UserRepository userRepository, ProblemRepository problemRepository) {
+    public SubmissionServiceImpl(SubmissionRepository submissionRepository, UserRepository userRepository, ProblemRepository problemRepository, ContestRepository contestRepository) {
         this.userRepository = userRepository;
         this.problemRepository = problemRepository;
         this.submissionRepository = submissionRepository;
+        this.contestRepository = contestRepository;
 
     }
 
@@ -43,7 +47,28 @@ public class SubmissionServiceImpl implements SubmissionService {
             problem.getUsers().add(user);
         }
 
+        if (!user.getProblems().contains(problem)) {
+            user.getProblems().add(problem);
+            problem.getUsers().add(user);
+        }
+
+
+        Contest contest = contestRepository.findById(problem.getContest().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Contest not found with id: " + problem.getContest().getId()));
+
+        boolean contestHasParticipant = contest.getParticipants().stream()
+                .anyMatch(u -> u.getId() != null && u.getId().equals(user.getId()));
+        if (!contestHasParticipant) {
+            contest.getParticipants().add(user);
+        }
+
+        int points = problem.getPoints();
+        Long userId = user.getId();
+        contest.getUserScores().put(userId, contest.getUserScores().getOrDefault(userId, 0) + points);
+
         userRepository.save(user);
+        problemRepository.save(problem);
+        contestRepository.save(contest);
 
         return submissionRepository.save(submission);
     }

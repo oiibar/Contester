@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchUser, fetchUsers } from 'api/api';
+import { fetchUser, fetchUsers } from 'shared/api/userApi';
 import { useAuth } from 'auth/AuthContext';
 
 export const useUserProfile = (userId) => {

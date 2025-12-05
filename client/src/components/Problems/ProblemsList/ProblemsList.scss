@@ -1,8 +1,11 @@
-@import "../../../app/styles/_variables";
+@import "app/styles/_variables";
 
 .section-title {
   font-size: 1.4rem;
   font-weight: bold;
+  background-color: #EFF6FF;
+  color: #1E3A8A;
+  padding: 20px;
 }
 
 .problems-list {

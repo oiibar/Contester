@@ -48,6 +48,14 @@ const Header = () => {
         >
           Leaderboard
         </NavLink>
+        <NavLink
+          to="/results/1504"
+          className={({ isActive }) =>
+            isActive ? `${styles.active}` : undefined
+          }
+        >
+          Results
+        </NavLink>
       </nav>
       {token ? (
         <div className={styles.user_menu}>

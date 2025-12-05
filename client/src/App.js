@@ -14,6 +14,7 @@ const Signup = lazy(() => import('pages/Auth/Signup'));
 const Code = lazy(() => import('pages/Code/Code'));
 const NotFound = lazy(() => import('shared/ui/NotFound/NotFound'));
 const Profile = lazy(() => import('pages/Profile/Profile'));
+const Results = lazy(() => import('pages/Results/Results'));
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
                 <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/code" element={<Code />} />
                 <Route path="/problems/:contestId" element={<Problems />} />
+                <Route path="/results/:contestId" element={<Results />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

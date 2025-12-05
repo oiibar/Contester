@@ -4,6 +4,8 @@ import './Ongoing.scss';
 import { formatDate } from 'shared/lib/dateUtils';
 import useContestDurations from 'hooks/contests/useContestDurations';
 import { useAuth } from 'auth/AuthContext';
+import { FaCalendar } from 'react-icons/fa';
+import { FaClock } from 'react-icons/fa6';
 
 const Ongoing = ({ contests, navigateToProblems, isLoading, error }) => {
   const durations = useContestDurations(contests);
@@ -25,8 +27,12 @@ const Ongoing = ({ contests, navigateToProblems, isLoading, error }) => {
           <div key={contest.id} className="contest-row">
             <div className="contest-col">
               <h3 className="contest-name">{contest.title}</h3>
-              <p className="contest-dates">{formatDate(contest.endDate)}</p>
               <p className="contest-dates">
+                <FaCalendar />
+                {formatDate(contest.endDate)}
+              </p>
+              <p className="contest-dates">
+                <FaClock />
                 Duration: {durations[contest.id] || '---'}
               </p>
             </div>

@@ -55,7 +55,6 @@ public class Problem {
 
     // USERS
     @ManyToMany(mappedBy = "problems")
-    @JsonIgnore
     private List<User> users = new ArrayList<>();
 
     @ElementCollection
@@ -63,8 +62,8 @@ public class Problem {
     @Column(name = "hint")
     private List<String> hints = new ArrayList<>();
 
-    @ColumnDefault("100")
-    private Double successRate;
+//    @ColumnDefault("100")
+//    private Double successRate;
 
     @ColumnDefault("1000")
     private Integer points;
@@ -74,9 +73,4 @@ public class Problem {
 
     @UpdateTimestamp
     private LocalDateTime updatedAt;
-
-    public void addDiscussion(Discussion discussion) {
-        discussions.add(discussion);
-        discussion.setProblem(this);
-    }
 }

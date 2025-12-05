@@ -1,5 +1,5 @@
 import { wrapPromise } from 'shared/lib/wrapPromise';
-import { fetchUsers } from 'api/api';
+import { fetchUsers } from 'shared/api/userApi';
 
 let leaderboardResource;
 

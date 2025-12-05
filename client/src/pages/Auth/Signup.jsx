@@ -7,7 +7,7 @@ import unlocked from 'assets/auth/unlocked.svg';
 import user from 'assets/auth/user.svg';
 import './Auth.scss';
 import { useNavigate } from 'react-router';
-import { registerUser } from 'api/api';
+import { registerUser } from 'shared/api/authApi';
 import { useFetching } from 'hooks/fetching/useFetching';
 import { countryOptions } from 'shared/constants/countryOptions';
 
@@ -56,6 +56,7 @@ const Signup = () => {
       return;
     }
     await handleRegister();
+    alert('Account created successfully! Please log in.');
   };
 
   return (

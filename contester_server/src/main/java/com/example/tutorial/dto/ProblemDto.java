@@ -20,7 +20,7 @@ public class ProblemDto {
     private String functionName;
     private String description;
     private String given;
-    private Double successRate;
+//    private Double successRate;
     private Integer points;
     private Difficulty difficulty;
     private List<ExampleDto> examples;

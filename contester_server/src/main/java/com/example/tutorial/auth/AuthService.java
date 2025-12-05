@@ -29,7 +29,6 @@ public class AuthService {
             .problems(request.getProblems())
             .bio(request.getBio())
             .country(request.getCountry())
-            .problemsSolved(request.getProblemsSolved())
             .password(passwordEncoder.encode(request.getPassword()))
             .role(Role.USER)
             .build();
@@ -59,7 +58,6 @@ public class AuthService {
                 .country(user.getCountry())
                 .contests(user.getContests())
                 .problems(user.getProblems())
-                .problemsSolved(user.getProblemsSolved())
                 .email(user.getEmail())
                 .role(user.getRole())
                 .createdAt(user.getCreatedAt())

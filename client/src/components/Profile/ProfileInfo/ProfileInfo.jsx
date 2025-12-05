@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MyButton from 'shared/ui/MyButton/MyButton';
 import './ProfileInfo.scss';
 import { useAuth } from 'auth/AuthContext';
-import { updateUser } from 'api/api';
+import { updateUser } from 'shared/api/userApi';
 
 const ProfileInfo = ({ user, setProfileUser }) => {
   const { user: loggedInUser, token } = useAuth();

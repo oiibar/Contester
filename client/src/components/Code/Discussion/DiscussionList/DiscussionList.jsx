@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import DiscussionCard from '../DiscussionCard/DiscussionCard';
-import { replyToDiscussion } from 'api/api';
+import { replyToDiscussion } from 'shared/api/discussionApi';
 
 const DiscussionList = ({ discussions, token, user }) => {
   const [replyMessages, setReplyMessages] = useState({});

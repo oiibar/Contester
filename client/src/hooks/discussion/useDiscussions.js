@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useFetching } from 'hooks/fetching/useFetching';
-import { addDiscussion, fetchDiscussions, replyToDiscussion } from 'api/api';
+import {
+  addDiscussion,
+  fetchDiscussions,
+  replyToDiscussion,
+} from 'shared/api/discussionApi';
 import { useAuth } from 'auth/AuthContext';
 
 export const useDiscussions = (contestData) => {

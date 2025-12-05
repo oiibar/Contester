@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import MyButton from 'shared/ui/MyButton/MyButton';
-import { fetchContest, registerToContest } from 'api/api';
+import { fetchContest, registerToContest } from 'shared/api/contestApi';
 import { useFetching } from 'hooks/fetching/useFetching';
 import { useAuth } from 'auth/AuthContext';
+import { IoPeopleSharp } from 'react-icons/io5';
+import './RegisterButton.scss';
 
 const RegisterButton = ({ isRegistered, contestData, setContestData }) => {
   const { token } = useAuth();
@@ -34,7 +36,10 @@ const RegisterButton = ({ isRegistered, contestData, setContestData }) => {
           Register ({participantCount})
         </MyButton>
       ) : (
-        <p>Participants: {participantCount}</p>
+        <p className="registered-text">
+          <IoPeopleSharp />
+          Participants: {participantCount}
+        </p>
       )}
       {error && <p className="error-text">{error}</p>}
     </>

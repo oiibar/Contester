@@ -30,7 +30,6 @@ public class RegisterRequest {
     private String firstName;
     private String lastName;
     private String bio = "About me";
-    private Integer problemsSolved = 0;
     private Integer rating = 0;
     private String country = "---";
     private List<Contest> contests = new ArrayList<>();

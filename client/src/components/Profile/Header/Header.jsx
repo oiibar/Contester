@@ -26,7 +26,7 @@ const Header = ({ user, users }) => {
             💻 {user.problems.length} Problem{user.problems.length !== 1 && 's'}{' '}
             Solved
           </span>
-          <span>🏆 Rank: {userRank ? `#${userRank}` : '---'}</span>
+          <span>🏆 Rank: {userRank ? `#--${userRank}--` : '---'}</span>
         </div>
       </div>
     </div>

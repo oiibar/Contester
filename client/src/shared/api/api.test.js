@@ -1,5 +1,8 @@
-import { apiCall, authenticateUser, fetchContests } from './api';
-const API_URL = 'http://localhost:8080/api/v1';
+import { authenticateUser } from './authApi';
+import { fetchContests } from './contestApi';
+import { apiCall } from './base';
+import { config } from './config';
+const API_URL = config.apiUrl;
 
 beforeEach(() => {
   global.fetch = jest.fn();
