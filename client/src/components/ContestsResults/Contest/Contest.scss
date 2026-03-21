@@ -1,0 +1,58 @@
+@import "app/styles/_variables";
+
+.section {
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.description {
+  color: $secondary-light;
+}
+
+.user-profile {
+  background-color: #787878;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.winner {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.winner-name {
+  color: $secondary-light;
+  font-size: .8rem;
+}
+
+.completed-icon {
+  background-color: $easy;
+  color: $secondary-light;
+  border-radius: 15px;
+  padding: 3px 10px;
+}
+
+.subsection-1 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.participants {
+  display: flex;
+  align-items: center;
+}
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

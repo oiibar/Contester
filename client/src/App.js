@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from 'auth/AuthContext';
 import Layout from 'shared/ui/Layout/Layout';
 import PrivateRoute from 'auth/PrivateRoute';
@@ -14,7 +14,10 @@ const Signup = lazy(() => import('pages/Auth/Signup'));
 const Code = lazy(() => import('pages/Code/Code'));
 const NotFound = lazy(() => import('shared/ui/NotFound/NotFound'));
 const Profile = lazy(() => import('pages/Profile/Profile'));
-const Results = lazy(() => import('pages/Results/Results'));
+const ContestsResults = lazy(
+  () => import('pages/ContestsResults/ContestsResults')
+);
+const ContestResult = lazy(() => import('pages/ContestResult/ContestResult'));
 
 function App() {
   return (
@@ -34,7 +37,8 @@ function App() {
                 <Route path="/profile/:userId" element={<Profile />} />
                 <Route path="/code" element={<Code />} />
                 <Route path="/problems/:contestId" element={<Problems />} />
-                <Route path="/results/:contestId" element={<Results />} />
+                <Route path="/results" element={<ContestsResults />} />
+                <Route path="/result" element={<ContestResult />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

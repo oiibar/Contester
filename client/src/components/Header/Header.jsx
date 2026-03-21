@@ -49,22 +49,30 @@ const Header = () => {
           Leaderboard
         </NavLink>
         <NavLink
-          to="/results/1504"
+          to="/results"
           className={({ isActive }) =>
             isActive ? `${styles.active}` : undefined
           }
         >
-          Results
+          Contests Results
+        </NavLink>
+        <NavLink
+          to="/result"
+          className={({ isActive }) =>
+            isActive ? `${styles.active}` : undefined
+          }
+        >
+          Contest Result
         </NavLink>
       </nav>
       {token ? (
         <div className={styles.user_menu}>
           <span className={styles.notifications}></span>
           <NavLink to="/profile" className={styles.user_profile}>
-            {user.username[0].toUpperCase()}
+            {user?.username[0]?.toUpperCase()}
           </NavLink>
           <p>
-            {user.firstName} {user.lastName}
+            {user?.firstName} {user?.lastName}
           </p>
           <button className={styles.logout_button} onClick={handleLogOut}>
             <FaSignOutAlt />
