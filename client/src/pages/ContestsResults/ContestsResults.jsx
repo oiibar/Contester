@@ -11,7 +11,7 @@ const ContestResult = () => {
 
   return (
     <>
-      <PageHeader>Contest Results</PageHeader>
+      <PageHeader>Contests Results</PageHeader>
       <div className="contests-container">
         <Filters />
         <Contests />
