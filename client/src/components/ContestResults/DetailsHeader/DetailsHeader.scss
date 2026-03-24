@@ -1,12 +1,43 @@
 @import "app/styles/_variables";
 
-.section {
+.details-section {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  padding: 20px;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   gap: 13px;
+}
+
+.info {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.info-item {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-size: 0.9rem;
+  color: #636e72;
+}
+
+.description {
+  color: #636e72;
+}
+
+.title-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.completed-icon {
+  background-color: $easy;
+  color: $secondary-light;
+  border-radius: 15px;
+  padding: 3px 10px;
 }

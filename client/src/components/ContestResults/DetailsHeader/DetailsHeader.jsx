@@ -6,24 +6,27 @@ import { IoPeopleSharp } from 'react-icons/io5';
 
 const DetailsHeader = () => {
   return (
-    <div className="section">
-      <div>
-        <h1>Algorithm Challenges 2026</h1>
-        <div>Completed</div>
+    <div className="details-section">
+      <div className="title-header">
+        <div>
+          <h1>Algorithm Challenges 2026</h1>
+          <p className="description">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores,
+            sunt!
+          </p>
+        </div>
+        <div className="completed-icon">Completed</div>
       </div>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores, sunt!
-      </p>
-      <div>
-        <p>
+      <div className="info">
+        <p className="info-item">
           <FaCalendar />
           <span>March 26, 2026</span>
         </p>
-        <p>
+        <p className="info-item">
           <FaClock />
           <span>Duration: 3 hours</span>
         </p>
-        <p>
+        <p className="info-item">
           <IoPeopleSharp />
           <span>105 Participants</span>
         </p>

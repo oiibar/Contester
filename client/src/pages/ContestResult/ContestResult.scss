@@ -8,3 +8,22 @@
   width: 100%;
   gap: 40px;
 }
+
+
+.wrapper {
+  display: flex;
+  flex: 1;
+}
+
+.sidebar {
+  width: 380px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+}

@@ -3,34 +3,42 @@ import './ProblemBreakdown.scss';
 
 const ProblemBreakdown = () => {
   return (
-    <div className="section">
+    <div className="problems-section">
       <h3>Problem Breakdown</h3>
-      <div>
-        <div>
-          <p>Two Sum</p>
-          <div>
-            <div>Progress Bar</div>
+      <div className="problems-items">
+        <div className="problems-item">
+          <p className="problems-item-title">Two Sum</p>
+          <div className="progress-section">
+            <div className="progress-bar">
+              <div></div>
+            </div>
             <p>95%</p>
           </div>
         </div>
-        <div>
-          <p>Binary Search</p>
-          <div>
-            <div>Progress Bar</div>
+        <div className="problems-item">
+          <p className="problems-item-title">Binary Search</p>
+          <div className="progress-section">
+            <div className="progress-bar">
+              <div></div>
+            </div>
             <p>87%</p>
           </div>
         </div>
-        <div>
-          <p>Graph Traversal</p>
-          <div>
-            <div>Progress Bar</div>
+        <div className="problems-item">
+          <p className="problems-item-title">Graph Traversal</p>
+          <div className="progress-section">
+            <div className="progress-bar">
+              <div></div>
+            </div>
             <p>62%</p>
           </div>
         </div>
-        <div>
-          <p>Dynamic Programming</p>
-          <div>
-            <div>Progress Bar</div>
+        <div className="problems-item">
+          <p className="problems-item-title">Dynamic Programming</p>
+          <div className="progress-section">
+            <div className="progress-bar">
+              <div></div>
+            </div>
             <p>34%</p>
           </div>
         </div>

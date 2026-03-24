@@ -16,10 +16,16 @@ const ContestResult = () => {
       <PageHeader>Contest Result</PageHeader>
       <div className="contests-container">
         <DetailsHeader />
-        <Rankings />
-        <Stats />
-        <ProblemBreakdown />
-        <QuickActions />
+        <div className="wrapper">
+          <div className="content">
+            <Rankings />
+          </div>
+          <div className="sidebar">
+            <Stats />
+            <ProblemBreakdown />
+            <QuickActions />
+          </div>
+        </div>
       </div>
     </>
   );

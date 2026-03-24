@@ -3,12 +3,12 @@ import './QuickActions.scss';
 
 const QuickActions = () => {
   return (
-    <div className="section">
+    <div className="actions-section">
       <h3>Quick Actions</h3>
-      <div>
-        <button>Download Results</button>
-        <button>Share Contest</button>
-        <button>View Analytics</button>
+      <div className="buttons">
+        <div>Download Results</div>
+        <div>Share Contest</div>
+        <div>View Analytics</div>
       </div>
     </div>
   );
