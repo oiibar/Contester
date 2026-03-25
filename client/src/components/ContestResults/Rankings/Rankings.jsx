@@ -1,39 +1,119 @@
 import React from 'react';
 import './Rankings.scss';
+import { FaDownload } from 'react-icons/fa6';
+import { FaCrown } from 'react-icons/fa6';
+import { FaMedal } from 'react-icons/fa';
 
 const Rankings = () => {
   return (
-    <div className="section">
-      <div>
+    <div className="section-rankings">
+      <div className="rankings-header">
         <h3>Final Rankings</h3>
-        <button>Export</button>
+        <div className="action-button">
+          <FaDownload />
+          Export
+        </div>
       </div>
-      <table>
+
+      <table className="rankings-table">
         <tbody>
-          <tr>
+          <tr className="gray-background">
             <th>RANK</th>
             <th>PARTICIPANT</th>
             <th>SCORE</th>
             <th>PROBLEMS SOLVED</th>
             <th>TIME</th>
           </tr>
-          <tr>
-            <td>1st</td>
-            <td>John Doe</td>
+          <tr className="gray-background">
+            <td>
+              <div className="rank">
+                <FaCrown />
+                <p>1st</p>
+              </div>
+            </td>
+            <td>
+              <div className="participant">
+                <div className="user-profile"></div>
+                <div>
+                  <p>John Doe</p>
+                  <p>@john_doe</p>
+                </div>
+              </div>
+            </td>
+            <td>1005</td>
+            <td>6/7</td>
+            <td>2h 34m</td>
+          </tr>
+          <tr className="gray-background">
+            <td>
+              <div className="rank rank-secondary">
+                <div className="rank-icon">
+                  <FaMedal />
+                </div>
+                <p>2nd</p>
+              </div>
+            </td>
+            <td>
+              <div className="participant">
+                <div className="user-profile"></div>
+                <div>
+                  <p>John Doe</p>
+                  <p>@john_doe</p>
+                </div>
+              </div>
+            </td>
+            <td>1005</td>
+            <td>6/7</td>
+            <td>2h 34m</td>
+          </tr>
+          <tr className="gray-background">
+            <td>
+              <div className="rank rank-secondary">
+                <div className="rank-icon">
+                  <FaMedal />
+                </div>
+                <p>3rd</p>
+              </div>
+            </td>
+            <td>
+              <div className="participant">
+                <div className="user-profile"></div>
+                <div>
+                  <p>John Doe</p>
+                  <p>@john_doe</p>
+                </div>
+              </div>
+            </td>
             <td>1005</td>
             <td>6/7</td>
             <td>2h 34m</td>
           </tr>
           <tr>
-            <td>2nd</td>
-            <td>John Doe</td>
+            <td>4th</td>
+            <td>
+              <div className="participant">
+                <div className="user-profile"></div>
+                <div>
+                  <p>John Doe</p>
+                  <p>@john_doe</p>
+                </div>
+              </div>
+            </td>
             <td>1005</td>
             <td>6/7</td>
             <td>2h 34m</td>
           </tr>
           <tr>
-            <td>3rd</td>
-            <td>John Doe</td>
+            <td>5th</td>
+            <td>
+              <div className="participant">
+                <div className="user-profile"></div>
+                <div>
+                  <p>John Doe</p>
+                  <p>@john_doe</p>
+                </div>
+              </div>
+            </td>
             <td>1005</td>
             <td>6/7</td>
             <td>2h 34m</td>

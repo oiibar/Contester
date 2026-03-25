@@ -15,7 +15,9 @@ const ContestResult = () => {
     <>
       <PageHeader>Contest Result</PageHeader>
       <div className="contests-container">
-        <DetailsHeader />
+        <div className="header-section">
+          <DetailsHeader />
+        </div>
         <div className="wrapper">
           <div className="content">
             <Rankings />

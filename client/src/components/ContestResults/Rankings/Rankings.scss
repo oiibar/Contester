@@ -1,12 +1,81 @@
 @import "app/styles/_variables";
 
-.section {
+.section-rankings {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 13px;
+}
+
+.rankings-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+}
+
+.rankings-header h3 {
+  margin-bottom: 0;
+}
+
+.rankings-table {
+  //background-color: #E5E5E5;
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.gray-background {
+  background-color: #E5E5E5;
+}
+
+.rankings-table td,
+.rankings-table th {
+  padding: 15px 30px;
+  border-bottom: 1px solid #ccc;
+}
+
+.rankings-table th {
+  color: #6c6c6c;
+  font-size: 13px;
+}
+
+.rank {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rank-secondary .rank-icon {
+  opacity: 50%;
+}
+
+.rankings-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+tbody tr {
+  padding: 20px;
+}
+
+.user-profile {
+  background-color: #787878;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.participant {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.action-button {
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 10px;
+  background-color: #E5E5E5;
 }
