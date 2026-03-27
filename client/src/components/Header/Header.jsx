@@ -56,14 +56,6 @@ const Header = () => {
         >
           Contests Results
         </NavLink>
-        <NavLink
-          to="/result"
-          className={({ isActive }) =>
-            isActive ? `${styles.active}` : undefined
-          }
-        >
-          Contest Result
-        </NavLink>
       </nav>
       {token ? (
         <div className={styles.user_menu}>

@@ -1,12 +1,13 @@
 @import "app/styles/_variables";
 
-.section {
+.contest-result-section {
   background-color: #fff;
   border-radius: 12px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   padding: 20px;
   display: flex;
+  width: 33.3%;
   flex-direction: column;
   gap: 13px;
 }
@@ -44,6 +45,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 20px;
 }
 
 .participants {

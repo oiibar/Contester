@@ -38,8 +38,8 @@ const Past = ({ contests, isLoading, error }) => {
                 <td>
                   <a className="view-results-btn">
                     {isRegistered
-                      ? 'View My ContestsResults'
-                      : 'View ContestsResults'}
+                      ? 'View My Contest Results'
+                      : 'View Contest Results'}
                   </a>
                 </td>
               </tr>

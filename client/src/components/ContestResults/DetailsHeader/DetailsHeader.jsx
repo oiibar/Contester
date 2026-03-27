@@ -3,32 +3,33 @@ import './DetailsHeader.scss';
 import { FaClock } from 'react-icons/fa6';
 import { FaCalendar } from 'react-icons/fa';
 import { IoPeopleSharp } from 'react-icons/io5';
+import { calculateDuration, formatDate } from 'shared/lib/dateUtils';
 
-const DetailsHeader = () => {
+const DetailsHeader = ({ contest }) => {
+  const duration = calculateDuration(contest.startDate, contest.endDate);
+  const endDate = formatDate(contest.endDate);
+
   return (
     <div className="details-section">
       <div className="title-header">
         <div>
-          <h1>Algorithm Challenges 2026</h1>
-          <p className="description">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maiores,
-            sunt!
-          </p>
+          <h1>{contest.title}</h1>
+          <p className="description">{contest.description}</p>
         </div>
         <div className="completed-icon">Completed</div>
       </div>
       <div className="info">
         <p className="info-item">
           <FaCalendar />
-          <span>March 26, 2026</span>
+          <span>{endDate}</span>
         </p>
         <p className="info-item">
           <FaClock />
-          <span>Duration: 3 hours</span>
+          <span>Duration: {duration}</span>
         </p>
         <p className="info-item">
           <IoPeopleSharp />
-          <span>105 Participants</span>
+          <span>{contest.participants.length} Participants</span>
         </p>
       </div>
     </div>

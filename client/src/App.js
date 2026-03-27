@@ -38,7 +38,7 @@ function App() {
                 <Route path="/code" element={<Code />} />
                 <Route path="/problems/:contestId" element={<Problems />} />
                 <Route path="/results" element={<ContestsResults />} />
-                <Route path="/result" element={<ContestResult />} />
+                <Route path="/results/:contestId" element={<ContestResult />} />
               </Route>
 
               <Route path="*" element={<NotFound />} />

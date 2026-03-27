@@ -4,7 +4,11 @@ import { FaDownload } from 'react-icons/fa6';
 import { FaCrown } from 'react-icons/fa6';
 import { FaMedal } from 'react-icons/fa';
 
-const Rankings = () => {
+const Rankings = ({ contest }) => {
+  console.log(contest);
+
+  const participants = contest.participants || [];
+
   return (
     <div className="section-rankings">
       <div className="rankings-header">
@@ -24,6 +28,30 @@ const Rankings = () => {
             <th>PROBLEMS SOLVED</th>
             <th>TIME</th>
           </tr>
+          {participants.map((participant) => (
+            <tr className="gray-background">
+              <td>
+                <div className="rank">
+                  <FaCrown />
+                  <p>1st</p>
+                </div>
+              </td>
+              <td>
+                <div className="participant">
+                  <div className="user-profile"></div>
+                  <div>
+                    <p>
+                      {participant.firstName} {participant.lastName}
+                    </p>
+                    <p>@john_doe</p>
+                  </div>
+                </div>
+              </td>
+              <td>1005</td>
+              <td>6/7</td>
+              <td>2h 34m</td>
+            </tr>
+          ))}
           <tr className="gray-background">
             <td>
               <div className="rank">
