@@ -21,7 +21,6 @@ const Code = () => {
   const handleSolved = async (problemId) => {
     if (!setUser) return;
 
-    // Оптимистичное локальное обновление UI
     setUser((prev) => {
       if (!prev) return prev;
       const already = prev.problems?.some((p) => p.id === problemId);
@@ -32,7 +31,6 @@ const Code = () => {
       };
     });
 
-    // Попытаться получить актуальные данные пользователя с сервера и заменить контекст
     try {
       if (!user?.id || !token) return;
       const freshUser = await fetchUser(user.id, token);
@@ -41,7 +39,6 @@ const Code = () => {
       }
     } catch (err) {
       console.error('Failed to refresh user after submit', err);
-      // Оставляем оптимистичное изменение в UI, но логируем ошибку
     }
   };
 

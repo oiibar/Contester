@@ -3,6 +3,7 @@ import './Past.scss';
 import { formatDate } from 'shared/lib/dateUtils';
 import useContestDurations from 'hooks/contests/useContestDurations';
 import { useAuth } from 'auth/AuthContext';
+import { NavLink } from 'react-router';
 
 const Past = ({ contests, isLoading, error }) => {
   const durations = useContestDurations(contests);
@@ -36,11 +37,14 @@ const Past = ({ contests, isLoading, error }) => {
                 <td>{durations[contest.id] || '---'}</td>
                 <td>{contest.participants?.length || 0}</td>
                 <td>
-                  <a className="view-results-btn">
+                  <NavLink
+                    to={`/results/${contest.id}`}
+                    className="view-results-btn"
+                  >
                     {isRegistered
                       ? 'View My Contest Results'
                       : 'View Contest Results'}
-                  </a>
+                  </NavLink>
                 </td>
               </tr>
             );

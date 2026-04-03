@@ -12,7 +12,7 @@ const ProblemBreakdown = () => {
             <div className="progress-bar">
               <div></div>
             </div>
-            <p>95%</p>
+            <p>--95%--</p>
           </div>
         </div>
         <div className="problems-item">
@@ -21,7 +21,7 @@ const ProblemBreakdown = () => {
             <div className="progress-bar">
               <div></div>
             </div>
-            <p>87%</p>
+            <p>--87%--</p>
           </div>
         </div>
         <div className="problems-item">
@@ -30,7 +30,7 @@ const ProblemBreakdown = () => {
             <div className="progress-bar">
               <div></div>
             </div>
-            <p>62%</p>
+            <p>--62%--</p>
           </div>
         </div>
         <div className="problems-item">
@@ -39,7 +39,7 @@ const ProblemBreakdown = () => {
             <div className="progress-bar">
               <div></div>
             </div>
-            <p>34%</p>
+            <p>--34%--</p>
           </div>
         </div>
       </div>

@@ -7,38 +7,15 @@
   overflow: hidden;
   padding: 20px;
   display: flex;
-  width: 33.3%;
+  width: 100%;
   flex-direction: column;
-  gap: 13px;
-}
+  gap: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-.description {
-  color: $secondary-light;
-}
-
-.user-profile {
-  background-color: #787878;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-}
-
-.winner {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-
-.winner-name {
-  color: $secondary-light;
-  font-size: .8rem;
-}
-
-.completed-icon {
-  background-color: $easy;
-  color: $secondary-light;
-  border-radius: 15px;
-  padding: 3px 10px;
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  }
 }
 
 .subsection-1 {
@@ -46,15 +23,124 @@
   justify-content: space-between;
   align-items: center;
   gap: 20px;
+  flex-wrap: wrap;
+}
+
+.completed-icon {
+  background-color: $easy;
+  color: $secondary-light;
+  border-radius: 15px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.subsection-1 p:last-child {
+  color: $secondary-light;
+  font-size: 0.8rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.info h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: #1a1a1a;
+}
+
+.description {
+  color: $secondary-light;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
 .participants {
   display: flex;
   align-items: center;
+  gap: 8px;
+  color: $secondary-light;
+  font-size: 0.875rem;
+
+  svg {
+    font-size: 1.125rem;
+  }
 }
 
 .details {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-top: 4px;
+}
+
+.winner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user-profile {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.winner div:last-child {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.winner p {
+  margin: 0;
+  font-size: 0.7rem;
+  color: $secondary-light;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.winner-name {
+  color: #1a1a1a !important;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+@media (max-width: 768px) {
+  .contests-section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contest-result-section {
+    padding: 16px;
+  }
+
+  .subsection-1 {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .details {
+    flex-direction: column;
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .winner {
+    justify-content: space-between;
+  }
 }

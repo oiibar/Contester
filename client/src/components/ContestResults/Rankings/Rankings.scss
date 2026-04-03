@@ -60,11 +60,25 @@ tbody tr {
   padding: 20px;
 }
 
+//.user-profile {
+//  background-color: #787878;
+//  width: 30px;
+//  height: 30px;
+//  border-radius: 50%;
+//}
+
 .user-profile {
-  background-color: #787878;
-  width: 30px;
-  height: 30px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nickname {
+  opacity: .6;
 }
 
 .participant {

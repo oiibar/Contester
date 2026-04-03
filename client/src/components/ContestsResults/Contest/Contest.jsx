@@ -3,10 +3,10 @@ import './Contest.scss';
 import { IoPeopleSharp } from 'react-icons/io5';
 import MyButton from 'shared/ui/MyButton/MyButton';
 import { formatDate } from 'shared/lib/dateUtils';
-import { useNavigate } from 'react-router';
-import { useAuth } from '../../../auth/AuthContext';
 
 const Contest = ({ contest, navigateToContestResults, token }) => {
+  console.log(contest)
+
   return (
     <div className="contest-result-section">
       <div className="subsection-1">

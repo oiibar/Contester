@@ -10,24 +10,24 @@ const DetailsHeader = ({ contest }) => {
   const endDate = formatDate(contest.endDate);
 
   return (
-    <div className="details-section">
+    <div className="details-header-section">
       <div className="title-header">
         <div>
           <h1>{contest.title}</h1>
-          <p className="description">{contest.description}</p>
+          <p className="desc">{contest.description}</p>
         </div>
         <div className="completed-icon">Completed</div>
       </div>
-      <div className="info">
-        <p className="info-item">
+      <div className="information">
+        <p className="information-item">
           <FaCalendar />
           <span>{endDate}</span>
         </p>
-        <p className="info-item">
+        <p className="information-item">
           <FaClock />
           <span>Duration: {duration}</span>
         </p>
-        <p className="info-item">
+        <p className="information-item">
           <IoPeopleSharp />
           <span>{contest.participants.length} Participants</span>
         </p>

@@ -29,7 +29,7 @@ const Problems = () => {
           updateContest={updateContest}
         />
       </div>
-      <div className="contest-container">
+      <div className="problems-container">
         <ProblemsList
           isRegistered={isRegistered}
           contestData={contestData}

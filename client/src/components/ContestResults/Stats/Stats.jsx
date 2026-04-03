@@ -1,7 +1,25 @@
 import React from 'react';
 import './Stats.scss';
+import { useAuth } from '../../../auth/AuthContext';
 
 const Stats = ({ contest }) => {
+  const { user } = useAuth();
+  const problems = contest.problems;
+  const userId = user.id;
+  const userScores = contest.userScores || {};
+  const participants = contest.participants || [];
+
+  const getUserSolvedProblems = (userId) => {
+    let solvedCount = 0;
+    for (const problem of problems) {
+      const isSolved = problem.users.some((user) => user.id === userId);
+      if (isSolved) {
+        solvedCount++;
+      }
+    }
+    return solvedCount;
+  };
+
   return (
     <div className="stats-section">
       <h3>Contest Statistics</h3>
@@ -12,11 +30,11 @@ const Stats = ({ contest }) => {
         </div>
         <div className="stat-item">
           <p className="stat-item-title">Average Score</p>
-          <p>--1842--</p>
+          <p>--1500--</p>
         </div>
         <div className="stat-item">
           <p className="stat-item-title">Problems Solved</p>
-          <p>--8--</p>
+          <p>{getUserSolvedProblems(userId)}</p>
         </div>
         <div className="stat-item">
           <p className="stat-item-title">Completion Rate</p>

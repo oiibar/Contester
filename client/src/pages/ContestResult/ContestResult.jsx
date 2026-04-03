@@ -17,7 +17,7 @@ const ContestResult = () => {
   return (
     <>
       <PageHeader>Contest Result</PageHeader>
-      <div className="contests-container">
+      <div className="contest-result-container">
         <div className="header-section">
           <DetailsHeader contest={contest} />
         </div>

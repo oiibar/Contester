@@ -18,12 +18,7 @@ const ContestResult = () => {
   const now = Date.now();
   const past = [];
 
-  if (!contests || contests.length === 0) {
-    return <p>No past contests</p>;
-  }
-
   for (const c of contests) {
-    // const start = new Date(c.startDate).getTime();
     const end = new Date(c.endDate).getTime();
     if (end <= now) {
       past.push(c);
@@ -33,6 +28,12 @@ const ContestResult = () => {
   const navigateToContestResults = (contest) => {
     navigate(`/results/${contest.id}`, { state: { contest } });
   };
+
+  console.log(past);
+
+  if (past.length === 0) {
+    return <p>No past contests</p>;
+  }
 
   return (
     <>
