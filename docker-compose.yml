@@ -1,0 +1,125 @@
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    restart: always
+    networks:
+      - app-network
+    environment:
+      POSTGRES_DB: 'contester'
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: '123'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d contester"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+      start_period: 10s
+
+  backend:
+    build: ./backend
+    container_name: backend
+    networks:
+      - app-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/contester
+      SPRING_DATASOURCE_USERNAME: 'postgres'
+      SPRING_DATASOURCE_PASSWORD: '123'
+      MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: "health,metrics,prometheus"
+      MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED: "true"
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./client
+    container_name: frontend
+    networks:
+      - app-network
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+
+  nginx-exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    container_name: nginx-exporter
+    networks:
+      - app-network
+    ports:
+      - "9113:9113"
+    command:
+      - '-nginx.scrape-uri=http://frontend:80/nginx_status'
+    depends_on:
+      - frontend
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    networks:
+      - app-network
+    volumes:
+      - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alerts/alert_rules.yml:/etc/prometheus/alert_rules.yml:ro
+      - prometheus_data:/prometheus
+    ports:
+      - "9090:9090"
+    extra_hosts:
+      - 'host.docker.internal:host-gateway' 
+    depends_on:
+      - backend
+      - frontend
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--storage.tsdb.retention.time=30d'
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: grafana
+    networks:
+      - app-network
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+  node-exporter:
+    image: prom/node-exporter:latest
+    networks:
+      - app-network
+    container_name: node-exporter
+    ports:
+      - "9100:9100"
+    volumes:
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /:/rootfs:ro
+    command:
+      - '--path.procfs=/host/proc'
+      - '--path.sysfs=/host/sys'
+      - '--path.rootfs=/rootfs'
+      - '--collector.filesystem.mount-points-exclude=^/(sys|proc|dev|host|etc)($$|/)'
+
+volumes:
+  postgres_data:
+  prometheus_data:
+  grafana_data:
+
+networks:
+  app-network:
+    driver: bridge

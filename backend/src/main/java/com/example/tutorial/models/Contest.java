@@ -29,6 +29,7 @@ public class Contest {
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 
+
     // PROBLEMS
     @OneToMany(mappedBy = "contest", cascade = CascadeType.ALL)
     @JsonManagedReference("contest-problems")

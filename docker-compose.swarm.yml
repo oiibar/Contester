@@ -1,0 +1,35 @@
+version: '3.8'
+
+services:
+  backend:
+    image: yourregistry/backend:latest
+    deploy:
+      replicas: 3
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 512M
+      restart_policy:
+        condition: on-failure
+      update_config:
+        parallelism: 1
+        delay: 10s
+    networks:
+      - app-network
+
+  frontend:
+    image: yourregistry/frontend:latest
+    deploy:
+      replicas: 2
+      resources:
+        limits:
+          cpus: '0.3'
+          memory: 256M
+
+  postgres:
+    image: postgres:15-alpine
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    volumes:
+      - postgres_data:/var/lib/postgresql/data

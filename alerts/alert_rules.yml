@@ -1,0 +1,28 @@
+groups:
+  - name: contester_availability
+    interval: 15s
+    rules:
+      - alert: ContesterElevated5xxRate
+        expr: |
+          (
+            sum(rate(http_server_requests_seconds_count{status=~"5..", method!="OPTIONS"}[3m]))
+            /
+            sum(rate(http_server_requests_seconds_count{method!="OPTIONS"}[3m]))
+          ) > 0.005
+          and
+          sum(rate(http_server_requests_seconds_count{method!="OPTIONS"}[3m])) > 0.02
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Elevated backend 5xx rate (Contester)"
+          description: "More than 0.5% of API requests returned 5xx over the last few minutes. Check logs and dependencies."
+
+      - alert: ContesterBackendUnreachable
+        expr: up{job="spring-backend"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "Backend target down (Contester)"
+          description: "Prometheus cannot scrape the Spring Boot actuator. Container stopped, crash loop, or network issue."
