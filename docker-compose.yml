@@ -38,7 +38,7 @@ services:
       - "8080:8080"
 
   frontend:
-    build: ./client
+    build: ./frontend
     container_name: frontend
     networks:
       - app-network
